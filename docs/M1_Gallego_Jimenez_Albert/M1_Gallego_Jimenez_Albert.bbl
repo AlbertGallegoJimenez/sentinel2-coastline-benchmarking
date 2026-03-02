@@ -1,0 +1,68 @@
+\begin{thebibliography}{}
+
+\bibitem[Almeida et~al., 2021]{almeida_coastal_2021}
+Almeida, L.~P., Efraim De~Oliveira, I., Lyra, R., Scaranto~Dazzi, R.~L.,
+  Martins, V.~G., and Henrique Da Fontoura~Klein, A. (2021).
+\newblock Coastal {Analyst} {System} from {Space} {Imagery} {Engine}
+  ({CASSIE}): {Shoreline} management module.
+\newblock {\em Environmental Modelling \& Software}, 140:105033.
+
+\bibitem[Bhattiprolu, 2026]{bhattiprolu_digitalsreeni_2026}
+Bhattiprolu, D.~S. (2026).
+\newblock {DigitalSreeni} {Image} {Annotator} and {Toolkit}.
+\newblock original-date: 2024-09-04T16:02:42Z.
+
+\bibitem[Cabezas-Rabad{\'a}n et~al., 2026]{cabezas_site-specific_2026}
+Cabezas-Rabad{\'a}n, C., Gallego, A., da~Silva, P.~G., Pell{\'o}n, E.,
+  Mill{\'a}n, M.~C., Palomar-V{\'a}zquez, J., Sili{\'o}-Calzada, A.,
+  Mart{\'\i}nez~S{\'a}nchez, J., and Pardo-Pascual, J.~E. (2026).
+\newblock Towards a site-specific approach for satellite-derived waterline
+  definition in complex macrotidal beaches.
+\newblock Unpublished manuscript, Departamento de Geograf{\'\i}a, Universitat
+  de Val{\`e}ncia.
+
+\bibitem[Kirillov et~al., 2023]{kirillov_segment_2023}
+Kirillov, A., Mintun, E., Ravi, N., Mao, H., Rolland, C., Gustafson, L., Xiao,
+  T., Whitehead, S., Berg, A.~C., Lo, W.-Y., Dollár, P., and Girshick, R.
+  (2023).
+\newblock Segment {Anything}.
+\newblock In {\em 2023 {IEEE}/{CVF} {International} {Conference} on {Computer}
+  {Vision} ({ICCV})}, pages 3992--4003, Paris, France. IEEE.
+
+\bibitem[Ronneberger et~al., 2015]{navab_u-net_2015}
+Ronneberger, O., Fischer, P., and Brox, T. (2015).
+\newblock U-{Net}: {Convolutional} {Networks} for {Biomedical} {Image}
+  {Segmentation}.
+\newblock In Navab, N., Hornegger, J., Wells, W.~M., and Frangi, A.~F.,
+  editors, {\em Medical {Image} {Computing} and {Computer}-{Assisted}
+  {Intervention} – {MICCAI} 2015}, volume 9351, pages 234--241. Springer
+  International Publishing, Cham.
+\newblock Series Title: Lecture Notes in Computer Science.
+
+\bibitem[Sánchez-García et~al., 2020]{sanchez-garcia_efficient_2020}
+Sánchez-García, E., Palomar-Vázquez, J., Pardo-Pascual, J.,
+  Almonacid-Caballer, J., Cabezas-Rabadán, C., and Gómez-Pujol, L. (2020).
+\newblock An efficient protocol for accurate and massive shoreline definition
+  from mid-resolution satellite imagery.
+\newblock {\em Coastal Engineering}, 160:103732.
+
+\bibitem[Vitousek et~al., 2023]{vitousek_future_2023}
+Vitousek, S., Buscombe, D., Vos, K., Barnard, P.~L., Ritchie, A.~C., and
+  Warrick, J.~A. (2023).
+\newblock The future of coastal monitoring through satellite remote sensing.
+\newblock {\em Cambridge Prisms: Coastal Futures}, 1:e10.
+
+\bibitem[Vos et~al., 2019]{vos_coastsat_2019}
+Vos, K., Splinter, K.~D., Harley, M.~D., Simmons, J.~A., and Turner, I.~L.
+  (2019).
+\newblock {CoastSat}: {A} {Google} {Earth} {Engine}-enabled {Python} toolkit to
+  extract shorelines from publicly available satellite imagery.
+\newblock {\em Environmental Modelling \& Software}, 122:104528.
+
+\bibitem[Xie et~al., 2021]{xie_segformer_2021}
+Xie, E., Wang, W., Yu, Z., Anandkumar, A., Alvarez, J.~M., and Luo, P. (2021).
+\newblock {SegFormer}: {Simple} and {Efficient} {Design} for {Semantic}
+  {Segmentation} with {Transformers}.
+\newblock Version Number: 3.
+
+\end{thebibliography}

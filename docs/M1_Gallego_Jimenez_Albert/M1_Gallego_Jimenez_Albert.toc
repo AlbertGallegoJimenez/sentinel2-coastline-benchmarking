@@ -1,0 +1,9 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Proposed title}{3}{}%
+\contentsline {chapter}{\numberline {2}Keywords}{4}{}%
+\contentsline {chapter}{\numberline {3}Abstract}{5}{}%
+\contentsline {chapter}{\numberline {4}Description of the proposal and justification of its interest and relevance}{6}{}%
+\contentsline {chapter}{\numberline {5}Explanation of personal motivation}{8}{}%
+\contentsline {chapter}{\numberline {6}Definition of objectives (primary and secondary)}{9}{}%
+\contentsline {chapter}{\numberline {7}Description of the methodology used in the development of the project}{10}{}%
+\contentsline {chapter}{\numberline {8}Research plan}{12}{}%
