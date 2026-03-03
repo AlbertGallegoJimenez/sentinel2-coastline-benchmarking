@@ -53,6 +53,45 @@ def _stretch_to_uint8(band, lower_pct=2, upper_pct=98):
     return (stretched * 255).astype(np.uint8)
 
 
+def create_png_for_annotation(input_path, output_dir, band_mapping):
+    """
+    Creates an 8-bit RGB PNG from a multi-band GeoTIFF for use in annotation tools.
+
+    The PNG is a pixel-for-pixel rendering of the GeoTIFF (same dimensions and spatial
+    extent), so pixel coordinates in the annotation can be converted back to geographic
+    coordinates using the original GeoTIFF's rasterio transform:
+        rasterio.transform.xy(transform, rows, cols)
+
+    Bands are percentile-stretched (2nd–98th) to 8-bit.
+    PNG is lossless, ensuring exact pixel correspondence with the source TIFF.
+
+    Parameters:
+    input_path (str): Path to the input multi-band .tif file.
+    output_dir (str): Directory to save the PNG.
+    band_mapping (dict): RGB channel → 1-based band index within the raster.
+    """
+    os.makedirs(output_dir, exist_ok=True)
+
+    with rio.open(input_path) as src:
+        r = src.read(band_mapping['R'])
+        g = src.read(band_mapping['G'])
+        b = src.read(band_mapping['B'])
+
+    rgb_uint8 = np.stack([
+        _stretch_to_uint8(r),
+        _stretch_to_uint8(g),
+        _stretch_to_uint8(b),
+    ], axis=-1)
+
+    basename = os.path.splitext(os.path.basename(input_path))[0]
+    out_name = basename.replace('_ms', '_rgb_annotation') + '.png'
+    output_path = os.path.join(output_dir, out_name)
+
+    Image.fromarray(rgb_uint8).save(output_path, 'PNG')
+    print(f"Saved annotation PNG: {output_path}")
+    return output_path
+
+
 def create_jpg_preview(input_path, output_dir, band_mapping, quality=90):
     """
     Creates a JPG preview image from a single multi-band raster file.
@@ -89,7 +128,8 @@ def create_jpg_preview(input_path, output_dir, band_mapping, quality=90):
 if __name__ == "__main__":
     input_directory = 'data/images/salinas/ms'
     output_directory = 'data/images/salinas/rgb'
-    preview_directory = 'data/images/salinas/rgb_preview'  # JPG previews for manual filtering
+    preview_directory = 'data/images/salinas/rgb_preview'       # JPG previews for manual filtering
+    annotation_directory = 'data/images/salinas/annotation_pngs' # PNGs for annotation GUI input
 
     # Band indices (1-based) within the multi-band Sentinel-2 ms raster
     # Sentinel-2: B4=Red, B3=Green, B2=Blue
@@ -108,5 +148,6 @@ if __name__ == "__main__":
     for file in ms_files:
         input_path = os.path.join(input_directory, file)
         #create_jpg_preview(input_path, preview_directory, band_mapping)
-        create_rgb_composite(input_path, output_directory, band_mapping)
+        #create_rgb_composite(input_path, output_directory, band_mapping)
+        create_png_for_annotation(input_path, annotation_directory, band_mapping)
         
