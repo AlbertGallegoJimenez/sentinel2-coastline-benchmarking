@@ -29,13 +29,14 @@ import numpy as np
 import rasterio
 from rasterio.features import rasterize
 from rasterio.transform import from_bounds, IDENTITY
+from scipy.ndimage import distance_transform_edt
 from shapely.geometry import Polygon
 
 
 # ---------------------------------------------------------------------------
 # Configuration  –  edit these paths to match your project layout
 # ---------------------------------------------------------------------------
-COCO_JSON_PATH = "data/images/salinas/annotation_masks/annotations.json"
+COCO_JSON_PATH = "data/images/salinas/annotation_masks_proj/annotations.json"
 SOURCE_TIFF_DIR = "data/images/salinas/ms"
 OUTPUT_MASK_DIR = "data/images/salinas/annotation_masks_gt"
 # ---------------------------------------------------------------------------
@@ -68,20 +69,31 @@ def coco_to_geotiff_masks(
     output_mask_dir: str,
     target_class: str | None = None,
     class_priority: list[str] | None = None,
+    ignore_index: int = 255,
+    distance_threshold: float = 2.0,
 ) -> None:
     """
     Parameters
     ----------
-    coco_json_path   : path to the COCO JSON exported from the annotation GUI.
-    source_tiff_dir  : directory containing the original multi-band GeoTIFFs.
-    output_mask_dir  : directory where output GeoTIFF masks will be written.
-    target_class     : if given, produce a binary mask (0/1) for that class only.
-                       If None, produce a multi-class semantic mask where each
-                       class has a unique pixel value (1..N).
-    class_priority   : optional ordered list of class names from lowest to
-                       highest painting priority.  Classes later in the list
-                       overwrite earlier ones where polygons overlap.
-                       Defaults to alphabetical order (lowest pixel value first).
+    coco_json_path      : path to the COCO JSON exported from the annotation GUI.
+    source_tiff_dir     : directory containing the original multi-band GeoTIFFs.
+    output_mask_dir     : directory where output GeoTIFF masks will be written.
+    target_class        : if given, produce a binary mask (0/1) for that class only.
+                          If None, produce a multi-class semantic mask where each
+                          class has a unique pixel value (1..N).
+    class_priority      : optional ordered list of class names from lowest to
+                          highest painting priority.  Classes later in the list
+                          overwrite earlier ones where polygons overlap.
+                          Defaults to alphabetical order (lowest pixel value first).
+    ignore_index        : pixel value written for unannotated background pixels that
+                          lie farther than ``distance_threshold`` from any labeled
+                          pixel (intended as a DL training ignore label).  Default 255.
+    distance_threshold  : maximum Euclidean distance in pixels for gap-filling.
+                          Background pixels (value 0) within this distance of a
+                          labeled pixel are snapped to that label (nearest-neighbour,
+                          to close small annotation gaps / snapping errors).  Pixels
+                          beyond the threshold receive ``ignore_index`` instead.
+                          Default 2 (= 20 m at Sentinel-2 10 m resolution).
     """
     os.makedirs(output_mask_dir, exist_ok=True)
 
@@ -108,7 +120,7 @@ def coco_to_geotiff_masks(
     os.makedirs(output_mask_dir, exist_ok=True)
     with open(mapping_path, 'w') as f:
         f.write('Pixel Value : Class Name\n')
-        f.write('0           : background (unannotated)\n')
+        f.write(f'{ignore_index:<12}: ignore_index (unannotated background > {distance_threshold:.0f} px from any label)\n')
         for name, val in sorted(class_to_pixel.items(), key=lambda x: x[1]):
             f.write(f'{val:<12}: {name}\n')
     print(f'Class mapping written to: {mapping_path}')
@@ -179,6 +191,30 @@ def coco_to_geotiff_masks(
             )
             mask = np.where(layer > 0, layer, mask)
 
+        # -------------------------------------------------------------------
+        # Gap-filling: resolve all background pixels (value == 0)
+        # -------------------------------------------------------------------
+        # For every 0-pixel, distance_transform_edt finds the nearest labeled
+        # pixel (1..N) and its coordinates.
+        #
+        #   distance <= distance_threshold  →  snap to that neighbor's label
+        #                                       (fixes small gaps / snapping errors)
+        #   distance >  distance_threshold  →  assign ignore_index (255)
+        #                                       (large unannotated border regions)
+        # -------------------------------------------------------------------
+        bg_mask = mask == 0
+        if np.any(bg_mask):
+            distances, indices = distance_transform_edt(
+                bg_mask, return_distances=True, return_indices=True
+            )
+            row_idx, col_idx = indices[0], indices[1]
+            nearest_label = mask[row_idx, col_idx]  # label of nearest annotated px
+
+            close_bg = bg_mask & (distances <= distance_threshold)
+            far_bg   = bg_mask & (distances >  distance_threshold)
+            mask[close_bg] = nearest_label[close_bg]
+            mask[far_bg]   = ignore_index
+
         # Write output GeoTIFF with the original spatial reference
         out_stem = os.path.splitext(tiff_filename)[0].replace('_ms', '')
         out_filename = out_stem + '_mask_gt.tif'
@@ -197,10 +233,11 @@ def coco_to_geotiff_masks(
         with rasterio.open(out_path, 'w', **profile) as dst:
             dst.write(mask, 1)
 
-        annotated_px = int(np.sum(mask > 0))
+        labeled_px  = int(np.sum((mask > 0) & (mask != ignore_index)))
+        ignore_px   = int(np.sum(mask == ignore_index))
         class_counts = {name: int(np.sum(mask == val)) for name, val in class_to_pixel.items()}
         counts_str = ', '.join(f'{n}={v}px' for n, v in class_counts.items() if v > 0)
-        print(f"  [OK] {out_filename}  (annotated: {annotated_px}px | {counts_str})")
+        print(f"  [OK] {out_filename}  (labeled: {labeled_px}px | ignore: {ignore_px}px | {counts_str})")
         processed += 1
 
     print(f"\nDone. {processed} masks written, {skipped} images skipped.")
@@ -216,5 +253,5 @@ if __name__ == "__main__":
         # class_priority defines paint order: last class wins on overlap.
         # Default is alphabetical (lowest pixel value first).
         # Uncomment and reorder to change priority, e.g. foam over water:
-        # class_priority=['sand', 'wet_sand', 'water', 'white_water', 'clouds'],
+        class_priority=['water', 'sand', 'wet_sand', 'white_water', 'clouds'],
     )
