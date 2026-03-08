@@ -126,10 +126,15 @@ def create_jpg_preview(input_path, output_dir, band_mapping, quality=90):
 
 
 if __name__ == "__main__":
-    input_directory = 'data/images/salinas/ms'
-    output_directory = 'data/images/salinas/rgb'
-    preview_directory = 'data/images/salinas/rgb_preview'       # JPG previews for manual filtering
-    annotation_directory = 'data/images/salinas/annotation_pngs' # PNGs for annotation GUI input
+
+    # Select study site
+    site = 'puntal'
+
+    # Define paths
+    input_directory = f'data/images/{site}/ms'
+    output_directory = f'data/images/{site}/rgb'
+    preview_directory = f'data/images/{site}/rgb_preview'       # JPG previews for manual filtering
+    annotation_directory = f'data/images/{site}/annotation_pngs' # PNGs for annotation GUI input
 
     # Band indices (1-based) within the multi-band Sentinel-2 ms raster
     # Sentinel-2: B4=Red, B3=Green, B2=Blue
@@ -148,6 +153,6 @@ if __name__ == "__main__":
     for file in ms_files:
         input_path = os.path.join(input_directory, file)
         #create_jpg_preview(input_path, preview_directory, band_mapping)
-        #create_rgb_composite(input_path, output_directory, band_mapping)
+        create_rgb_composite(input_path, output_directory, band_mapping)
         create_png_for_annotation(input_path, annotation_directory, band_mapping)
         
