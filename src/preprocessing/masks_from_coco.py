@@ -36,9 +36,10 @@ from shapely.geometry import Polygon
 # ---------------------------------------------------------------------------
 # Configuration  –  edit these paths to match your project layout
 # ---------------------------------------------------------------------------
-COCO_JSON_PATH = "data/images/salinas/annotation_masks_proj/annotations.json"
-SOURCE_TIFF_DIR = "data/images/salinas/ms"
-OUTPUT_MASK_DIR = "data/images/salinas/annotation_masks_gt"
+STUDY_NAME = "salinas"
+COCO_JSON_PATH = f"data/images/{STUDY_NAME}/annotation_masks_proj/annotations.json"
+SOURCE_TIFF_DIR = f"data/images/{STUDY_NAME}/ms"
+OUTPUT_MASK_DIR = f"data/images/{STUDY_NAME}/annotation_masks_gt"
 # ---------------------------------------------------------------------------
 
 
@@ -70,7 +71,7 @@ def coco_to_geotiff_masks(
     target_class: str | None = None,
     class_priority: list[str] | None = None,
     ignore_index: int = 255,
-    distance_threshold: float = 2.0,
+    distance_threshold: float = 1.0,
 ) -> None:
     """
     Parameters
@@ -86,14 +87,16 @@ def coco_to_geotiff_masks(
                           overwrite earlier ones where polygons overlap.
                           Defaults to alphabetical order (lowest pixel value first).
     ignore_index        : pixel value written for unannotated background pixels that
-                          lie farther than ``distance_threshold`` from any labeled
-                          pixel (intended as a DL training ignore label).  Default 255.
+                          are not gap-filled (intended as a DL training ignore label).
+                          Default 255.
     distance_threshold  : maximum Euclidean distance in pixels for gap-filling.
-                          Background pixels (value 0) within this distance of a
-                          labeled pixel are snapped to that label (nearest-neighbour,
-                          to close small annotation gaps / snapping errors).  Pixels
-                          beyond the threshold receive ``ignore_index`` instead.
-                          Default 2 (= 20 m at Sentinel-2 10 m resolution).
+                          A background pixel is filled only when **two or more**
+                          annotated classes are both within this distance — meaning
+                          the pixel lies in a small gap between adjacent polygons.
+                          Background pixels reachable by only one class (outer polygon
+                          borders, unannotated regions) are left as ``ignore_index``
+                          and are never expanded outward.  Set to 0 to disable
+                          gap-filling entirely.  Default 0.
     """
     os.makedirs(output_mask_dir, exist_ok=True)
 
@@ -143,13 +146,40 @@ def coco_to_geotiff_masks(
             skipped += 1
             continue
 
-        # Read spatial metadata from the source GeoTIFF
+        # Annotation-PNG dimensions define the coordinate space of the polygons
+        ann_width  = image_info['width']
+        ann_height = image_info['height']
+
+        # Read spatial metadata AND pixel data from the source GeoTIFF
         with rasterio.open(tiff_path) as src:
             height = src.height
             width = src.width
             transform = src.transform
             crs = src.crs
             profile = src.profile.copy()
+            src_data = src.read()          # (bands, height, width)
+            declared_nodata = src.nodata
+
+        # Build a valid-data mask: False for out-of-swath pixels.
+        # Sentinel-2 uses 0 in all bands for out-of-swath / scene-edge pixels.
+        if declared_nodata is not None:
+            valid_px = ~np.all(src_data == declared_nodata, axis=0)
+        else:
+            valid_px = ~np.all(src_data == 0, axis=0)   # S2 convention: 0 = nodata
+        nodata_px_count = int(np.sum(~valid_px))
+        if nodata_px_count:
+            print(f"  [INFO] {tiff_filename}: {nodata_px_count} out-of-swath pixels "
+                  f"will be forced to ignore_index in the output mask.")
+
+        # Scale factors: map annotation-PNG pixel space → source-TIFF pixel space.
+        # Should be 1.0 in the normal case; non-unit when PNG and TIFF dimensions differ
+        # (e.g. SWIR bands resampled to 10 m can produce an off-by-one pixel count).
+        scale_x = width  / ann_width
+        scale_y = height / ann_height
+        if abs(scale_x - 1.0) > 1e-3 or abs(scale_y - 1.0) > 1e-3:
+            print(f"  [WARN] {png_filename}: annotation image ({ann_width}x{ann_height}) "
+                  f"!= source TIFF ({width}x{height}). "
+                  f"Rescaling polygon coords (sx={scale_x:.4f}, sy={scale_y:.4f}).")
 
         # Group polygons by class name
         polys_by_class: dict[str, list] = {name: [] for name in class_to_pixel}
@@ -160,7 +190,8 @@ def coco_to_geotiff_masks(
             if 'segmentation' not in ann or not ann['segmentation']:
                 continue
             for seg in ann['segmentation']:
-                coords = list(zip(seg[0::2], seg[1::2]))  # [(col, row), ...]
+                coords = [(x * scale_x, y * scale_y)          # map to TIFF pixel space
+                           for x, y in zip(seg[0::2], seg[1::2])]
                 if len(coords) >= 3:
                     poly = Polygon(coords)
                     if not poly.is_valid:
@@ -192,28 +223,53 @@ def coco_to_geotiff_masks(
             mask = np.where(layer > 0, layer, mask)
 
         # -------------------------------------------------------------------
-        # Gap-filling: resolve all background pixels (value == 0)
+        # Gap-filling: close small rasterisation gaps between adjacent polygons
         # -------------------------------------------------------------------
-        # For every 0-pixel, distance_transform_edt finds the nearest labeled
-        # pixel (1..N) and its coordinates.
-        #
-        #   distance <= distance_threshold  →  snap to that neighbor's label
-        #                                       (fixes small gaps / snapping errors)
-        #   distance >  distance_threshold  →  assign ignore_index (255)
-        #                                       (large unannotated border regions)
+        # Strategy: compute a per-class EDT so that, for each background pixel,
+        # we know the distance to *every* class independently.
+        # A background pixel is filled only when AT LEAST TWO classes are both
+        # within `distance_threshold` pixels — i.e. it sits between two polygons.
+        # Pixels where only one class is reachable (outer polygon borders,
+        # unannotated regions) are assigned `ignore_index` without any outward
+        # expansion of the labeled area.
         # -------------------------------------------------------------------
         bg_mask = mask == 0
         if np.any(bg_mask):
-            distances, indices = distance_transform_edt(
-                bg_mask, return_distances=True, return_indices=True
-            )
-            row_idx, col_idx = indices[0], indices[1]
-            nearest_label = mask[row_idx, col_idx]  # label of nearest annotated px
+            if distance_threshold > 0:
+                class_vals = list(class_to_pixel.values())
 
-            close_bg = bg_mask & (distances <= distance_threshold)
-            far_bg   = bg_mask & (distances >  distance_threshold)
-            mask[close_bg] = nearest_label[close_bg]
-            mask[far_bg]   = ignore_index
+                # dist_per_class[i] = distance of every pixel to the nearest
+                # pixel labeled as class_vals[i]
+                dist_per_class = np.full(
+                    (len(class_vals), height, width), np.inf, dtype=np.float32
+                )
+                for i, val in enumerate(class_vals):
+                    if np.any(mask == val):
+                        dist_per_class[i] = distance_transform_edt(mask != val)
+
+                # Count how many classes are reachable within the threshold
+                n_classes_nearby = (dist_per_class <= distance_threshold).sum(axis=0)
+
+                # Only fill pixels that lie between 2+ classes (inter-polygon gaps)
+                gap_px = bg_mask & (n_classes_nearby >= 2)
+                far_bg = bg_mask & ~gap_px
+
+                if np.any(gap_px):
+                    best_idx      = np.argmin(dist_per_class, axis=0)          # (H, W)
+                    best_class_map = np.array(class_vals, dtype=np.uint8)[best_idx]
+                    mask = np.where(gap_px, best_class_map, mask)
+
+                mask = np.where(far_bg, np.uint8(ignore_index), mask)
+            else:
+                # distance_threshold == 0: no gap-filling, all background → ignore
+                mask[bg_mask] = ignore_index
+
+        # Override any label (including gap-filled ones) at out-of-swath pixels.
+        # This prevents sensor-edge zeros in the source TIFF from being
+        # erroneously labelled as a class, which causes a visual "extra row/column"
+        # effect in GIS when compared against the RGB (whose border pixels are 0).
+        if nodata_px_count:
+            mask[~valid_px] = ignore_index
 
         # Write output GeoTIFF with the original spatial reference
         out_stem = os.path.splitext(tiff_filename)[0].replace('_ms', '')
