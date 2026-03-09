@@ -21,6 +21,7 @@ from datetime import datetime
 STUDY_NAME = "salinas"
 MARINE_PATH = f"data/marine_data/{STUDY_NAME}/marine_data.csv"
 GT_DIR = f"data/images/{STUDY_NAME}/annotation_masks_gt"
+RGB_TIFF_DIR = f"data/images/{STUDY_NAME}/annotation_pngs"
 DATE_FMT = "%Y-%m-%d-%H-%M-%S"
 
 # Helpers
@@ -52,11 +53,28 @@ marine_data["tide_level_quantile"] = pd.qcut(marine_data["tide"], q=4, labels=Fa
 # Get the list of datetime arrays of the GT images
 gt_dt = [_parse_dt_to_hour_res(file) for file in os.listdir(GT_DIR) if file.endswith(".tif")]
 
-# Filter the marine_data with the gt_dt array
-marine_data_gt = marine_data.loc[gt_dt]
+# Filter the marine_data with the gt_dt array, skipping dates not covered by marine data
+covered_gt_dt = [dt for dt in gt_dt if dt in marine_data.index]
+skipped_gt = len(gt_dt) - len(covered_gt_dt)
+if skipped_gt:
+    print(f"Warning: {skipped_gt} GT image(s) have dates not covered by marine data and will be skipped.")
+marine_data_gt = marine_data.loc[covered_gt_dt]
 
 # Show the distribution of the tide level quantiles in the GT data
 print(f"Distribution of tide level quantiles in the GT data - {STUDY_NAME}:")
 print(marine_data_gt["tide_level_quantile"].value_counts())
 print(f"Distribution of tide is rising in the GT data - {STUDY_NAME}:")
 print(marine_data_gt["tide_is_rising"].value_counts())
+
+# Select N random samples of 3th and 4th quantiles of the tide level distribution
+# that are not included in GT
+all_dt = [_parse_dt_to_hour_res(file) for file in os.listdir(RGB_TIFF_DIR) if file.endswith(".png")]
+not_gt_dt = list(set(all_dt)-set(gt_dt))
+covered_not_gt_dt = [dt for dt in not_gt_dt if dt in marine_data.index]
+skipped_not_gt = len(not_gt_dt) - len(covered_not_gt_dt)
+if skipped_not_gt:
+    print(f"Warning: {skipped_not_gt} non-GT image(s) have dates not covered by marine data and will be skipped.")
+marine_data_not_gt = marine_data.loc[covered_not_gt_dt]
+samples = marine_data_not_gt[marine_data_not_gt["tide_level_quantile"].isin([2, 3])].sample(10)
+print(f"Random samples of 3th and 4th quantiles of the tide level distribution that are not included in GT - {STUDY_NAME}:")
+print(samples[["tide", "tide_is_rising", "tide_level_quantile"]])
