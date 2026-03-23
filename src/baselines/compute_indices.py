@@ -24,7 +24,7 @@ import rasterio
 import matplotlib.pyplot as plt
 
 # Set data paths
-STUDY_NAME = "salinas"
+STUDY_NAME = "puntal"
 MS_DIR = f"data/images/{STUDY_NAME}/ms"
 SWIR_DIR = f"data/images/{STUDY_NAME}/swir"
 GT_DIR = f"data/images/{STUDY_NAME}/annotation_masks_gt"
@@ -58,11 +58,13 @@ def compute_indices(ms_path, swir_path):
 
     with rasterio.open(swir_path) as swir_src:
         swir1 = swir_src.read(1).astype(float)
+        swir2 = swir_src.read(2).astype(float) if swir_src.count > 1 else np.zeros_like(swir1)
 
     # Compute indices
     ndwi = (green - nir) / (green + nir + 1e-10)
     mndwi = (green - swir1) / (green + swir1 + 1e-10)
     aweinsh = 4 * (green - swir1) - (0.25 * nir + 2.75 * swir1)
+    scowi = blue + 2 * (green - nir) - 0.75 * swir1 - 0.5 * swir2
 
     # Set boundaries to NaN for indices using SWIR due to lower resolution artifacts
     mndwi[:2, :] = np.nan
@@ -73,9 +75,13 @@ def compute_indices(ms_path, swir_path):
     aweinsh[:, :4] = np.nan
     aweinsh[:, -3:] = np.nan
 
+    scowi[:2, :] = np.nan
+    scowi[:, :4] = np.nan
+    scowi[:, -3:] = np.nan
+
     profile.update(dtype=rasterio.float32, count=1, driver='GTiff')
 
-    return ndwi, mndwi, aweinsh, profile
+    return ndwi, mndwi, aweinsh, scowi, profile
 
 # Get list of GT images
 gt_images = [file for file in os.listdir(GT_DIR) if file.endswith(".tif")]
@@ -89,7 +95,7 @@ for gt_image in gt_images:
         print(f"Warning: Missing MS or SWIR image for {gt_image}. Skipping.")
         continue
 
-    ndwi, mndwi, aweinsh, profile = compute_indices(ms_path, swir_path)
+    ndwi, mndwi, aweinsh, scowi, profile = compute_indices(ms_path, swir_path)
 
     # Save indices as .tif files
     base_name = gt_image.replace(".tif", "").replace("_mask_gt", "")
@@ -100,11 +106,43 @@ for gt_image in gt_images:
         dst.write(mndwi.astype(rasterio.float32), 1)
     with rasterio.open(os.path.join(OUTPUT_DIR, f"{base_name}_aweinsh.tif"), 'w', **profile) as dst:
         dst.write(aweinsh.astype(rasterio.float32), 1)
+    with rasterio.open(os.path.join(OUTPUT_DIR, f"{base_name}_scowi.tif"), 'w', **profile) as dst:
+        dst.write(scowi.astype(rasterio.float32), 1)
         
     print(f"Computed indices for {gt_image} and saved to {OUTPUT_DIR}.")
 
 # # Plot an example of the computed indices
 # from rasterio.plot import show
+
+# fig, ax = plt.subplots()
+
+# # Get an example image
+# gt_image = [f for f in gt_images if "2016-11-16" in f][0] # Get the GT image for 2016-10-16
+# ms_path = os.path.join(MS_DIR, get_tif_filename(gt_image))
+# swir_path = os.path.join(SWIR_DIR, get_tif_filename(gt_image, im_type="swir"))
+# ndwi, mndwi, aweinsh, profile = compute_indices(ms_path, swir_path)
+
+# # # get the extent from the transform and shape
+# transform = profile['transform']
+# width = profile['width']
+# height = profile['height']
+# extent = [transform[2], transform[2] + transform[0] * width,
+#           transform[5] + transform[4] * height, transform[5]]
+
+# ax.imshow(mndwi, cmap='viridis_r', extent=extent)
+          
+# # Remove all axes and ticks
+# ax.set_xticks([])
+# ax.set_yticks([])
+# # Remove borders
+# ax.spines['top'].set_visible(False)
+# ax.spines['right'].set_visible(False)
+# ax.spines['bottom'].set_visible(False)
+# ax.spines['left'].set_visible(False)
+
+# fig.savefig(
+#     "C:/Users/usuari/Desktop/TFM/figures/spectral_indices_intro/example_mndwi.png",
+#     bbox_inches='tight', pad_inches=0, dpi=300)
 
 # fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 
