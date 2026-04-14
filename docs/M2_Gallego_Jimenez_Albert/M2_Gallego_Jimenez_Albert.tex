@@ -1,0 +1,449 @@
+﻿\documentclass[ENG]{TFUOC}%IB: CASTELLÀ, CAT: CATALÀ, ENG: ENGLISH
+
+% Robust line breaks for long URLs/DOIs in references and text
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage{float}
+\usepackage[authoryear,round]{natbib}
+
+% Prevent right-margin overflow (overfull hboxes) in difficult lines
+\emergencystretch=3em
+
+% Espacio vertical entre párrafos
+\setlength{\parskip}{0.6em}   % prueba 0.4em–1em
+\setlength{\parindent}{0pt}   % opcional: sin sangría de primera línea
+
+%Introduce Work Data
+\title{Comparative Evaluation of Satellite Image Segmentation Methods for Coastline Extraction: Spectral Indices vs. Deep Learning.}
+\titcrt{} %Short title to appear in header
+\author{Albert Gallego Jiménez}
+\date{\today}
+
+\nomPDC{Carlos Cabezas Rabadán and Joaquín Torres Sospedra}
+\nomPRA{David Masip Rodó}
+\titulac{MSc in Data Science}
+\area{Area 4: Pattern Recognition and Computer Vision in Applied Sciences - Geographic Information Systems, satellite images and geopositioning}
+\idioma{English}
+\credits{15}
+\parcla{Earth Observation, Satellite imagery, Coastal Remote Sensing, Semantic Segmentation, Spectral Indices, Water Segmentation}
+
+\licenc{ccBy}
+%Possible licenses
+%ccByNcNd
+%ccByNcSa
+%ccByNc
+%ccByNd
+%ccBySa
+%ccBy
+%GNU
+%copyright
+
+
+%%%%%%%%%%
+% Summary in language
+
+\abstractidioma{
+Maximum 250 words, for the purpose, context of application, methodology, results and conclusions of the work.
+}
+
+% Summary in English.
+\abstractenglish{
+A maximum of 250 words, detailing the purpose, context of application, methodology, results and conclusions of the work.
+}
+
+\begin{document}
+
+\estructura
+
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+
+
+
+\chapter{Introduction}
+
+\section{Context and Justification of Work}
+
+Coastal regions are among the most dynamic, densely populated, and socio-economically vital areas on Earth. However, these environments are under constant threat from both natural processes and anthropogenic pressures, exacerbated by climate change. As sea levels rise and extreme weather events become more frequent, coastal erosion has emerged as a critical global challenge. Consequently, accurate and continuous monitoring of shoreline position (the instantaneous interface between land and water) is essential for understanding morphological changes, evaluating erosion trends, and planning effective coastal defense strategies.
+
+Historically, tracking shoreline evolution relied on in-situ topographic surveys or aerial photogrammetry. While highly accurate, these methods are often prohibitively expensive, labor-intensive, and limited in spatial and temporal coverage. In recent decades, the advent of Earth Observation (EO) satellites has revolutionized coastal surveying. Missions such as the European Space Agency's (ESA) Sentinel-2 offer free, high-frequency, and multi-decadal imagery spanning the entire globe \citep{vitousek_future_2023}. This wealth of optical satellite data allows researchers and coastal managers to monitor shoreline dynamics at unprecedented scales and at a fraction of the cost.
+
+To extract the exact position of the waterline from a satellite image, traditional methodologies rely heavily on Spectral Indices. These mathematical formulas exploit the differences in how water and land reflect specific bands of sunlight (such as the near-infrared) to create binary masks separating water from non-water. Frameworks utilizing these principles, such as CoastSat \citep{vos_coastsat_2019}, SHOREX \citep{sanchez-garcia_efficient_2020}, and CASSIE \citep{almeida_coastal_2021}, have become the operational standard for generating automated, large-scale shoreline extraction data worldwide, providing an efficient alternative to manual digitization.
+
+
+However, this traditional pixel-by-pixel approach faces severe limitations when applied to highly dynamic, macrotidal environments. In high-energy coasts with large tidal ranges (such as the Cantabrian Sea) the presence of extensive wet sand and breaking wave foam creates a persistent ``semantic ambiguity''. The basic spectral premise that water strongly absorbs light while land reflects it frequently breaks down in these transition zones, leading to severe misidentifications of the actual waterline (see Figure~\ref{fig:misidentification_example}). As demonstrated by recent studies (e.g., \citealp{cabezas_site-specific_2026}), traditional tools struggle to navigate these challenging coastal scenes, resulting in significant spatial errors.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15truecm]{shoreline_misidentification_example.png}
+    \caption{Examples of shoreline misidentification in a macrotidal beach (adapted from \citealp{cabezas_site-specific_2026})}
+    \label{fig:misidentification_example}
+\end{figure}
+
+Consequently, there is a clear and urgent need to move beyond purely spectral formulas and explore methodologies capable of understanding the context of the image. Deep Learning (DL), a subset of Artificial Intelligence (AI), offers a promising solution to bridge this gap. Unlike traditional index thresholds that evaluate the reflectance value of an isolated pixel, advanced DL semantic segmentation architectures can learn complex spatial patterns, textures, and contextual hierarchies. By emulating how the human eye interprets a satellite image (recognizing the texture of a wave or the gradient of wet sand) DL models hold the potential to overcome the spectral confusion inherent in macrotidal environments.
+
+\section{Work Objectives}
+
+Given the challenges posed by macrotidal coasts and the limitations of traditional spectral methods, the overarching goal of this Master's Thesis is to evaluate the operational viability of Deep Learning solutions for shoreline mapping. To ensure a robust assessment, the study will focus on three highly dynamic beaches located along the northern Spanish coast: Salinas (Asturias), El Sardinero (Cantabria), and El Puntal (Cantabria). 
+
+\vspace{0.3cm}
+\noindent\textbf{Primary Objective:}
+\begin{itemize}
+    \item To perform a comprehensive benchmarking analysis between traditional spectral-based thresholding (e.g., NDWI, MNDWI) and modern Deep Learning-based semantic segmentation for automated coastline extraction in complex coastal environments.
+\end{itemize}
+
+\noindent\textbf{Secondary Objectives:}
+\begin{itemize}
+    \item To generate a high-quality ``Ground Truth'' dataset of coastal masks. This dataset will be rigidly constructed through manual photo-interpretation of the Sentinel-2 satellite imagery, utilizing AI-assisted annotation tools (such as the Segment Anything Model, SAM \citep{kirillov_segment_2023}) solely to refine and accelerate the manual digitization process.
+    \item To systematically evaluate and compare the performance degradation of both classical indices and Neural Networks under specifically adverse oceanographic and atmospheric conditions (e.g., the presence of extensive white foam, variations in intertidal sand moisture, and partial cloud cover).
+    % (Pendiente de incluir si da tiempo) \item To assess the transferability of trained models between different coastal typologies (Cantabrian vs. Mediterranean).
+\end{itemize}
+
+\section{Impact on Sustainability, Ethics-Social and Diversity}
+\label{s:etic}
+
+In compliance with the UOC's cross-disciplinary competence ``Ethical and global commitment'', this section identifies the positive and/or negative impacts of the Master's Thesis on the three dimensions: Sustainability, Ethical Behavior and Social Responsibility, and Diversity and Human Rights.
+
+\textbf{1. Sustainability} \\
+The project uses freely available Sentinel-2 Level-2A imagery from the Copernicus program and performs all processing either locally or on an institutional computing cluster. Traditional field-based coastal monitoring requires repeated physical surveys with vehicles, boats or aircraft, generating higher operational GHG emissions. The Deep Learning training phase incurs moderate energy consumption inherent to GPU usage; however, this is limited in scope and offset by the elimination of on-site campaigns. No other significant negative environmental impacts (resource depletion, waste generation or large-scale land use) are identified.
+
+Overall impact: neutral to slightly positive.
+
+\textbf{2. Ethical Behavior and Social Responsibility (RS)} \\
+All data used are open-access satellite products with no personal, sensitive or identifiable information. Ground-truth masks were generated through manual photo-interpretation assisted only by the Segment Anything Model for refinement. Model performance is evaluated with transparent metrics (IoU, Dice, geometric error) and limitations under adverse conditions (foam, wet sand, clouds) are explicitly quantified and reported. The project does not produce automated decisions affecting individuals or communities. Potential risk of misinterpretation of shoreline outputs by end-users is mitigated by providing full error analysis.
+
+Overall impact: neutral.
+
+\textbf{3. Diversity and Human Rights} \\
+The thesis is strictly technical and involves no human subjects, personal data, biometric information or gender-related variables. Development was carried out individually with no team composition. The resulting code, models and documentation use objective technical language and do not contain implicit biases. No positive or negative impacts on human rights, gender diversity or vulnerable groups are identified.
+
+Overall impact: neutral.
+
+\section{Focus and Method Followed}
+
+The methodology is structured into four main phases as illustrated in the workflow diagram (Figure~\ref{fig:workflow}):
+\begin{enumerate}
+    \item \textbf{Data Acquisition:} Downloading Sentinel-2 Level-2A (atmospherically corrected) products from Google Earth Engine, covering the period 2015–2025. A built-in cloud detection algorithm will be applied as an initial filter to discard obstructed scenes, utilizing the remaining available cloud-free images.
+    \item \textbf{Preprocessing \& Labelling:} Calculation of spectral indices (NDWI, MNDWI). Generation of Ground Truth masks using the Segment Anything Model (SAM) through an interactive annotation tool \citep{bhattiprolu_digitalsreeni_2026}.
+    \item \textbf{Model Implementation:}
+    \begin{itemize}
+        \item \textit{Baseline:} Automatic Otsu thresholding applied to spectral indices.
+        \item \textit{Deep Learning:} {\sloppy Training semantic segmentation models like U-Net \citep{navab_u-net_2015} or SegFormer \citep{xie_segformer_2021}. Model training will be run locally on an NVIDIA RTX 3060 GPU, with an institutional computing cluster (2 nodes, 2x NVIDIA A30 each) available for scaling if required.}
+    \end{itemize}
+    \item \textbf{Evaluation:} Comparison using pixel-based metrics (IoU, Dice) and geometric validation (calculating the mean Euclidean distance between the predicted and real coastline).
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Methodological_Workflow.png}
+    \caption{Schematic representation of the methodological workflow.}
+    \label{fig:workflow}
+\end{figure}
+
+
+\section{Work Schedule}
+
+The project is planned to be developed over a 5-month period (including the thesis defence), structured into the following tasks as shown in the Gantt chart (Figure~\ref{fig:gantt}). Additionally, project management software such as Trello or MS Planner will be used to track and control the tasks at a more specific level:
+\begin{itemize}
+    \item \textbf{Task 1:} Literature review, selection of study sites (beaches), and satellite images download.
+    \begin{itemize}
+        \item Literature review on traditional methods for satellite-derived coastline extraction.
+        \item Literature review on Deep Learning models applied to coastal monitoring.
+        \item Satellite images download for northern Spanish coast beaches: Salinas (Asturias), El Sardinero (Cantabria), and El Puntal (Cantabria).
+        % (Pendiente de incluir si da tiempo) \item Satellite images download for Beach 2 (Mediterranean environment).
+    \end{itemize}
+    \item \textbf{Task 2:} Calculation of spectral indices and generation of Ground Truth masks.
+    \begin{itemize}
+        \item Preparation of the GitHub repository structure for the project's codebase.
+        \item Calculation of spectral indices (e.g., NDWI, MNDWI).
+        \item Create RGB composites to assist in the annotation process.
+        \item Ground Truth generation through manually photo-interpretation of the RGB composites.
+    \end{itemize}
+    \item \textbf{Task 3:} Model implementation: Development of baseline and Deep Learning architectures.
+    \begin{itemize}
+        \item Application of automatic thresholding to spectral indices to set baseline models.
+        \item Selection, development, and training of Deep Learning architectures.
+        \item Application of contouring algorithms to extract shorelines at sub-pixel precision.
+    \end{itemize}
+    \item \textbf{Task 4:} Statistical analysis of results, benchmarking across different algorithms, and final evaluation.
+    \begin{itemize}
+        \item Pixel-based metrics evaluation (e.g., IoU, Dice Coefficient).
+        \item Geometric validation by calculating the mean Euclidean distance between predicted and real shorelines.
+        \item Comparison of performance under adverse conditions (foam, wet sand) and transferability assessment.
+    \end{itemize}
+    \item \textbf{Task 5:} Drafting report and interim deliveries.
+    \item \textbf{Task 6:} Progress meetings with directors.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15truecm]{tfm_gantt.png}
+    \caption{Gantt chart of the project timeline.}
+    \label{fig:gantt}
+\end{figure}
+
+\section{Brief Summary of Products Obtained}
+
+TO BE WRITTEN
+
+\section{Brief Description of Other Memory Chapters}
+
+TO BE WRITTEN
+
+\section{Statement on the Use of Generative Artificial Intelligence}
+
+TO BE WRITTEN
+
+\chapter{State of Art}
+
+\section{Coastal Monitoring and Shoreline Definition}
+
+The analysis of shoreline evolution over time is a fundamental aspect of coastal science, engineering, and management. An idealized definition of the shoreline describes it as the physical interface between land and water \citep{boak_shoreline_2005}. However, this boundary is highly dynamic, driven by continuous fluctuations in water levels caused by tides, waves, storm surges, and seasonal changes. Consequently, capturing a single, definitive shoreline position is practically impossible, making it necessary to define the shoreline based on specific objectives and available data.
+
+To overcome this, researchers typically rely on \textit{shoreline indicators}, which serve as proxy features to represent the true shoreline position. According to the comprehensive review by \citet{boak_shoreline_2005}, these indicators are generally grouped into two main categories:
+
+\begin{itemize}
+    \item \textbf{Visually discernible features}: Physical marks left on the coast, such as the High-Water Line (HWL) (often identified by a change in sand color due to moisture content), the instantaneous wet/dry boundary left by wave runup, or the seaward edge of dune vegetation (Figure \ref{fig:schematic_shoreline_indicators}).
+    \item \textbf{Tidal datum-based indicators}: These define the shoreline as the intersection of a specific coastal profile with a predetermined vertical elevation, such as Mean High Water (MHW) or Mean Sea Level (MSL). While datum-based indicators provide a mathematically objective boundary, they often require high-resolution topographic data (e.g., DGPS or LiDAR) which can be hard to acquire for long-term or large-scale studies (Figure \ref{fig:schematic_shoreline_indicators}).
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12truecm]{Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg}
+    \caption{Schematic representation of a beach profile illustrating shoreline indicators.(1) Feature based, detected on beach face: HTSL—high-tide swash line; WDL—wet–dry line; HWL—high-water line; IWL—instantaneous water line. (2) Elevation-based: MHW—mean high-water, MSL—mean sea level; MLW—mean low-water. (Source: \citealp{valverde_historical_2025})}
+    \label{fig:schematic_shoreline_indicators}
+\end{figure}
+
+The selection of a specific indicator and monitoring frequency depends on the intended application of the data. Shoreline monitoring serves several critical functions:
+\begin{itemize}
+    \item \textit{Long-term Trend Analysis}: Quantifying multi-decadal erosion or accretion rates to understand coastline evolution.
+    \item \textit{Storm Impact Assessment}: Evaluating episodic erosion caused by extreme weather events and tracking the subsequent post-storm recovery.
+    \item \textit{Seasonal Variability Studies}: Capturing the cyclical movement of the shoreline due to changing wave climates between summer and winter.
+    \item \textit{Coastal Management}: Quantifying the dry beach width for coastal management purposes, such as evaluating the beach's natural potential to act as a coastal defense against storms, assessing its carrying capacity for tourism and recreational activities, and informing strategies to mitigate overall vulnerability.
+\end{itemize}
+
+Within this theoretical framework, it is essential to define the specific indicator addressed in this research. This Master's Thesis focuses exclusively on the instantaneous waterline (WL), defined as the precise boundary between the water body and the emerged land at the exact moment of satellite overpass. While the term \textit{shoreline} is often used in a broader sense in coastal literature, throughout this document, both \textit{shoreline} and \textit{waterline} (or the acronym SDW for Satellite-Derived Waterline) are used interchangeably to refer specifically to this instantaneous land-water interface. Focusing on the WL is particularly relevant for satellite-based monitoring, as it represents the most direct feature discernible from optical imagery, although its detection in macrotidal environments remains a significant technical challenge, as will be described in more detail in Section \ref{sec:soa_challenges_macrotidal}.
+
+\section{Traditional Coastal Monitoring Methods}
+
+Historically, coastal monitoring has relied heavily on in-situ physical surveys. While these methods can offer high precision, they are inherently constrained by significant logistical effort, high operational costs, and consequently, low spatial and temporal coverage. 
+
+Topobathymetric monitoring using Global Navigation Satellite Systems (GNSS), particularly those operating in Real-Time Kinematic (RTK) mode, have been widely employed to acquire cross-shore beach profiles \citep{morton_monitoring_1993}. Although GNSS-based techniques can achieve millimeter-level accuracy, data collection is limited to the physical path traversed by operators (e.g., walking, driving, or mounted on a vehicle), making continuous shoreline mapping over regional scales largely impractical.
+
+To bridge the spatial gap of ground surveys, researchers increasingly turned to advanced airborne scanning technologies such as Light Detection and Ranging (LiDAR). Airborne LiDAR allows for the rapid acquisition of dense, high-resolution 3D point clouds over hundreds of kilometers of coast, from which datum-based shorelines can be extracted objectively \citep{stockdon_estimation_2002}. However, the high economic cost of instrument deployment restricts its use to infrequent, opportunistic, or project-specific flights, failing to provide the high-frequency temporal data necessary for continuous monitoring.
+
+Addressing the temporal limitations of physical surveys, fixed coastal video monitoring systems—most notably the Argus system \citep{holman_application_1993}—were developed in the 1990s. These ground-based camera networks capture high-frequency images (e.g., every 10 minutes) and can produce time-averaged images to derive robust shoreline-proxy indicators. While providing excellent temporal resolution to track short-term morphological changes, their spatial coverage remains inextricably confined to the camera's visual field of view (typically 1–3 kilometers), leaving vast stretches of the coastline unmonitored.
+
+More recently, the rise of ubiquitous smartphone technology has catalyzed the development of Citizen Science approaches for coastal monitoring, best exemplified by the global CoastSnap project \citep{harley_coastsnap_2022}. By installing simple, low-cost smartphone cradles at strategic coastal viewpoints, these initiatives crowdsource beach imagery from the general public. While this drastically reduces both initial deployment and operational costs while providing data with a spatial resolution similar to video stations, the temporal frequency and reliability of the data are inherently opportunistic, depending entirely on community participation and favorable weather conditions.
+
+To overcome the inherent trade-offs between spatial coverage, temporal frequency, and operational costs present in these traditional methods, researchers have increasingly turned to Earth Observation (EO) satellites. As summarized in Table \ref{tab:monitoring_methods}, satellite imagery uniquely provides continuous, global-scale coverage with a high frequency of observations at virtually zero operational cost for the end-user, effectively resolving many of the historical monitoring limitations. The application of this remote sensing data for continuous shoreline extraction, which is the cornerstone of this thesis, will be discussed in detail in the following section (Section \ref{sec:soa_satellite_methods}).
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of common coastal monitoring methods and their key characteristics.}
+    \vspace{0.1cm}
+    \renewcommand{\arraystretch}{1.5}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{l c c c l}
+        \hline
+        \textbf{Monitoring Method} & \textbf{Spatial Scale} & \textbf{Spatial Resolution} & \textbf{Temporal Resolution} & \textbf{Operational Cost} \\
+        \hline
+        GNSS / RTK Topography & Local & Millimetric & Low (Infrequent) & Very High (per survey) \\
+        Airborne LiDAR & Regional & Sub-meter & Low (Infrequent) & Very High (per flight) \\
+        Video systems (Argus) & Local (1-3 km)& Centimetric & Very High (Minutes) & Low (after initial setup) \\
+        Citizen Science (CoastSnap) & Local & Centimetric & Highly Variable & Very Low \\
+        Optical satellites (i.e. Landsat 4-9 and Sentinel-2) & Global & Decametric (10 m) & High (Days) & Zero (Free open data) \\
+        \hline
+    \end{tabular}
+    }
+    \label{tab:monitoring_methods}
+\end{table}
+
+\section{Satellite Remote Sensing for Coastal Monitoring} \label{sec:soa_satellite_methods}
+
+The advent of Earth Observation (EO) satellites has profoundly democratized and revolutionized coastal monitoring, effectively resolving the historical trade-offs between spatial coverage and temporal frequency. The cornerstone of this revolution is the Landsat program, jointly managed by NASA and the USGS. Initiated in the 1970s and providing continuous 30-meter resolution optical imagery since the launch of Landsat 4 in 1982, it offers an unparalleled, retrospective archive spanning over four decades. This extensive catalog allows coastal scientists and managers to reconstruct long-term shoreline evolution, analyze multi-decadal erosion trends, and assess the historical impact of major climatic events on a truly global scale.
+
+Building upon this legacy, the European Space Agency (ESA) catalyzed a new era in EO with the launch of the Copernicus Sentinel-2 constellation. Initially a twin-satellite system (Sentinel-2A and 2B, launched in 2015 and 2017), the constellation has recently been reinforced with the launch of Sentinel-2C in September 2024. Sentinel-2 dramatically bridged the gap to traditional in-situ methods by providing freely available, multispectral imagery at an unprecedented 10-meter spatial resolution (in visible and Near-Infrared bands) with a high-frequency revisit time of just 5 days at the equator \citep{vitousek_future_2023}. This exponential leap in temporal resolution has unlocked the ability to monitor highly dynamic, short-term coastal processes from space, such as seasonal beach profile fluctuations (e.g., \citealp{warrick_shoreline_2025}) and the acute morphodynamic impacts of specific storms (e.g., \citealp{cabezas-rabadan_satellite_2024}). The synergistic combination of both Landsat and Sentinel-2 missions has sparked an exponential growth in satellite-derived shoreline research over the last decade (Figure \ref{fig:evolution_shoreline_satellite}).
+
+\begin{figure}[H]
+    \centering
+    \textbf{(a)}\par\medskip
+    \includegraphics[width=15truecm]{satellite_timeline.png}
+    \vspace{0.05cm}
+    
+    \textbf{(b)}\par\medskip
+    \includegraphics[width=15truecm]{evolution_shoreline_satellite.png}
+    \caption{(a) Timeline for the publicly available satellites with global coverage. Source: Own elaboration, adapted and updated from \citet{vos_sub-annual_2019}. (b) Rapid evolution of the number of publications on satellite-derived shorelines (Number of documents per year for documents that include keywords ``satellite'' AND ``shoreline'' in Scopus database).}
+    \label{fig:evolution_shoreline_satellite}
+\end{figure}
+
+To leverage this massive and continuously expanding volume of ``Big Data'', the scientific community recognized that manual shoreline delineation was virtually impossible. This necessitated the development of automated computational frameworks designed to extract shoreline positions efficiently. Notable examples include CoastSat \citep{vos_coastsat_2019}, CASSIE \citep{almeida_coastal_2021}, and SHOREX \citep{sanchez-garcia_efficient_2020}. While differing in their specific implementations, these tools generally share a common processing pipeline: automated image acquisition via cloud APIs (like Google Earth Engine), cloud and cloud-shadow masking, initial water/land segmentation at the pixel level using spectral indices, and finally, subpixel contouring techniques to delineate the final, continuous shoreline vector. 
+
+\section{Traditional Waterline Extraction via Spectral Indices}
+
+The critical step in traditional SDW extraction pipelines is the initial segmentation of the image into ``water'' and ``non-water'' classes. This is almost universally achieved using Spectral Water Indices. These indices exploit the characteristic of water to absorb most radiation in the Near-Infrared (NIR) and Shortwave-Infrared (SWIR) wavelengths, while land (soil, sand, and vegetation) strongly reflects them (see Figure~\ref{fig:spectral_indices}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12truecm]{figure_intro_spectral_indices.png}
+    \caption{Schematic diagram of spectral index calculations using Sentinel-2 bands.}
+    \label{fig:spectral_indices}
+\end{figure}
+
+Historically, the Normalized Difference Water Index (NDWI), proposed by \citet{mcfeeters_use_1996}, and its variant, the Modified Normalized Difference Water Index (MNDWI) introduced by \citet{xu_modification_2006}, have been the standard tools for this task. Their implementation has been extensively documented in scientific literature to track long-term shoreline evolution and morphological changes across diverse coastal settings. For instance \citet{ghosh_monitoring_2015}, \citet{liu_analysis_2017} or \citet{wang_spatio-temporal_2017} demonstrated the efficacy of these indices in achieving high-accuracy shoreline detection using medium resolution satellite imagery, proving their value for multi-decadal coastal monitoring.
+
+More recently, indices designed specifically to suppress environmental noise and improve performance in complex coastal scenes have been introduced. These include the Automated Water Extraction Index (AWEI), developed by \citet{feyisa_automated_2014} to enhance water shadows and urban background removal, and the Subtractive Coastal Water Index (SCoWI) \citep{bergsma_shoreliner_2024}. The latter is particularly relevant to this project as it was developed specifically for Sentinel-2 imagery and has shown promising results in macrotidal environments.
+
+Once the index is calculated to create a greyscale intensity map, a threshold must be applied to binarize the image. While setting a constant threshold (e.g., zero) is common, adaptive statistical methods like Otsu's thresholding (\citealp{otsu_threshold_1979}) are frequently used to find the optimal separation value based on the image's histogram distribution. After binarization, the shoreline is extracted by identifying the boundary between water and land pixels. This is typically done by finding the transition pixels between the two classes, which are then smoothed and converted into a vector line via subpixel contouring algorithms (such as marching-squares, \citealp{lorensen_marching_1987}).
+
+\section{Challenges and Limitations in Macrotidal Environments} \label{sec:soa_challenges_macrotidal}
+
+While traditional spectral indices combined with automated thresholding (e.g., Otsu) perform highly accurately (often achieving sub-pixel precision of $<$10~m) in microtidal, sheltered, or steeply sloped beaches, their reliability significantly degrades in complex, high-energy, and macrotidal environments. Recent global benchmarking efforts \citep{vos_benchmarking_2023} have quantified this degradation, showing that horizontal extraction errors more than double (exceeding 20-40~m) on macrotidal beaches compared to their microtidal counterparts. Furthermore, site-specific assessments across the European Atlantic coast have similarly revealed profound limitations in these segmentation techniques during challenging oceanographic conditions \citep{cabezas_site-specific_2026}.
+
+The primary driver of error in these settings is the extensive and topographically complex intertidal zone exposed during ebb and low tides. In macrotidal beaches (tidal ranges $>$ 4 m) characterized by intermediate or dissipative morphodynamic states, the retreating tide leaves behind vast plains of saturated sand. Spectrally, the transition from dry sand to wet sand to shallow water is not a sharp boundary but a gradual continuum. Indices such as MNDWI and AWEInsh consistently fail to differentiate between shallow water and saturated soil, systematically misclassifying the wet intertidal zone as ``water'' (see an example in Figure \ref{fig:mndwi_cross_section}). This results in the extraction algorithms delineating the upper limit of the wet beach (or even the dune vegetation line) rather than the instantaneous water level, creating massive landward biases that can exceed hundreds of meters.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=17truecm]{mndwi_cross_section.png}
+    \caption{Cross-section of a macrotidal beach showing the spectral signature of water, white-water, wet sand, sand and land, derived from a Sentinel-2 image. The dashed line represents the shoreline extracted using MNDWI and Otsu's thresholding method, whereas the solid line represents the actual waterline. The MNDWI index is not able to differentiate between wet sand and water, leading to a landward bias in the extracted shoreline up to 120 m.}
+    \label{fig:mndwi_cross_section}
+\end{figure}
+
+Furthermore, high-energy wave conditions may introduce additional errors. The presence of extensive white foam generated by breaking waves offshore drastically alters the expected low reflectance of the water surface. Indices like NDWI are particularly sensitive to foam, occasionally mistaking the outer breaker zone for land, thus producing severe seaward offsets \citep{hagenaars_accuracy_2018, cabezas_site-specific_2026}.
+
+Ultimately, both specific case studies \citep{cabezas_site-specific_2026} and comprehensive benchmarking exercises \citep{vos_benchmarking_2023} concur that the primary bottleneck for accurate SDW extraction in complex areas is not the geometric subpixel refinement algorithm, but the initial binary segmentation step (the spectral index determination and thresholding method) itself. Relying solely on the radiometric intensity of isolated pixels is insufficient to navigate the semantic ambiguity between wave foam, wet sand, and the actual waterline. This critical limitation strongly motivates the need to take a step back from classical spectral approaches and explore advanced, context-aware Deep Learning solutions.
+
+\section{The Shift towards Deep Learning in Earth Observation}
+
+To overcome the inherent limitations of pixel-by-pixel spectral thresholding, the remote sensing community is increasingly turning to Deep Learning (DL). Unlike traditional index thresholds that evaluate the reflectance value of an isolated pixel, advanced DL semantic segmentation architectures learn hierarchical spatial features by evaluating the spatial context, textures, and structural patterns. This contextual awareness allows models to distinguish the texture of wave foam from dry sand or recognize the spatial gradient of a saturated beach face, even when spectral signatures are nearly identical.
+
+While the field is rapidly evolving, the technical landscape of DL for coastal monitoring is characterized by several competing paradigms. The encoder-decoder framework, exemplified by U-Net \citep{navab_u-net_2015} and its variants, remains the most prevalent architecture due to its effective use of skip connections to preserve fine spatial details \citep{tsiakos_use_2023}. More advanced convolutional models, such as DeepLabV3+ \citep{chen_encoder-decoder_2018}, have shown great potential by explicitly evaluating the image at multiple scales simultaneously. This wider field of view allows the model to better understand the broader coastal context (like the general geometry of the beach) while focusing sharply on the exact boundary, making it highly beneficial for extracting continuous, uninterrupted waterlines even in complex coasts.
+
+Furthermore, a significant shift toward Vision Transformers (ViT) and hybrid architectures is underway. Models like SegFormer \citep{xie_segformer_2021} and SETR \citep{zheng_rethinking_2020} demonstrate a superior ability to incorporate global contextual information, which is critical for distinguishing water boundaries in scenes affected by intense wave splash and structural shadows. More recently, dual-branch architectures such as TCCFNet \citep{fu_tccfnet_2025} have emerged as highly synergistic networks, combining CNN layers for fine, local details with Transformer layers for large-scale scene understanding. Although TCCFNet was originally designed for mapping complex mangrove forests rather than strictly for shoreline extraction, its underlying mechanics are transferable to waterline mapping. By leveraging global context to understand the broader beach morphology while using local features to precisely trace the tricky land-water interface, this hybrid approach can drastically reduce the semantic confusion between visually similar elements like shallow water and wet sand. To push this focus on the transition zone even further, specialized boundary-aware networks (such as BS-Net \citep{jing_bs-net_2021} and BAWS \citep{zhan_usv-seg_2025}) have been developed to treat the land-water interface as a primary feature rather than just the edge of a mask. By assigning dedicated interaction modules to explicitly model the boundary itself, these networks guarantee the high metric precision necessary for operational coastal monitoring.
+
+Despite these architectural advancements, a critical analysis of the current state of the art reveals fundamental methodological gaps that this study aims to address:
+
+\begin{itemize}
+    \item \textbf{Transition from Basic ML to Deep Contextual Learning:} While earlier AI applications for shoreline extraction heavily relied on traditional, pixel-wise Machine Learning classifiers (such as Support Vector Machines, Random Forests, or K-Nearest Neighbors), these methods still struggle with the complex spectral mixtures found in dynamic coastal zones \citep{tsiakos_use_2023}. Modern Deep Learning architectures overcome this by evaluating the spatial context rather than isolated pixels, though their full potential in adverse conditions is yet to be systematically quantified.
+    
+    \item \textbf{The Macrotidal Gap:} Most DL studies for shoreline extraction have been trained and validated in microtidal or sheltered environments where the land-water boundary is relatively stable. In macrotidal coasts, the ``semantic ambiguity'' between breaking wave foam, saturated sand, and shallow water remains a systematic challenge that most current models treat as noise rather than learned features \citep{tian_deep_2024}. The effectiveness of DL models to navigate these specific, high-energy conditions is a critical void in current research.
+
+    \item \textbf{Lack of Systematic Benchmarking vs. Operational Spectral Tools:} Although tools like CoastSat, CASSIE or SHOREX (which rely on spectral indices and automatic thresholding) are the current operational standard for automated shoreline extraction, there is a striking absence of extensive, consistent benchmarking that formally compares these traditional pipelines against modern semantic segmentation models \citep{tian_deep_2024}. Most DL studies evaluate new architectures against other neural networks rather than quantifying the exact magnitude of improvement over index-based methods in challenging environments.
+    
+    \item \textbf{Architectural Over-reliance and Class Complexity}: Current literature shows an over-reliance on U-Net variants without systematic justification for more complex coastal scenes \citep{tian_deep_2024}. Furthermore, most models still approach the problem as a binary classification (water vs. land), failing to exploit the potential of multi-class segmentation (e.g., explicitly labeling ``wet sand'' or ``white water'') to reduce the confusion that leads to landward or seaward biases.
+
+\end{itemize}
+
+By presenting a direct, data-driven comparison of classical spectral thresholding and modern semantic segmentation models—specifically optimized for multi-class detection in macrotidal settings—this project directly targets these gaps. It seeks not only to improve accuracy but to provide a rigorous assessment of whether AI-based workflows offer a justifiable operational advantage over established index-based monitoring tools.
+
+\chapter{Materials and Methods}
+
+TO BE WRITTEN
+
+In these sections, it is necessary to describe:
+\begin{itemize}
+    \item The most relevant aspects of the design and development of the work.
+    \item The methodology chosen to carry out this development, describing the possible alternatives, the decisions taken, and the criteria used to make these decisions.
+    \item The products obtained.
+\end{itemize}
+
+ 
+\textbf{Chapter structuring may vary depending on the type of work.}  
+ 
+If applicable, a section on “Economic evaluation of work” will be included. This section will indicate the expenses associated with the development and maintenance of work, as well as the economic benefits obtained and a final analysis on the viability of the product.
+
+
+
+\chapter{Results}
+
+TO BE WRITTEN
+
+Detail in this section the results obtained using the methodology described in the previous section.
+
+
+%Recull of job results. There should be a correspondence with the methodology that the results are what is obtained after applying the methodology.
+
+The figures must be explained and quoted in the text, such as \ref{fig:my_label}, in which the error is shown depending on the distance, in arbitrary units. All graphs must have the title of the axes.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=7truecm]{Rplotmanh.png}
+    \caption{Error working distance in arbitrary units.}
+    \label{fig:my_label}
+\end{figure}
+
+%\chapter{Discussion}
+%Discussion of results in project context. It is in this section that they make sense and in which the research questions are answered and it is shown how the results respond to the problems raised.
+
+%This part may not apply depending on the type of work.
+
+%\chapter{Economic evaluation}
+%If applicable, a section of ``Economic evaluation of work' will be included. This section will indicate the expenses associated with the development and maintenance of work, as well as the economic benefits obtained. A final analysis on the viability of the product must be carried out.
+
+\chapter{Conclusions and Future Works}
+
+TO BE WRITTEN
+
+%\section{Conclusions}
+This chapter must include:
+\begin{itemize}
+\item A description of the conclusions of the work:
+\begin{itemize}
+    \item Once the results have been obtained, what conclusions are drawn?
+    \item Are these results as expected? Or have they been amazing? Why?
+\end{itemize}
+\item A critical reflection on the achievement of the objectives initially set:
+\begin{itemize}
+    \item Have we achieved all the objectives? If the answer is negative, why?
+\end{itemize}
+\item A critical analysis of the monitoring of planning and methodology throughout the product:
+\begin{itemize}
+    \item Has the schedule been followed?
+    \item Has the planned methodology been adequate enough?
+    \item Has it been necessary to introduce changes to ensure the success of the work? Why?
+\end{itemize}
+\item From the impacts foreseen in \ref{s:etic}, ethical-social, sustainability and diversity, evaluate/mention whether they have been mitigated (if they were negative) or whether they have been achieved (if they were positive). 
+\item If unforeseen impacts have appeared in \ref{s:etic}, evaluate/mention how they have mitigated (if they were negative) or what they have contributed (if they were positive).
+\item The future lines of work that have not been explored in this work and have remained pending.
+
+
+%\item A description of the conclusions of the work: What lessons have been learned from work?
+%\item A critical reflection on the achievement of the objectives initially set: Have we achieved all the objectives? If the answer is negative, why?
+%\item Of the impacts foreseen in the section \ref{s:etic}, an assessment, or at least mention, of whether they have been mitigated (if they were negative) or whether they have been achieved (if they were positive). 
+\end{itemize}
+
+%\section{Future Lines}
+%The future lines of work that could not be explored in this work and have been pending.
+
+%\section{Schedule Tracking}
+%A critical analysis of the monitoring of the planning and methodology throughout the work: 
+%\begin{itemize}
+%    \item  Have the schedule been followed? 
+%    \item Has the planned methodology been adequate? 
+%    \item Has it been necessary to introduce changes to ensure the success of the work? Why?
+%\end{itemize}
+
+\chapter{Glossary}
+
+TO BE WRITTEN
+
+Definition of the most relevant terms and acronyms used in the Report.
+
+%Defining the most relevant terms and acronyms used within the Memory.
+
+\bibliographystyle{apalike}
+\bibliography{references}
+
+\newpage
+\appendix
+List of sections that are too extensive to include in memory and have a self-contained character (e.g. user manuals, installation manuals, etc.)
+ 
+Depending on the type of work, there may be no need to add an annex.
+
+\end{document}
+

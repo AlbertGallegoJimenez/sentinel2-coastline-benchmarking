@@ -1,0 +1,15 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Examples of shoreline misidentification in a macrotidal beach (adapted from \citealp {cabezas_site-specific_2026})}}{8}{}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Schematic representation of the methodological workflow.}}{11}{}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Gantt chart of the project timeline.}}{12}{}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Schematic representation of a beach profile illustrating shoreline indicators.(1) Feature based, detected on beach face: HTSL—high-tide swash line; WDL—wet–dry line; HWL—high-water line; IWL—instantaneous water line. (2) Elevation-based: MHW—mean high-water, MSL—mean sea level; MLW—mean low-water. (Source: \citealp {valverde_historical_2025})}}{15}{}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces (a) Timeline for the publicly available satellites with global coverage. Source: Own elaboration, adapted and updated from \citet {vos_sub-annual_2019}. (b) Rapid evolution of the number of publications on satellite-derived shorelines (Number of documents per year for documents that include keywords "satellite" AND "shoreline" in Scopus database).}}{18}{}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Schematic diagram of spectral index calculations using Sentinel-2 bands.}}{19}{}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Cross-section of a macrotidal beach showing the spectral signature of water, white-water, wet sand, sand and land, derived from a Sentinel-2 image. The dashed line represents the shoreline extracted using MNDWI and Otsu's thresholding method, whereas the solid line represents the actual waterline. The MNDWI index is not able to differentiate between wet sand and water, leading to a landward bias in the extracted shoreline up to 120 m.}}{21}{}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Error working distance in arbitrary units.}}{25}{}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
