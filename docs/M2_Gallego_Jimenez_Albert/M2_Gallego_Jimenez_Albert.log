@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  16 APR 2026 18:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  16 APR 2026 18:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1090,11 +1090,11 @@ Package pdftex.def Info: eimt.png  used on input line 80.
 [7
 
 ]
-<shoreline_misidentification_example.png, id=41, 330.033pt x 247.6452pt>
+<shoreline_misidentification_example.png, id=41, 165.0165pt x 123.8226pt>
 File: shoreline_misidentification_example.png Graphic file (type png)
 <use shoreline_misidentification_example.png>
 Package pdftex.def Info: shoreline_misidentification_example.png  used on input line 83.
-(pdftex.def)             Requested size: 426.79134pt x 320.24959pt.
+(pdftex.def)             Requested size: 426.79134pt x 320.2798pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
 Package pdftex.def Info: noulogo.png  used on input line 93.
@@ -1129,11 +1129,11 @@ File: eimt.png Graphic file (type png)
 Package pdftex.def Info: eimt.png  used on input line 119.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [9]
-<Methodological_Workflow.png, id=50, 2457.18pt x 1364.09625pt>
+<Methodological_Workflow.png, id=50, 614.295pt x 341.02406pt>
 File: Methodological_Workflow.png Graphic file (type png)
 <use Methodological_Workflow.png>
 Package pdftex.def Info: Methodological_Workflow.png  used on input line 143.
-(pdftex.def)             Requested size: 483.69684pt x 268.50583pt.
+(pdftex.def)             Requested size: 483.69684pt x 268.52664pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
 Package pdftex.def Info: noulogo.png  used on input line 147.
@@ -1309,11 +1309,11 @@ File: eimt.png Graphic file (type png)
 Package pdftex.def Info: eimt.png  used on input line 287.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [18 <./satellite_timeline.png> <./evolution_shoreline_satellite.png>]
-<figure_intro_spectral_indices.png, id=89, 3269.21375pt x 1978.39125pt>
+<figure_intro_spectral_indices.png, id=89, 817.0525pt x 494.84875pt>
 File: figure_intro_spectral_indices.png Graphic file (type png)
 <use figure_intro_spectral_indices.png>
 Package pdftex.def Info: figure_intro_spectral_indices.png  used on input line 293.
-(pdftex.def)             Requested size: 341.43306pt x 206.60516pt.
+(pdftex.def)             Requested size: 341.43306pt x 206.79305pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
 Package pdftex.def Info: noulogo.png  used on input line 303.
@@ -1331,11 +1331,11 @@ File: eimt.png Graphic file (type png)
 Package pdftex.def Info: eimt.png  used on input line 303.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [19 <./figure_intro_spectral_indices.png>]
-<mndwi_cross_section.png, id=94, 4685.505pt x 1483.5425pt>
+<mndwi_cross_section.png, id=94, 2342.7525pt x 741.77126pt>
 File: mndwi_cross_section.png Graphic file (type png)
 <use mndwi_cross_section.png>
 Package pdftex.def Info: mndwi_cross_section.png  used on input line 312.
-(pdftex.def)             Requested size: 483.69684pt x 153.13934pt.
+(pdftex.def)             Requested size: 483.69684pt x 153.15067pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
 Package pdftex.def Info: noulogo.png  used on input line 316.
@@ -1583,7 +1583,7 @@ Here is how much of TeX's memory you used:
  319 hyphenation exceptions out of 8191
  72i,22n,98p,1707b,646s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/albert/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on M2_Gallego_Jimenez_Albert.pdf (33 pages, 12297655 bytes).
+Output written on M2_Gallego_Jimenez_Albert.pdf (33 pages, 3364683 bytes).
 PDF statistics:
  173 PDF objects out of 1000 (max. 8388607)
  100 compressed objects within 1 object stream

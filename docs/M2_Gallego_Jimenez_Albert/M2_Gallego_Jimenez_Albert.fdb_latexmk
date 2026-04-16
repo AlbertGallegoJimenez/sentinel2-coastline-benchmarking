@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex M2_Gallego_Jimenez_Albert"] 1776357497.02652 "M2_Gallego_Jimenez_Albert.aux" "M2_Gallego_Jimenez_Albert.bbl" "M2_Gallego_Jimenez_Albert" 1776357500.94779 0
+["bibtex M2_Gallego_Jimenez_Albert"] 1776357497.02652 "M2_Gallego_Jimenez_Albert.aux" "M2_Gallego_Jimenez_Albert.bbl" "M2_Gallego_Jimenez_Albert" 1776358795.64572 0
   "./references.bib" 1774055610 31802 2a2f00880fa7501ac4b097fb992ea939 ""
   "/usr/local/texlive/2026basic/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "M2_Gallego_Jimenez_Albert.aux" 1776357500.85754 10342 92b3ece6065bfd31fd0127b2e3e53106 "pdflatex"
+  "M2_Gallego_Jimenez_Albert.aux" 1776358795.56297 10342 92b3ece6065bfd31fd0127b2e3e53106 "pdflatex"
   (generated)
   "M2_Gallego_Jimenez_Albert.bbl"
   "M2_Gallego_Jimenez_Albert.blg"
   (rewritten before read)
-["pdflatex"] 1776357497.04193 "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/M2_Gallego_Jimenez_Albert/M2_Gallego_Jimenez_Albert.tex" "M2_Gallego_Jimenez_Albert.pdf" "M2_Gallego_Jimenez_Albert" 1776357500.94792 0
+["pdflatex"] 1776358794.39682 "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/M2_Gallego_Jimenez_Albert/M2_Gallego_Jimenez_Albert.tex" "M2_Gallego_Jimenez_Albert.pdf" "M2_Gallego_Jimenez_Albert" 1776358795.64583 0
   "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/M2_Gallego_Jimenez_Albert/M2_Gallego_Jimenez_Albert.tex" 1776355965.68454 43541 78c266c9d231c52a8370d14e6c82e66b ""
   "/Users/albert/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1776357492.85815 14040 f2487687848f8824d159b8ea49fcbec1 ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
@@ -95,24 +95,24 @@
   "/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1776356811 79187 e3f5941707347d15c1721f52279213a2 ""
   "/usr/local/texlive/2026basic/texmf-var/web2c/pdftex/pdflatex.fmt" 1776356796 2966197 3f93f17f4ae4739fb27ffb514db1ec84 ""
   "/usr/local/texlive/2026basic/texmf.cnf" 1772405582 628 bbc09d6d38872d53c11bb48dc9b14e88 ""
-  "M2_Gallego_Jimenez_Albert.aux" 1776357500.85754 10342 92b3ece6065bfd31fd0127b2e3e53106 "pdflatex"
+  "M2_Gallego_Jimenez_Albert.aux" 1776358795.56297 10342 92b3ece6065bfd31fd0127b2e3e53106 "pdflatex"
   "M2_Gallego_Jimenez_Albert.bbl" 1776357497.04044 11146 8160d34e230ffd4b5ba651367d0c8cc0 "bibtex M2_Gallego_Jimenez_Albert"
-  "M2_Gallego_Jimenez_Albert.lof" 1776357500.85944 2033 ed067a3f1af78de3cec961648a30d512 "pdflatex"
-  "M2_Gallego_Jimenez_Albert.lot" 1776357500.85949 289 71a05e354900993ca75a6568120d98e7 "pdflatex"
+  "M2_Gallego_Jimenez_Albert.lof" 1776358795.56492 2033 ed067a3f1af78de3cec961648a30d512 "pdflatex"
+  "M2_Gallego_Jimenez_Albert.lot" 1776358795.56497 289 71a05e354900993ca75a6568120d98e7 "pdflatex"
   "M2_Gallego_Jimenez_Albert.tex" 1776355965.68454 43541 78c266c9d231c52a8370d14e6c82e66b ""
-  "M2_Gallego_Jimenez_Albert.toc" 1776357500.85935 1661 112d82be270a025ceea9b122254cd88b "pdflatex"
-  "Methodological_Workflow.png" 1772322274 3651825 ba207e78d88f93e776292972300faaf2 ""
+  "M2_Gallego_Jimenez_Albert.toc" 1776358795.56485 1661 112d82be270a025ceea9b122254cd88b "pdflatex"
+  "Methodological_Workflow.png" 1776358499.9455 664397 9016358e5d5e891150a25e2d52975eca ""
   "Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg" 1773735520 31333 03281b15ae5de13587df6971d25658b5 ""
   "TFUOC.cls" 1773537502 20562 015c03f8929cfbadde72fcc0d4c2e5a1 ""
   "UOCllarg.jpg" 1773382276 104016 5daf87688360f8a2e9c7c5e0a4e29859 ""
   "eimt.png" 1773382276 3446 5a2f780b252dace9fa9692a2adcbef8a ""
   "evolution_shoreline_satellite.png" 1773744810 164861 2f2edf7bcad51c7ed96ac11cdd603be9 ""
-  "figure_intro_spectral_indices.png" 1773571474 2634300 a756f6c693b30ce6b904f7a58d418e4d ""
+  "figure_intro_spectral_indices.png" 1776358553.06211 330711 a67aab7f365b98c71ffbb97af32c629f ""
   "licenc/ccby.png" 1773382276 6477 d9aeba89b9319dfdb4358642f573b825 ""
-  "mndwi_cross_section.png" 1773705022 1863985 162b35bd830a1b96b0dcc400af128ced ""
+  "mndwi_cross_section.png" 1776358639.42098 942489 7c2c63f5dada3b5a2dcbd3c38309ed0f ""
   "noulogo.png" 1773382276 20022 5855e46f3c2ee8ffcea1adcf7e324923 ""
   "satellite_timeline.png" 1773744406 126222 ccc9be438b2dc9ea4118764ec278889c ""
-  "shoreline_misidentification_example.png" 1772185268 1954015 5aa5387ebeeb91bbdcfc78cf8bb05002 ""
+  "shoreline_misidentification_example.png" 1776358669.22126 408846 0a4d0e08e1e8c808223c91a3541fd1c9 ""
   "tfm_gantt.png" 1772282276 91663 47a9b24aa049ff32dfea709cc2bb9f1e ""
   (generated)
   "M2_Gallego_Jimenez_Albert.aux"
