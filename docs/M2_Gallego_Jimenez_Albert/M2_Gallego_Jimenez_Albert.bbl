@@ -1,17 +1,13 @@
 \begin{thebibliography}{}
 
 \bibitem[Almeida et~al., 2021]{almeida_coastal_2021}
-Almeida, L.~P., Efraim De~Oliveira, I., Lyra, R., Scaranto~Dazzi, R.~L.,
-  Martins, V.~G., and Henrique Da Fontoura~Klein, A. (2021).
-\newblock Coastal {Analyst} {System} from {Space} {Imagery} {Engine}
-  ({CASSIE}): {Shoreline} management module.
+Almeida, L.~P., Efraim De~Oliveira, I., Lyra, R., Scaranto~Dazzi, R.~L., Martins, V.~G., and Henrique Da Fontoura~Klein, A. (2021).
+\newblock Coastal {Analyst} {System} from {Space} {Imagery} {Engine} ({CASSIE}): {Shoreline} management module.
 \newblock {\em Environmental Modelling \& Software}, 140:105033.
 
 \bibitem[Bergsma et~al., 2024]{bergsma_shoreliner_2024}
-Bergsma, E. W.~J., Klotz, A.~N., Artigues, S., Graffin, M., Prenowitz, A.,
-  Delvit, J.-M., and Almar, R. (2024).
-\newblock Shoreliner: {A} {Sub}-{Pixel} {Coastal} {Waterline} {Extraction}
-  {Pipeline} for {Multi}-{Spectral} {Satellite} {Optical} {Imagery}.
+Bergsma, E. W.~J., Klotz, A.~N., Artigues, S., Graffin, M., Prenowitz, A., Delvit, J.-M., and Almar, R. (2024).
+\newblock Shoreliner: {A} {Sub}-{Pixel} {Coastal} {Waterline} {Extraction} {Pipeline} for {Multi}-{Spectral} {Satellite} {Optical} {Imagery}.
 \newblock {\em Remote Sensing}, 16(15):2795.
 
 \bibitem[Bhattiprolu, 2026]{bhattiprolu_digitalsreeni_2026}
@@ -25,97 +21,73 @@ Boak, E.~H. and Turner, I.~L. (2005).
 \newblock {\em Journal of Coastal Research}, 214:688--703.
 
 \bibitem[Cabezas-Rabad{\'a}n et~al., 2026]{cabezas_site-specific_2026}
-Cabezas-Rabad{\'a}n, C., Gallego, A., da~Silva, P.~G., Pell{\'o}n, E.,
-  Mill{\'a}n, M.~C., Palomar-V{\'a}zquez, J., Sili{\'o}-Calzada, A.,
-  Mart{\'\i}nez~S{\'a}nchez, J., and Pardo-Pascual, J.~E. (2026).
-\newblock Towards a site-specific approach for satellite-derived waterline
-  definition in complex macrotidal beaches.
-\newblock Unpublished manuscript, Departamento de Geograf{\'\i}a, Universitat
-  de Val{\`e}ncia.
+Cabezas-Rabad{\'a}n, C., Gallego, A., da~Silva, P.~G., Pell{\'o}n, E., Mill{\'a}n, M.~C., Palomar-V{\'a}zquez, J., Sili{\'o}-Calzada, A., Mart{\'\i}nez~S{\'a}nchez, J., and Pardo-Pascual, J.~E. (2026).
+\newblock Towards a site-specific approach for satellite-derived waterline definition in complex macrotidal beaches.
+\newblock Unpublished manuscript, Departamento de Geograf{\'\i}a, Universitat de Val{\`e}ncia.
 
 \bibitem[Cabezas-Rabadán et~al., 2024]{cabezas-rabadan_satellite_2024}
-Cabezas-Rabadán, C., Pardo-Pascual, J., Palomar-Vázquez, J., Roch-Talens, A.,
-  and Guillén, J. (2024).
-\newblock Satellite observations of storm erosion and recovery of the {Ebro}
-  {Delta} coastline, {NE} {Spain}.
+Cabezas-Rabadán, C., Pardo-Pascual, J., Palomar-Vázquez, J., Roch-Talens, A., and Guillén, J. (2024).
+\newblock Satellite observations of storm erosion and recovery of the {Ebro} {Delta} coastline, {NE} {Spain}.
 \newblock {\em Coastal Engineering}, 188:104451.
 
 \bibitem[Chen et~al., 2018]{chen_encoder-decoder_2018}
 Chen, L.-C., Zhu, Y., Papandreou, G., Schroff, F., and Adam, H. (2018).
-\newblock Encoder-{Decoder} with {Atrous} {Separable} {Convolution} for
-  {Semantic} {Image} {Segmentation}.
+\newblock Encoder-{Decoder} with {Atrous} {Separable} {Convolution} for {Semantic} {Image} {Segmentation}.
 \newblock Version Number: 3.
 
 \bibitem[Feyisa et~al., 2014]{feyisa_automated_2014}
 Feyisa, G.~L., Meilby, H., Fensholt, R., and Proud, S.~R. (2014).
-\newblock Automated {Water} {Extraction} {Index}: {A} new technique for surface
-  water mapping using {Landsat} imagery.
+\newblock Automated {Water} {Extraction} {Index}: {A} new technique for surface water mapping using {Landsat} imagery.
 \newblock {\em Remote Sensing of Environment}, 140:23--35.
 
 \bibitem[Fu et~al., 2025]{fu_tccfnet_2025}
-Fu, L., Wang, Y., Wu, S., Zhuang, J., Wu, Z., Wu, J., Chen, H., and Chen, Y.
-  (2025).
-\newblock {TCCFNet}: a semantic segmentation method for mangrove remote sensing
-  images based on two-channel cross-fusion networks.
+Fu, L., Wang, Y., Wu, S., Zhuang, J., Wu, Z., Wu, J., Chen, H., and Chen, Y. (2025).
+\newblock {TCCFNet}: a semantic segmentation method for mangrove remote sensing images based on two-channel cross-fusion networks.
 \newblock {\em Frontiers in Marine Science}, 12:1535917.
 
 \bibitem[Ghosh et~al., 2015]{ghosh_monitoring_2015}
 Ghosh, M.~K., Kumar, L., and Roy, C. (2015).
-\newblock Monitoring the coastline change of {Hatiya} {Island} in {Bangladesh}
-  using remote sensing techniques.
-\newblock {\em ISPRS Journal of Photogrammetry and Remote Sensing},
-  101:137--144.
+\newblock Monitoring the coastline change of {Hatiya} {Island} in {Bangladesh} using remote sensing techniques.
+\newblock {\em ISPRS Journal of Photogrammetry and Remote Sensing}, 101:137--144.
 
 \bibitem[Hagenaars et~al., 2018]{hagenaars_accuracy_2018}
-Hagenaars, G., De~Vries, S., Luijendijk, A.~P., De~Boer, W.~P., and Reniers,
-  A.~J. (2018).
-\newblock On the accuracy of automated shoreline detection derived from
-  satellite imagery: {A} case study of the sand motor mega-scale nourishment.
+Hagenaars, G., De~Vries, S., Luijendijk, A.~P., De~Boer, W.~P., and Reniers, A.~J. (2018).
+\newblock On the accuracy of automated shoreline detection derived from satellite imagery: {A} case study of the sand motor mega-scale nourishment.
 \newblock {\em Coastal Engineering}, 133:113--125.
 
 \bibitem[Harley and Kinsela, 2022]{harley_coastsnap_2022}
 Harley, M.~D. and Kinsela, M.~A. (2022).
-\newblock {CoastSnap}: {A} global citizen science program to monitor changing
-  coastlines.
+\newblock {CoastSnap}: {A} global citizen science program to monitor changing coastlines.
 \newblock {\em Continental Shelf Research}, 245:104796.
 
 \bibitem[Holman et~al., 1993]{holman_application_1993}
 Holman, R., Sallenger, A., Lippmann, T., and Haines, J. (1993).
-\newblock The application of video image processing to the study of nearshore
-  processes.
+\newblock The application of video image processing to the study of nearshore processes.
 \newblock {\em Oceanography}, 6(3):78--85.
 
 \bibitem[Jing et~al., 2021]{jing_bs-net_2021}
 Jing, W., Cui, B., Lu, Y., and Huang, L. (2021).
-\newblock {BS}-{Net}: {Using} {Joint}-{Learning} {Boundary} and {Segmentation}
-  {Network} for {Coastline} {Extraction} from {Remote} {Sensing} {Images}.
+\newblock {BS}-{Net}: {Using} {Joint}-{Learning} {Boundary} and {Segmentation} {Network} for {Coastline} {Extraction} from {Remote} {Sensing} {Images}.
 \newblock {\em Remote Sensing Letters}, 12(12):1260--1268.
 
 \bibitem[Kirillov et~al., 2023]{kirillov_segment_2023}
-Kirillov, A., Mintun, E., Ravi, N., Mao, H., Rolland, C., Gustafson, L., Xiao,
-  T., Whitehead, S., Berg, A.~C., Lo, W.-Y., Dollár, P., and Girshick, R.
-  (2023).
+Kirillov, A., Mintun, E., Ravi, N., Mao, H., Rolland, C., Gustafson, L., Xiao, T., Whitehead, S., Berg, A.~C., Lo, W.-Y., Dollár, P., and Girshick, R. (2023).
 \newblock Segment {Anything}.
-\newblock In {\em 2023 {IEEE}/{CVF} {International} {Conference} on {Computer}
-  {Vision} ({ICCV})}, pages 3992--4003, Paris, France. IEEE.
+\newblock In {\em 2023 {IEEE}/{CVF} {International} {Conference} on {Computer} {Vision} ({ICCV})}, pages 3992--4003, Paris, France. IEEE.
 
 \bibitem[Liu et~al., 2017]{liu_analysis_2017}
 Liu, Y., Wang, X., Ling, F., Xu, S., and Wang, C. (2017).
-\newblock Analysis of {Coastline} {Extraction} from {Landsat}-8 {OLI}
-  {Imagery}.
+\newblock Analysis of {Coastline} {Extraction} from {Landsat}-8 {OLI} {Imagery}.
 \newblock {\em Water}, 9:816.
 
 \bibitem[Lorensen and Cline, 1987]{lorensen_marching_1987}
 Lorensen, W.~E. and Cline, H.~E. (1987).
-\newblock Marching cubes: {A} high resolution {3D} surface construction
-  algorithm.
-\newblock In {\em Proceedings of the 14th annual conference on {Computer}
-  graphics and interactive techniques}, pages 163--169. ACM.
+\newblock Marching cubes: {A} high resolution {3D} surface construction algorithm.
+\newblock In {\em Proceedings of the 14th annual conference on {Computer} graphics and interactive techniques}, pages 163--169. ACM.
 
 \bibitem[McFeeters, 1996]{mcfeeters_use_1996}
 McFeeters, S.~K. (1996).
-\newblock The use of the {Normalized} {Difference} {Water} {Index} ({NDWI}) in
-  the delineation of open water features.
+\newblock The use of the {Normalized} {Difference} {Water} {Index} ({NDWI}) in the delineation of open water features.
 \newblock {\em International Journal of Remote Sensing}, 17(7):1425--1432.
 
 \bibitem[Morton et~al., 1993]{morton_monitoring_1993}
@@ -126,115 +98,87 @@ Morton, R., Leach, M., Paine, J., and Cardoza, M. (1993).
 \bibitem[Otsu, 1979]{otsu_threshold_1979}
 Otsu, N. (1979).
 \newblock A {Threshold} {Selection} {Method} from {Gray}-{Level} {Histograms}.
-\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics},
-  9(1):62--66.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics}, 9(1):62--66.
 
 \bibitem[Ronneberger et~al., 2015]{navab_u-net_2015}
 Ronneberger, O., Fischer, P., and Brox, T. (2015).
-\newblock U-{Net}: {Convolutional} {Networks} for {Biomedical} {Image}
-  {Segmentation}.
-\newblock In Navab, N., Hornegger, J., Wells, W.~M., and Frangi, A.~F.,
-  editors, {\em Medical {Image} {Computing} and {Computer}-{Assisted}
-  {Intervention} – {MICCAI} 2015}, volume 9351, pages 234--241. Springer
-  International Publishing, Cham.
+\newblock U-{Net}: {Convolutional} {Networks} for {Biomedical} {Image} {Segmentation}.
+\newblock In Navab, N., Hornegger, J., Wells, W.~M., and Frangi, A.~F., editors, {\em Medical {Image} {Computing} and {Computer}-{Assisted} {Intervention} – {MICCAI} 2015}, volume 9351, pages 234--241. Springer International Publishing, Cham.
 \newblock Series Title: Lecture Notes in Computer Science.
 
 \bibitem[Stockdon et~al., 2002]{stockdon_estimation_2002}
 Stockdon, H., Sallenger, A., List, J., and Holman, R. (2002).
-\newblock Estimation of shoreline position and change using airborne
-  topographic lidar data.
+\newblock Estimation of shoreline position and change using airborne topographic lidar data.
 \newblock {\em Journal of Coastal Research}, 18(3):502--513.
 
 \bibitem[Sánchez-García et~al., 2020]{sanchez-garcia_efficient_2020}
-Sánchez-García, E., Palomar-Vázquez, J., Pardo-Pascual, J.,
-  Almonacid-Caballer, J., Cabezas-Rabadán, C., and Gómez-Pujol, L. (2020).
-\newblock An efficient protocol for accurate and massive shoreline definition
-  from mid-resolution satellite imagery.
+Sánchez-García, E., Palomar-Vázquez, J., Pardo-Pascual, J., Almonacid-Caballer, J., Cabezas-Rabadán, C., and Gómez-Pujol, L. (2020).
+\newblock An efficient protocol for accurate and massive shoreline definition from mid-resolution satellite imagery.
 \newblock {\em Coastal Engineering}, 160:103732.
 
 \bibitem[Tian et~al., 2024]{tian_deep_2024}
 Tian, Z., Anagnostopoulos, C., Wang, Q., Gao, Z., and Hurst, M. (2024).
-\newblock Deep learning-based coastal feature detection: A survey of shoreline,
-  waterline, and vegetation line segmentation methods.
+\newblock Deep learning-based coastal feature detection: A survey of shoreline, waterline, and vegetation line segmentation methods.
 \newblock {\em arXiv preprint}.
 
 \bibitem[Tsiakos and Chalkias, 2023]{tsiakos_use_2023}
 Tsiakos, C.-A.~D. and Chalkias, C. (2023).
-\newblock Use of machine learning and remote sensing techniques for shoreline
-  monitoring: A review of recent literature.
+\newblock Use of machine learning and remote sensing techniques for shoreline monitoring: A review of recent literature.
 \newblock {\em Applied Sciences}, 13(5):3268.
 
 \bibitem[Valverde et~al., 2025]{valverde_historical_2025}
 Valverde, F., Taborda, R., East, A.~E., and Ponte~Lira, C. (2025).
-\newblock Historical {Coast} {Snaps}: {Using} {Centennial} {Imagery} to {Track}
-  {Shoreline} {Change}.
+\newblock Historical {Coast} {Snaps}: {Using} {Centennial} {Imagery} to {Track} {Shoreline} {Change}.
 \newblock {\em Remote Sensing}, 17(8):1326.
 
 \bibitem[Vitousek et~al., 2023]{vitousek_future_2023}
-Vitousek, S., Buscombe, D., Vos, K., Barnard, P.~L., Ritchie, A.~C., and
-  Warrick, J.~A. (2023).
+Vitousek, S., Buscombe, D., Vos, K., Barnard, P.~L., Ritchie, A.~C., and Warrick, J.~A. (2023).
 \newblock The future of coastal monitoring through satellite remote sensing.
 \newblock {\em Cambridge Prisms: Coastal Futures}, 1:e10.
 
 \bibitem[Vos et~al., 2019a]{vos_sub-annual_2019}
-Vos, K., Harley, M.~D., Splinter, K.~D., Simmons, J.~A., and Turner, I.~L.
-  (2019a).
-\newblock Sub-annual to multi-decadal shoreline variability from publicly
-  available satellite imagery.
+Vos, K., Harley, M.~D., Splinter, K.~D., Simmons, J.~A., and Turner, I.~L. (2019a).
+\newblock Sub-annual to multi-decadal shoreline variability from publicly available satellite imagery.
 \newblock {\em Coastal Engineering}, 150:160--174.
 
 \bibitem[Vos et~al., 2019b]{vos_coastsat_2019}
-Vos, K., Splinter, K.~D., Harley, M.~D., Simmons, J.~A., and Turner, I.~L.
-  (2019b).
-\newblock {CoastSat}: {A} {Google} {Earth} {Engine}-enabled {Python} toolkit to
-  extract shorelines from publicly available satellite imagery.
+Vos, K., Splinter, K.~D., Harley, M.~D., Simmons, J.~A., and Turner, I.~L. (2019b).
+\newblock {CoastSat}: {A} {Google} {Earth} {Engine}-enabled {Python} toolkit to extract shorelines from publicly available satellite imagery.
 \newblock {\em Environmental Modelling \& Software}, 122:104528.
 
 \bibitem[Vos et~al., 2023]{vos_benchmarking_2023}
-Vos, K., Splinter, K.~D., Palomar-Vázquez, J., Pardo-Pascual, J.~E.,
-  Almonacid-Caballer, J., Cabezas-Rabadán, C., Kras, E.~C., Luijendijk, A.~P.,
-  Calkoen, F., Almeida, L.~P., Pais, D., Klein, A. H.~F., Mao, Y., Harris, D.,
-  Castelle, B., Buscombe, D., and Vitousek, S. (2023).
+Vos, K., Splinter, K.~D., Palomar-Vázquez, J., Pardo-Pascual, J.~E., Almonacid-Caballer, J., Cabezas-Rabadán, C., Kras, E.~C., Luijendijk, A.~P., Calkoen, F., Almeida, L.~P., Pais, D., Klein, A. H.~F., Mao, Y., Harris, D., Castelle, B., Buscombe, D., and Vitousek, S. (2023).
 \newblock Benchmarking satellite-derived shoreline mapping algorithms.
 \newblock {\em Communications Earth \& Environment}, 4(1):345.
 
 \bibitem[Wang et~al., 2017]{wang_spatio-temporal_2017}
 Wang, X., Liu, Y., Ling, F., Liu, Y., and Fang, F. (2017).
-\newblock Spatio-{Temporal} {Change} {Detection} of {Ningbo} {Coastline}
-  {Using} {Landsat} {Time}-{Series} {Images} during 1976–2015.
+\newblock Spatio-{Temporal} {Change} {Detection} of {Ningbo} {Coastline} {Using} {Landsat} {Time}-{Series} {Images} during 1976–2015.
 \newblock {\em ISPRS International Journal of Geo-Information}, 6(3):68.
 
 \bibitem[Warrick et~al., 2025]{warrick_shoreline_2025}
-Warrick, J.~A., Buscombe, D., Vos, K., Kenyon, H., Ritchie, A.~C., Harley,
-  M.~D., Janda, C., L’Heureux, J., and Vitousek, S. (2025).
+Warrick, J.~A., Buscombe, D., Vos, K., Kenyon, H., Ritchie, A.~C., Harley, M.~D., Janda, C., L’Heureux, J., and Vitousek, S. (2025).
 \newblock Shoreline {Seasonality} of {California}'s {Beaches}.
-\newblock {\em Journal of Geophysical Research: Earth Surface},
-  130(2):e2024JF007836.
+\newblock {\em Journal of Geophysical Research: Earth Surface}, 130(2):e2024JF007836.
 
 \bibitem[Xie et~al., 2021]{xie_segformer_2021}
 Xie, E., Wang, W., Yu, Z., Anandkumar, A., Alvarez, J.~M., and Luo, P. (2021).
-\newblock {SegFormer}: {Simple} and {Efficient} {Design} for {Semantic}
-  {Segmentation} with {Transformers}.
+\newblock {SegFormer}: {Simple} and {Efficient} {Design} for {Semantic} {Segmentation} with {Transformers}.
 \newblock Version Number: 3.
 
 \bibitem[Xu, 2006]{xu_modification_2006}
 Xu, H. (2006).
-\newblock Modification of normalised difference water index ({NDWI}) to enhance
-  open water features in remotely sensed imagery.
+\newblock Modification of normalised difference water index ({NDWI}) to enhance open water features in remotely sensed imagery.
 \newblock {\em International Journal of Remote Sensing}, 27(14):3025--3033.
 
 \bibitem[Zhan et~al., 2025]{zhan_usv-seg_2025}
-Zhan, W., Chen, Q., Zhou, R., Chen, S., Zhang, X., Ma, L., Wang, Y., and Liu,
-  G. (2025).
-\newblock {USV}-{Seg}: {A} {Vision}-{Language} {Framework} for {Guided}
-  {Segmentation} of {USV} with {Physical} {Constraint} {Optimization}.
+Zhan, W., Chen, Q., Zhou, R., Chen, S., Zhang, X., Ma, L., Wang, Y., and Liu, G. (2025).
+\newblock {USV}-{Seg}: {A} {Vision}-{Language} {Framework} for {Guided} {Segmentation} of {USV} with {Physical} {Constraint} {Optimization}.
 \newblock {\em Electronics}, 14(17):3491.
 
 \bibitem[Zheng et~al., 2020]{zheng_rethinking_2020}
-Zheng, S., Lu, J., Zhao, H., Zhu, X., Luo, Z., Wang, Y., Fu, Y., Feng, J.,
-  Xiang, T., Torr, P. H.~S., and Zhang, L. (2020).
-\newblock Rethinking {Semantic} {Segmentation} from a {Sequence}-to-{Sequence}
-  {Perspective} with {Transformers}.
+Zheng, S., Lu, J., Zhao, H., Zhu, X., Luo, Z., Wang, Y., Fu, Y., Feng, J., Xiang, T., Torr, P. H.~S., and Zhang, L. (2020).
+\newblock Rethinking {Semantic} {Segmentation} from a {Sequence}-to-{Sequence} {Perspective} with {Transformers}.
 \newblock Version Number: 3.
 
 \end{thebibliography}

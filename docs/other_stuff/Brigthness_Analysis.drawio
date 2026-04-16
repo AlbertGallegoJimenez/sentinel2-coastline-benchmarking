@@ -1,0 +1,34 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Página-1" id="iHm7-yzyAqlR3o3GFk5E">
+    <mxGraphModel dx="968" dy="705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Hpe7Yvj4kZRM-4quAvKO-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="SELECTION OF CANDIDATE IMAGE" vertex="1">
+          <mxGeometry height="60" width="120" x="160" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Hpe7Yvj4kZRM-4quAvKO-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=2" value="Cloud-free, low tide, low waves and sunny" vertex="1">
+          <mxGeometry height="30" width="120" x="160" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="Hpe7Yvj4kZRM-4quAvKO-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="DRAW ROI POLYGONS OF DRY BEACH AREA" vertex="1">
+          <mxGeometry height="60" width="120" x="340" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Hpe7Yvj4kZRM-4quAvKO-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="SELECTION OF IMAGES WHOSE MARINE VALUES ARE ≤ CANDIDATE IMAGE" vertex="1">
+          <mxGeometry height="60" width="170" x="510" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Hpe7Yvj4kZRM-4quAvKO-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="BRIGHTNESS METRICS CALCULATION USING RGB BANDS" vertex="1">
+          <mxGeometry height="60" width="170" x="900" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Hpe7Yvj4kZRM-4quAvKO-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="MASK IMAGES WITH ROI POLYGONS" vertex="1">
+          <mxGeometry height="60" width="120" x="730" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Hpe7Yvj4kZRM-4quAvKO-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontStyle=2" value="Metric 1: &amp;nbsp;&lt;span style=&quot;font-style: normal;&quot;&gt;$$mean\_RGB = \frac{R + G + B}{3}$$&lt;/span&gt;&lt;div&gt;&lt;div&gt;Metric 2: &amp;nbsp;$$luminance(Y) = 0.2126 \cdot R + 0.7152 \cdot G + 0.0722 \cdot B$$&lt;/div&gt;&lt;div&gt;Metric 3:&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;$$\Delta_{R-B} = R - B$$&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="220" x="875" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="Hpe7Yvj4kZRM-4quAvKO-10" parent="1" style="text;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;html=1;convertToSvg=0;svgWhiteSpace=wrap;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="270" x="660" y="300" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
