@@ -6,6 +6,7 @@ from torch.utils.data import Dataset, DataLoader
 from pathlib import Path
 import segmentation_models_pytorch as smp
 from tqdm import tqdm
+import albumentations as A
 
 class CoastlineDataset(Dataset):
     """
@@ -35,17 +36,24 @@ class CoastlineDataset(Dataset):
         # Keep 255 as ignore_index
         mask_mapped = np.where(mask == 255, 255, mask - 1)
 
+        if self.transform:
+            # Albumentations expects images in HWC format (Height, Width, Channels)
+            # Currently image is CHW: (6, 128, 128)
+            image_hwc = np.transpose(image, (1, 2, 0))
+            
+            augmented = self.transform(image=image_hwc, mask=mask_mapped)
+            image_hwc = augmented['image']
+            mask_mapped = augmented['mask']
+            
+            # Convert back to CHW for PyTorch
+            image = np.transpose(image_hwc, (2, 0, 1))
+
         # Convert to tensors
         image = torch.tensor(image, dtype=torch.float32)
         
         # Mask for CrossEntropyLoss should be Long tensor of shape (H, W) without channel dim
         mask = torch.tensor(mask_mapped, dtype=torch.long)
 
-        if self.transform:
-            # Albumentations expects HWC if we use it later, 
-            # but for now we'll pass. We can implement on-the-fly here.
-            pass
-            
         return image, mask
 
 
@@ -76,12 +84,23 @@ def get_model(arch="unet", encoder_name="resnet34", encoder_weights="imagenet"):
     return model
 
 
+def get_training_augmentations():
+    """
+    Return training data augmentations using Albumentations.
+    """
+    return A.Compose([
+        A.HorizontalFlip(p=0.5),
+        A.VerticalFlip(p=0.5),
+        A.RandomRotate90(p=0.5),
+        A.Transpose(p=0.5),
+    ])
+
 def train_prototype():
     """
     Training loop designed for prototyping on Apple Silicon (MPS).
     """
     # 1. Setup parameters and device
-    epochs = 3
+    epochs = 5
     batch_size = 16
     lr = 1e-4
     
@@ -99,20 +118,31 @@ def train_prototype():
     # 2. Load Dataloaders
     base_data_path = Path("data/dl_npy")
     train_dir = base_data_path / "train"
+    test_dir = base_data_path / "test"
     
-    if not train_dir.exists():
-        print(f"Error: Directory {train_dir} not found.")
+    if not train_dir.exists() or not test_dir.exists():
+        print(f"Error: Directories not found in {base_data_path}.")
         return
 
-    print("Loading dataset and dataloader...")
-    train_dataset = CoastlineDataset(train_dir)
+    print("Loading datasets and dataloaders...")
+    
+    train_transforms = get_training_augmentations()
+    train_dataset = CoastlineDataset(train_dir, transform=train_transforms)
+    # Validation/Test dataset doesn't use data augmentation
+    test_dataset = CoastlineDataset(test_dir, transform=None)
+    
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, drop_last=False)
     
     print(f"Train dataset loaded: {len(train_dataset)} patches.")
+    print(f"Test dataset loaded: {len(test_dataset)} patches.")
 
     # 3. Initialize Model, Optimizer and Loss
-    print("Instantiating U-Net (ResNet34) with 6 in_channels and 5 classes...")
-    model = get_model(arch="unet", encoder_name="resnet34").to(device)
+    architecture = "unet"
+    encoder = "resnet34"
+    
+    print(f"Instantiating {architecture.upper()} ({encoder}) with 6 in_channels and 5 classes...")
+    model = get_model(arch=architecture, encoder_name=encoder).to(device)
     
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     # Multi-class segmentation loss with ignore_index for the 255 value (no-data/ignore)
@@ -120,14 +150,17 @@ def train_prototype():
 
     # 4. Training Loop (Prototype)
     print("\nStarting training loop (prototype)...")
-    model.train()
+    
+    best_val_loss = float('inf')
     
     for epoch in range(epochs):
-        epoch_loss = 0.0
+        # --- TRAINING ---
+        model.train()
+        train_loss = 0.0
         
         # Progress bar for each epoch
-        progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}/{epochs}")
-        for batch_idx, (images, masks) in enumerate(progress_bar):
+        progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}/{epochs} [Train]")
+        for images, masks in progress_bar:
             # Move data to MPS/GPU
             images = images.to(device)
             masks = masks.to(device)
@@ -142,12 +175,40 @@ def train_prototype():
             optimizer.step()
 
             # Update tracking
-            epoch_loss += loss.item()
+            train_loss += loss.item()
             progress_bar.set_postfix({"loss": f"{loss.item():.4f}"})
             
-        # Epoch summary
-        avg_loss = epoch_loss / len(train_loader)
-        print(f"--> [Epoch {epoch+1}] Average loss: {avg_loss:.4f}\n")
+        avg_train_loss = train_loss / len(train_loader)
+        
+        # --- VALIDATION ---
+        model.eval()
+        val_loss = 0.0
+        
+        with torch.no_grad():
+            val_progress = tqdm(test_loader, desc=f"Epoch {epoch+1}/{epochs} [Val]", leave=False)
+            for images, masks in val_progress:
+                images = images.to(device)
+                masks = masks.to(device)
+                
+                outputs = model(images)
+                loss = loss_fn(outputs, masks)
+                val_loss += loss.item()
+                val_progress.set_postfix({"loss": f"{loss.item():.4f}"})
+                
+        avg_val_loss = val_loss / len(test_loader)
+        
+        print(f"--> [Epoch {epoch+1}] Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
+        
+        # Save best model
+        if avg_val_loss < best_val_loss:
+            best_val_loss = avg_val_loss
+            output_dir = Path("results/models")
+            output_dir.mkdir(parents=True, exist_ok=True)
+            
+            model_filename = f"best_model_{architecture}_{encoder}.pth"
+            torch.save(model.state_dict(), output_dir / model_filename)
+            print(f"    [!] New best model saved as {model_filename} with Val Loss: {best_val_loss:.4f}")
+        print()
         
     print("Prototype finished successfully! The pipeline runs properly.")
 
