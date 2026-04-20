@@ -8,6 +8,7 @@ It performs the following steps:
    - SWIR bands: `data/images/{STUDY_NAME}/swir` -> In the '..._swir.tif' files, the SWIR1 band is the 1st band (index 0) and the SWIR2 band is the 2nd band (index 1).'
 3. Merges the RGB, NIR, SWIR1 and SWIR2 bands into a single 6-band image.
 4. Loads the marine data from the `data/marine_data/{STUDY_NAME}/marine_data.csv` file and extracts the tide level and whether the tide is rising or not for each GT image.
+5. Crops the images and masks into 128x128 patches using the shapefiles in `data/coastal_rois_for_patches/{STUDY_NAME}/roi_{STUDY_NAME}_128_128_patches.shp`. Only patches that are exactly 128x128 are kept, to ensure consistency for training.
 5. Splits the dataset into training and testing sets, ensuring that the distribution of tide levels and tide states (rising/falling) is similar in both sets. Furthermore, the split is done mixing images from 'salinas' and 'puntal' study areas, to ensure that the models are trained and tested on a diverse set of images.
 6. Saves the training and testing datasets in the `data/dl_npy/train` and `data/dl_npy/test` directories.
 """
@@ -20,7 +21,9 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import geopandas as gpd
 import rasterio
+from rasterio.mask import mask as rio_mask
 from sklearn.model_selection import train_test_split
 
 
@@ -133,29 +136,106 @@ def _build_samples_for_study(study_name: str) -> list[SampleRecord]:
    return records
 
 
-def _read_multiband_sample(record: SampleRecord) -> tuple[np.ndarray, np.ndarray]:
-   """Read RGB + NIR + SWIR1 + SWIR2 and corresponding GT mask."""
-   with rasterio.open(record.rgb_path) as src_rgb:
-      rgb = src_rgb.read([1, 2, 3])
+def _save_split(
+   split_name: str,
+   records: list[SampleRecord],
+   output_root: Path,
+) -> None:
+   """Crop images/masks using 128x128 patches, save as npy, and write metadata CSV."""
+   split_dir = output_root / split_name
+   images_dir = split_dir / "images"
+   masks_dir = split_dir / "masks"
+   images_dir.mkdir(parents=True, exist_ok=True)
+   masks_dir.mkdir(parents=True, exist_ok=True)
 
-   with rasterio.open(record.ms_path) as src_ms:
-      # NIR corresponds to 4th band (1-based index 4).
-      nir = src_ms.read(4)
+   metadata_rows = []
+   
+   # Pre-load shapefiles into a dictionary
+   study_shapes = {}
+   for study_name in STUDY_NAMES:
+       shp_path = Path(f"data/coastal_rois_for_patches/{study_name}/roi_{study_name}_128_128_patches.shp")
+       if shp_path.exists():
+           study_shapes[study_name] = gpd.read_file(shp_path)
+       else:
+           print(f"Warning: Shapefile not found at {shp_path}")
+           study_shapes[study_name] = None
 
-   with rasterio.open(record.swir_path) as src_swir:
-      # SWIR1 and SWIR2 are 1st and 2nd bands (1-based indices 1 and 2).
-      swir1 = src_swir.read(1)
-      swir2 = src_swir.read(2)
+   for record in records:
+      gdf = study_shapes.get(record.study_name)
+      if gdf is None:
+          continue
 
-   with rasterio.open(record.gt_path) as src_gt:
-      mask = src_gt.read(1)
+      with rasterio.open(record.rgb_path) as src_rgb, \
+           rasterio.open(record.ms_path) as src_ms, \
+           rasterio.open(record.swir_path) as src_swir, \
+           rasterio.open(record.gt_path) as src_gt:
 
-   image = np.concatenate(
-      [rgb, nir[None, ...], swir1[None, ...], swir2[None, ...]], axis=0
-   ).astype(np.float32)
-   mask = mask.astype(np.uint8)
-   return image, mask
+          for idx, row in gdf.iterrows():
+              geom = [row.geometry]
+              
+              try:
+                  # Crop by polygon feature
+                  rgb, _ = rio_mask(src_rgb, geom, crop=True)
+                  ms, _ = rio_mask(src_ms, geom, crop=True)
+                  swir, _ = rio_mask(src_swir, geom, crop=True)
+                  gt_mask, _ = rio_mask(src_gt, geom, crop=True)
+              except ValueError:
+                  # Geometry might not intersect with raster entirely
+                  continue
 
+              # Extract valid bands
+              nir = ms[3:4, ...]      # NIR is 4th band (idx 3)
+              swir1 = swir[0:1, ...]  # SWIR1 is 1st band (idx 0)
+              swir2 = swir[1:2, ...]  # SWIR2 is 2nd band (idx 1)
+
+              # Filter patches that are smaller than 128x128 (e.g. edge of the map)
+              if rgb.shape[1] < 128 or rgb.shape[2] < 128 or gt_mask.shape[1] < 128 or gt_mask.shape[2] < 128:
+                  continue
+
+              # Due to floating point bounds in polygon masks, rasterio might return 129x129.
+              # We enforce exactly 128x128 by trimming the extra pixels.
+              rgb = rgb[:, :128, :128]
+              nir = nir[:, :128, :128]
+              swir1 = swir1[:, :128, :128]
+              swir2 = swir2[:, :128, :128]
+              gt_mask = gt_mask[:, :128, :128]
+
+              image = np.concatenate(
+                  [rgb, nir, swir1, swir2], axis=0
+              ).astype(np.float32)
+              mask = gt_mask[0].astype(np.uint8)
+
+              patch_id = f"{record.sample_id}_patch_{idx}"
+
+              image_rel_path = Path("images") / f"{patch_id}.npy"
+              mask_rel_path = Path("masks") / f"{patch_id}.npy"
+
+              np.save(split_dir / image_rel_path, image)
+              np.save(split_dir / mask_rel_path, mask)
+
+              metadata_rows.append(
+                 {
+                    "sample_id": patch_id,
+                    "study_name": record.study_name,
+                    "timestamp": record.timestamp,
+                    "tide": record.tide,
+                    "tide_is_rising": record.tide_is_rising,
+                    "tide_level_quantile": record.tide_level_quantile,
+                    "image_npy_path": image_rel_path.as_posix(),
+                    "mask_npy_path": mask_rel_path.as_posix(),
+                    "source_gt_path": str(record.gt_path),
+                    "source_rgb_path": str(record.rgb_path),
+                    "source_ms_path": str(record.ms_path),
+                    "source_swir_path": str(record.swir_path),
+                 }
+              )
+
+   if not metadata_rows:
+       print(f"Warning: No valid patches generated for {split_name}.")
+       return
+       
+   metadata = pd.DataFrame(metadata_rows).sort_values("sample_id")
+   metadata.to_csv(split_dir / "metadata.csv", index=False)
 
 def _build_strata(records: list[SampleRecord]) -> list[str] | None:
    """Build robust strata keys; fallback if some classes are too sparse."""
@@ -173,49 +253,6 @@ def _build_strata(records: list[SampleRecord]) -> list[str] | None:
       if not counts.empty and counts.min() >= 2:
          return candidate
    return None
-
-
-def _save_split(
-   split_name: str,
-   records: list[SampleRecord],
-   output_root: Path,
-) -> None:
-   """Save images/masks as npy files and write metadata CSV for one split."""
-   split_dir = output_root / split_name
-   images_dir = split_dir / "images"
-   masks_dir = split_dir / "masks"
-   images_dir.mkdir(parents=True, exist_ok=True)
-   masks_dir.mkdir(parents=True, exist_ok=True)
-
-   metadata_rows = []
-   for record in records:
-      image, mask = _read_multiband_sample(record)
-
-      image_rel_path = Path("images") / f"{record.sample_id}.npy"
-      mask_rel_path = Path("masks") / f"{record.sample_id}.npy"
-      np.save(split_dir / image_rel_path, image)
-      np.save(split_dir / mask_rel_path, mask)
-
-      metadata_rows.append(
-         {
-            "sample_id": record.sample_id,
-            "study_name": record.study_name,
-            "timestamp": record.timestamp,
-            "tide": record.tide,
-            "tide_is_rising": record.tide_is_rising,
-            "tide_level_quantile": record.tide_level_quantile,
-            "image_npy_path": image_rel_path.as_posix(),
-            "mask_npy_path": mask_rel_path.as_posix(),
-            "source_gt_path": str(record.gt_path),
-            "source_rgb_path": str(record.rgb_path),
-            "source_ms_path": str(record.ms_path),
-            "source_swir_path": str(record.swir_path),
-         }
-      )
-
-   metadata = pd.DataFrame(metadata_rows).sort_values("sample_id")
-   metadata.to_csv(split_dir / "metadata.csv", index=False)
-
 
 def main() -> None:
    parser = argparse.ArgumentParser(
