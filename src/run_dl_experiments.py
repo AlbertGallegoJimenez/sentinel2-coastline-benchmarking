@@ -130,7 +130,7 @@ def main():
     args = parser.parse_args()
 
     # Configurations to test
-    ARCHITECTURES = ["unet", "deeplabv3plus"]
+    ARCHITECTURES = ["segformer"]
     ENCODERS = ["resnet34", "efficientnet-b4"]
     
     puntal_weight = 1.0 - args.salinas_weight
@@ -244,10 +244,17 @@ def main():
     print("\n============================================================")
     print("                 FINAL EXPERIMENT SUMMARY                   ")
     print("============================================================")
-    summary_df = pd.DataFrame(summary_results).sort_values(by="Best_Weighted_IoU", ascending=False)
+    summary_csv_path = results_dir / "experiment_runs_summary.csv"
+
+    if os.path.exists(summary_csv_path):
+        summary_df_existing = pd.read_csv(summary_csv_path)
+        summary_df = pd.concat([summary_df_existing, pd.DataFrame(summary_results)], ignore_index=True)
+        summary_df = summary_df.sort_values(by="Best_Weighted_IoU", ascending=False)
+    else:
+        summary_df = pd.DataFrame(summary_results).sort_values(by="Best_Weighted_IoU", ascending=False)
+    
     print(summary_df.to_string(index=False))
     
-    summary_csv_path = results_dir / "experiment_runs_summary.csv"
     summary_df.to_csv(summary_csv_path, index=False)
     print(f"\nSummary saved to: {summary_csv_path}")
 
