@@ -1,4 +1,5 @@
 import os
+import psutil
 import pandas as pd
 import numpy as np
 import torch
@@ -7,6 +8,20 @@ from pathlib import Path
 import segmentation_models_pytorch as smp
 from tqdm import tqdm
 import albumentations as A
+import argparse
+import random
+
+def set_seed(seed=42):
+    """
+    Freeze all randomness for reproducibility.
+    """
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
 
 class CoastlineDataset(Dataset):
     """
@@ -62,6 +77,7 @@ def get_model(arch="unet", encoder_name="resnet34", encoder_weights="imagenet"):
     Instantiate a Segmentation Model modifying the first layer to accept 6 channels.
     """
     # 5 Classes: clouds, sand, water, wet_sand, white_water
+    global num_classes  # Let the loss function access it below
     num_classes = 5
 
     if arch == "unet":
@@ -78,6 +94,13 @@ def get_model(arch="unet", encoder_name="resnet34", encoder_weights="imagenet"):
             in_channels=6,
             classes=num_classes,
         )
+    elif arch == "segformer":
+        model = smp.Segformer(
+            encoder_name=encoder_name,
+            encoder_weights=encoder_weights,
+            in_channels=6,
+            classes=num_classes,
+        ) 
     else:
         raise ValueError(f"Architecture '{arch}' not supported in this prototype.")
         
@@ -95,14 +118,21 @@ def get_training_augmentations():
         A.Transpose(p=0.5),
     ])
 
-def train_prototype():
+def train_model(args):
     """
-    Training loop designed for prototyping on Apple Silicon (MPS).
+    Full training loop for DL models on Coastline extraction.
     """
-    # 1. Setup parameters and device
-    epochs = 5
-    batch_size = 16
-    lr = 1e-4
+    # Fix the random seed if provided
+    if args.seed is not None:
+        print(f"Setting random seed to {args.seed}...")
+        set_seed(args.seed)
+
+    # 1. Setup parameters from args and device
+    epochs = args.epochs
+    batch_size = args.batch_size
+    lr = args.lr
+    architecture = args.arch
+    encoder = args.encoder
     
     # Check for Apple Silicon backend (MPS) or CUDA
     if torch.backends.mps.is_available():
@@ -138,20 +168,31 @@ def train_prototype():
     print(f"Test dataset loaded: {len(test_dataset)} patches.")
 
     # 3. Initialize Model, Optimizer and Loss
-    architecture = "unet"
-    encoder = "resnet34"
-    
     print(f"Instantiating {architecture.upper()} ({encoder}) with 6 in_channels and 5 classes...")
     model = get_model(arch=architecture, encoder_name=encoder).to(device)
     
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-    # Multi-class segmentation loss with ignore_index for the 255 value (no-data/ignore)
-    loss_fn = torch.nn.CrossEntropyLoss(ignore_index=255)
-
-    # 4. Training Loop (Prototype)
-    print("\nStarting training loop (prototype)...")
+    # [TWEAK 1] Optimizer: Changed from Adam to AdamW (adds weight decay for better regularisation)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
     
+    # Learning Rate Scheduler: reduces LR if validation loss stops improving
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', patience=5, factor=0.5)
+    
+    # [TWEAK 2] Loss Function selection (vital for class imbalance in coastline pixels)
+    if args.loss == "ce":
+        loss_fn = torch.nn.CrossEntropyLoss(ignore_index=255)
+    elif args.loss == "focal":
+        loss_fn = smp.losses.FocalLoss(mode='multivalue' if num_classes==1 else 'multiclass', ignore_index=255)
+    elif args.loss == "dice":
+        loss_fn = smp.losses.DiceLoss(mode='multiclass', ignore_index=255)
+    else:
+        loss_fn = torch.nn.CrossEntropyLoss(ignore_index=255)
+
+    # early stopping setup
     best_val_loss = float('inf')
+    patience_counter = 0
+
+    # 4. Training Loop
+    print(f"\nStarting full training loop for {epochs} epochs...")
     
     for epoch in range(epochs):
         # --- TRAINING ---
@@ -197,20 +238,57 @@ def train_prototype():
                 
         avg_val_loss = val_loss / len(test_loader)
         
-        print(f"--> [Epoch {epoch+1}] Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
+        # --- RESOURCE TRACKING ---
+        import psutil # ensure imported here if not at top
+        cpu_usage = psutil.cpu_percent()
+        ram_usage = psutil.virtual_memory().percent
         
-        # Save best model
+        mem_str = f"CPU: {cpu_usage}% | System RAM: {ram_usage}%"
+        if device.type == "mps":
+            mps_alloc = torch.mps.current_allocated_memory() / (1024 ** 2)
+            mem_str += f" | MPS VRAM Alloc: {mps_alloc:.1f} MB"
+        elif device.type == "cuda":
+            cuda_alloc = torch.cuda.memory_allocated() / (1024 ** 2)
+            mem_str += f" | CUDA VRAM Alloc: {cuda_alloc:.1f} MB"
+            
+        print(f"--> [Epoch {epoch+1}] Train Loss: {avg_train_loss:.4f} | Val Loss: {avg_val_loss:.4f}")
+        print(f"    [Hardware] {mem_str}")
+        
+        # Step the scheduler
+        scheduler.step(avg_val_loss)
+        
+        # Save best model and Early Stopping logic
         if avg_val_loss < best_val_loss:
             best_val_loss = avg_val_loss
+            patience_counter = 0
+            
             output_dir = Path("results/models")
             output_dir.mkdir(parents=True, exist_ok=True)
             
             model_filename = f"best_model_{architecture}_{encoder}.pth"
             torch.save(model.state_dict(), output_dir / model_filename)
             print(f"    [!] New best model saved as {model_filename} with Val Loss: {best_val_loss:.4f}")
+        else:
+            patience_counter += 1
+            print(f"    [!] No improvement. Early stopping counter: {patience_counter}/{args.patience}")
+            if patience_counter >= args.patience:
+                print(f"\n[!] Early stopping triggered after {epoch+1} epochs.")
+                break
         print()
         
-    print("Prototype finished successfully! The pipeline runs properly.")
+    print(f"Training finished! Best Validation Loss: {best_val_loss:.4f}")
 
 if __name__ == "__main__":
-    train_prototype()
+    parser = argparse.ArgumentParser(description="Train DL models for Coastline Extraction on Sentinel-2.")
+    parser.add_argument("--arch", type=str, default="unet", help="Architecture (unet, deeplabv3plus, segformer)")
+    parser.add_argument("--encoder", type=str, default="resnet34", help="Encoder backbone (e.g., resnet34, mit_b0)")
+    parser.add_argument("--epochs", type=int, default=100, help="Maximum number of epochs to train")
+    parser.add_argument("--batch_size", type=int, default=16, help="Batch size for DataLoaders")
+    parser.add_argument("--lr", type=float, default=5e-4, help="Initial learning rate")
+    parser.add_argument("--loss", type=str, default="ce", help="Loss function: ce (CrossEntropy), focal, or dice.")
+    parser.add_argument("--patience", type=int, default=15, help="Early stopping patience (epochs without improvement)")
+    parser.add_argument("--seed", type=int, default=None, help="Random seed for deterministic training. Leave empty for random.")
+    
+    args = parser.parse_args()
+    
+    train_model(args)
