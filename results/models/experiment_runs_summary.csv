@@ -1,5 +1,7 @@
 Architecture,Encoder,Best_Run,Best_Salinas_IoU,Best_Puntal_IoU,Best_Weighted_IoU
 unet,resnet34,2,0.9234,0.9653,0.9402
+segformer,mit_b1,8,0.9288,0.9574,0.9402
 unet,efficientnet-b4,3,0.9199,0.961,0.9363
+segformer,mit_b2,7,0.919,0.957,0.9342
 deeplabv3plus,efficientnet-b4,8,0.9246,0.9353,0.9289
 deeplabv3plus,resnet34,9,0.8985,0.9512,0.9196

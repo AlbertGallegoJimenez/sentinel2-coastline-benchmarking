@@ -131,7 +131,7 @@ def main():
 
     # Configurations to test
     ARCHITECTURES = ["segformer"]
-    ENCODERS = ["resnet34", "efficientnet-b4"]
+    ENCODERS = ["mit_b1", "mit_b2", "mit_b3"]
     
     puntal_weight = 1.0 - args.salinas_weight
 
