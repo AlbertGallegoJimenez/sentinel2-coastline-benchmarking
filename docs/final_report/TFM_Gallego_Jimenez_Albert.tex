@@ -390,16 +390,51 @@ The annotation process was performed manually via photo-interpretation using the
 
 \subsection{Waterline Vectorization}
 
-Alongside the pixel-wise masks, a separate reference dataset consisting of continuous vectorial waterlines was required to evaluate the geometric precision of the shorelines extracted by both the traditional indices and the DL models. For this purpose, a total of 284 reference waterlines (combined from Salinas and El Puntal) were generated.
+Alongside the pixel-wise masks, a separate reference dataset consisting of continuous vectorial waterlines was required to evaluate the geometric precision of the shorelines extracted by both the traditional indices and the DL models. For this purpose, a total of 285 reference waterlines (combined from Salinas and El Puntal) were generated.
 
 This process was carried out using the geographic information system software ArcGIS Pro. The instantaneous waterline was manually digitized by tracing the spatial interface between the water mass and the emerged beach. The preprocessed 10~m resolution Sentinel-2 RGB composites were utilized as the visual background reference for this task. The resulting vector lines were then exported as standard Shapefiles (.shp), establishing the absolute geometric Ground Truth for the final benchmarking phase.
 
 \section{Traditional Baseline: Spectral Indices and Thresholding}
+
+To establish a solid comparative baseline, we evaluated the performance of four different spectral water indices, coupled with three distinct thresholding techniques. This approach replicates the traditional operational pipelines currently dominating satellite-derived shoreline extraction.
+
 \subsection{Spectral Water Indices}
-% Mathematical description of NDWI, MNDWI, AWEInsh, and SCoWI applied to Sentinel-2 bands.
+
+Spectral indices are mathematical operations applied pixel-by-pixel across the different multispectral bands. By exploiting the distinct reflectance signatures of water and land, they heighten the contrast to facilitate water segmentation. We calculated four indices using the preprocessed Sentinel-2 bands: $\rho_{Blue}$ (B02), $\rho_{Green}$ (B03), $\rho_{NIR}$ (B08), $\rho_{SWIR1}$ (B11), and $\rho_{SWIR2}$ (B12).
+
+\begin{enumerate}
+    \item \textbf{Normalized Difference Water Index (NDWI):} Developed by \citet{mcfeeters_use_1996}, it maximizes the typical reflectance of water in the green light while minimizing its low reflectance in the near-infrared (NIR). 
+    \begin{equation}
+        NDWI = \frac{\rho_{Green} - \rho_{NIR}}{\rho_{Green} + \rho_{NIR}}
+    \end{equation}
+
+    \item \textbf{Modified Normalized Difference Water Index (MNDWI):} Proposed by \citet{xu_modification_2006} to address NDWI's difficulty in distinguishing water from built-up land. It replaces the NIR band with the Shortwave-Infrared (SWIR) band, which can penetrate shallow waters and wet environments slightly differently. 
+    \begin{equation}
+        MNDWI = \frac{\rho_{Green} - \rho_{SWIR1}}{\rho_{Green} + \rho_{SWIR1}}
+    \end{equation}
+
+    \item \textbf{Automated Water Extraction Index -- No Shadows (AWEInsh):} Formulated by \citet{feyisa_automated_2014} to maximize the separability of water from dark surfaces or topographic shadows. It combines multiple bands to suppress background noise.
+    \begin{equation}
+        AWEInsh = 4 \times (\rho_{Green} - \rho_{SWIR1}) - (0.25 \times \rho_{NIR} + 2.75 \times \rho_{SWIR2})
+    \end{equation}
+
+    \item \textbf{Subtractive Coastal Water Index (SCoWI):} Recently introduced by \citet{bergsma_shoreliner_2024} specifically for coastal applications with Sentinel-2 data. Unlike normalized ratios, it relies on a subtractive combination designed to better resolve dynamic intertidal zones and suppress the noise from wave breaking foam in macrotidal coasts.
+    \begin{equation}
+        SCoWI = \rho_{Blue} + 2 \times (\rho_{Green} - \rho_{NIR}) - 0.75 \times \rho_{SWIR1} - 0.5 \times \rho_{SWIR2}
+    \end{equation}
+\end{enumerate}
 
 \subsection{Thresholding Techniques}
-% Description of the thresholds used (Zero-threshold, traditional Otsu, and modified Otsu proposed by Bergsma et al., 2024).
+
+Once the spectral indices are calculated, creating continuous unbouded greyscale intensity maps, a binarization process is required to extract the definitive land-water masks. This is achieved by applying a definitive cutoff threshold. To comprehensively benchmark this step, three different thresholding techniques were evaluated across all indices:
+
+\begin{enumerate}
+    \item \textbf{Zero Thresholding:} A static approach fundamentally embedded in the original formulation of normalizated and subtractive water indices. Theoretically, water strongly absorbs NIR/SWIR light, rendering its ratio positive ($>0$), while highly reflective land surfaces yield negative values ($<0$). This method assumes a theoretical zero value as the universal boundary.
+    
+    \item \textbf{Otsu's Thresholding:} A dynamic, image-adaptive algorithm widely established as the operational standard in modern extraction pipelines. \citet{otsu_threshold_1979} method automatically determines the optimal threshold by calculating the value that minimizes the intra-class variance of the image's histogram under the assumption of a bimodal distribution (distinct water and land classes).
+
+    \item \textbf{Modified Otsu (Local Minimum Histogram):} Because standard Otsu thresholding can be mathematically skewed by disproportionate land/water class distributions or noisy elements unique to macrotidal beaches (like extensive wet sand patches dragging the histogram), we also evaluated a robust refinement proposed by \citet{bergsma_shoreliner_2024}. In this modified approach, once the original Otsu threshold is calculated, the algorithm defines a search interval between the two nearest local maxima on either side of the threshold. The definitive binarization cutoff is then set to the absolute local minimum of the histogram within that specific interval. This adjustment aims to physically anchor the threshold exactly in the valley between the two class distributions, ensuring a more context-aware segmentation.
+\end{enumerate}
 
 \section{Deep Learning Semantic Segmentation} \label{sec:dl_models}
 \subsection{Model Architectures}
