@@ -350,7 +350,7 @@ The study focuses on two beaches located on the northern coast of Spain: Salinas
 
 Salinas is a 2.5 km embayed sandy beach system located on the left bank of the Avilés estuarine inlet (Asturias). The beach is bounded by the inlet jetty to the east and a rocky headland (La Peñona) to the west. Its western sector, adjacent to the urban area of Salinas, is backed by a seawall and promenade, while the eastern sector (El Espartal) preserves a natural dune field rising up to 15 m above mean sea level. The beach is characterized by a wide intertidal zone (up to 300 m at spring tides) and a mean tidal range of 4.5 m, classifying it as a macrotidal environment. The wave climate is predominantly energetic and approach from the northwest, impacting directly with mean significant wave heights around 1 m and frequent storm events that can exceed 4 m. The sand often shows dark patches due to the accumulation of coal and carbonaceous shales, which can further complicate spectral differentiation between wet sand and water.
 
-El Puntal is a 4 km sandy spit at the entrance of Santander Bay (Cantabria, northern Spain), formed by the interaction of estuarine and marine dynamics. The beach is backed by a dune system that reaches up to 10 m high and 50–100 m wide. In the same way as Salinas, El Puntal experiences a wide intertidal zone (up to 250 m) and a mean tidal range of around 4 m. However, unlike Salinas, El Puntal does not receive direct wave impact, as it is protected by the Magdalena Peninsula. Furthermore, also in contrast to Salinas, El Puntal features a much less dark, golden-colored sand.
+El Puntal is a 4 km sandy spit at the entrance of Santander Bay (Cantabria), formed by the interaction of estuarine and marine dynamics. The beach is backed by a dune system that reaches up to 10 m high and 50–100 m wide. In the same way as Salinas, El Puntal experiences a wide intertidal zone (up to 250 m) and a mean tidal range of around 4 m. However, unlike Salinas, El Puntal does not receive direct wave impact, as it is protected by the Magdalena Peninsula. Furthermore, also in contrast to Salinas, El Puntal features a much less dark, golden-colored sand.
 
 \begin{figure}[H]
     \centering
@@ -364,23 +364,44 @@ The selection of Salinas and El Puntal as study areas responds to their represen
 However, while they share this macrotidal nature, they exhibit key differences that allow for a comprehensive evaluation of the models under varying degrees of complexity. El Puntal, being sheltered from direct wave impact, serves as a baseline scenario with standard, golden-colored sand. In stark contrast, Salinas is fully exposed to energetic wave climates, resulting in a significantly higher presence of breaking wave foam (white-water) across a wide surf zone. Furthermore, the frequent accumulation of coal and carbonaceous shales along its intertidal profile creates noticeably dark patches of saturated sand. This stark color closely mimics the inherently low reflectance signature of water bodies in optical satellite imagery. Together, the excessive foam and the deceptively dark wet sand render Salinas an ideal stress-test. It provides a robust framework to critically evaluate whether Deep Learning architectures can successfully leverage spatial and structural context to differentiate the actual waterline, overcoming the limitations where traditional spectral methods typically fail.
 
 \section{Data Acquisition and Preprocessing}
-% Characteristics of Sentinel-2 (L2A) imagery.
-% Search and filtering criteria (time periods, cloud cover).
-% Basic preprocessing (spatial cropping/ROIs for each beach).
 
-\section{Ground Truth Generation (Reference Data)}
-% Methodology for manual/visual annotation (assisted by Segment Anything Model - SAM).
-% Definition of the 4 mask classes: water, white-water, wet sand, and sand.
-% Dataset distribution (Train, Validation, and Test splits).
+An initial dataset of freely available Sentinel-2 Level-2A imagery, spanning the period from 2015 to 2025, was acquired for both study areas. The imagery was downloaded using the Python API for the Google Earth Engine. To ensure optimal visibility of the coastal features, an initial filtering process was applied to download only cloud-free scenes.
+
+From the available multispectral data, six specific bands were selected to provide the necessary radiometric information for both the derivation of spectral indices and the feature extraction in Deep Learning models: Red (B04), Green (B03), Blue (B02), Near-Infrared (B08), Shortwave-Infrared 1 (B11), and Shortwave-Infrared 2 (B12). 
+
+Following the data acquisition, a dedicated preprocessing pipeline was implemented. First, the original massive satellite tiles were spatially cropped to strictly encompass the defined Regions of Interest (ROIs) for Salinas and El Puntal. Second, given that Sentinel-2 bands possess varying native spatial resolutions, spatial homogenization was required. The SWIR 1 and SWIR 2 bands, natively captured at a 20~m resolution, were resampled to match the 10~m spatial resolution of the visible and NIR bands. Finally, to prepare the dataset for the subsequent training phase of the Deep Learning semantic segmentation models (see Section \ref{sec:dl_models}), the preprocessed image ROIs were systematically divided into smaller patches of $128 \times 128$ pixels.
+
+\section{Ground Truth Generation (Reference Datasets)}
+
+To rigorously train the algorithms and benchmark their performance, two distinct sets of Ground Truth (GT) data were generated: pixel-wise multi-class masks for the semantic segmentation models, and continuous vector lines for the final geometric benchmarking evaluation with spectral-index-based methods.
+
+\subsection{Coastal Mask Classes}
+
+To train and validate the Deep Learning models, a highly accurate pixel-level GT dataset was created. Given the complexity of the selected macrotidal environments, a multi-class approach was adopted rather than a simple binary (water/land) classification. The predefined classes were: \textit{water} (undisturbed water bodies), \textit{white-water} (breaking wave foam in the surf zone), \textit{wet sand} (the saturated intertidal zone), and \textit{sand} (dry beach).
+
+The annotation process was performed manually via photo-interpretation using the DigitalSreeni Image Annotator toolkit \citep{bhattiprolu_digitalsreeni_2026} (Figure \ref{fig:mask_classes}). To ensure the models focus solely on the relevant coastal features, any pixel not manually assigned to one of these four categories was automatically designated as an \textit{ignore\_index}. This ensures that background elements (like urban infrastructure or vegetation) do not interfere with the loss function calculation during training. In total, a dataset comprising 161 image patches (combined from Salinas and El Puntal) was manually annotated and exported into the standardized COCO JSON format.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15truecm]{screenshot_example_image_annotator_software.png}
+    \caption{Screenshot of the DigitalSreeni Image Annotator software interface (Salinas beach). The overlaid mask displays the four annotated classes: water (yellow), white-water (red), wet sand (purple), and sand (cyan).}
+    \label{fig:mask_classes}
+\end{figure}
+
+\subsection{Waterline Vectorization}
+
+Alongside the pixel-wise masks, a separate reference dataset consisting of continuous vectorial waterlines was required to evaluate the geometric precision of the shorelines extracted by both the traditional indices and the DL models. For this purpose, a total of 284 reference waterlines (combined from Salinas and El Puntal) were generated.
+
+This process was carried out using the geographic information system software ArcGIS Pro. The instantaneous waterline was manually digitized by tracing the spatial interface between the water mass and the emerged beach. The preprocessed 10~m resolution Sentinel-2 RGB composites were utilized as the visual background reference for this task. The resulting vector lines were then exported as standard Shapefiles (.shp), establishing the absolute geometric Ground Truth for the final benchmarking phase.
 
 \section{Traditional Baseline: Spectral Indices and Thresholding}
 \subsection{Spectral Water Indices}
-% Mathematical description of NDWI, MNDWI, AWEINSH, and SCoWI applied to Sentinel-2 bands.
+% Mathematical description of NDWI, MNDWI, AWEInsh, and SCoWI applied to Sentinel-2 bands.
 
 \subsection{Thresholding Techniques}
 % Description of the thresholds used (Zero-threshold, traditional Otsu, and modified Otsu proposed by Bergsma et al., 2024).
 
-\section{Deep Learning Semantic Segmentation}
+\section{Deep Learning Semantic Segmentation} \label{sec:dl_models}
 \subsection{Model Architectures}
 % Explanation of U-Net, DeepLabV3+, and SegFormer.
 
