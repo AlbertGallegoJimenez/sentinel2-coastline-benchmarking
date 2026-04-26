@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex TFM_Gallego_Jimenez_Albert"] 1777203802.56973 "TFM_Gallego_Jimenez_Albert.aux" "TFM_Gallego_Jimenez_Albert.bbl" "TFM_Gallego_Jimenez_Albert" 1777203803.77646 0
+["bibtex TFM_Gallego_Jimenez_Albert"] 1777218714.51096 "TFM_Gallego_Jimenez_Albert.aux" "TFM_Gallego_Jimenez_Albert.bbl" "TFM_Gallego_Jimenez_Albert" 1777218982.41257 0
   "./references.bib" 1774055610 31802 2a2f00880fa7501ac4b097fb992ea939 ""
   "/usr/local/texlive/2026basic/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "TFM_Gallego_Jimenez_Albert.aux" 1777203803.70159 12008 429a92b34569a00120f079dab9992d33 "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.aux" 1777218982.33467 12612 3cc4bf25ec0848a4438e97e37621c2a0 "pdflatex"
   (generated)
   "TFM_Gallego_Jimenez_Albert.bbl"
   "TFM_Gallego_Jimenez_Albert.blg"
   (rewritten before read)
-["pdflatex"] 1777203802.58432 "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" "TFM_Gallego_Jimenez_Albert.pdf" "TFM_Gallego_Jimenez_Albert" 1777203803.77657 0
-  "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" 1777203799.82934 45392 26088adbb2b41d72c3db1a8c96b51809 ""
+["pdflatex"] 1777218981.07843 "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" "TFM_Gallego_Jimenez_Albert.pdf" "TFM_Gallego_Jimenez_Albert" 1777218982.41267 0
+  "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" 1777218980.89524 49050 9a0d32bd48750f4d464ce4d5b16896da ""
   "/Users/albert/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1776357492.85815 14040 f2487687848f8824d159b8ea49fcbec1 ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -97,12 +97,13 @@
   "/usr/local/texlive/2026basic/texmf.cnf" 1772405582 628 bbc09d6d38872d53c11bb48dc9b14e88 ""
   "Methodological_Workflow.png" 1776358499.9455 664397 9016358e5d5e891150a25e2d52975eca ""
   "Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg" 1773735520 31333 03281b15ae5de13587df6971d25658b5 ""
-  "TFM_Gallego_Jimenez_Albert.aux" 1777203803.70159 12008 429a92b34569a00120f079dab9992d33 "pdflatex"
-  "TFM_Gallego_Jimenez_Albert.bbl" 1777203802.58293 11146 8160d34e230ffd4b5ba651367d0c8cc0 "bibtex TFM_Gallego_Jimenez_Albert"
-  "TFM_Gallego_Jimenez_Albert.lof" 1777203803.70259 2033 af2e2f1659a5cbcb7e3ceb3286b4ee98 "pdflatex"
-  "TFM_Gallego_Jimenez_Albert.lot" 1777203803.7026 289 102828ea2671a136d64935e934cc7f9a "pdflatex"
-  "TFM_Gallego_Jimenez_Albert.tex" 1777203799.82934 45392 26088adbb2b41d72c3db1a8c96b51809 ""
-  "TFM_Gallego_Jimenez_Albert.toc" 1777203803.70256 2752 fc406cfd4a589c5560b5704b62fc268d "pdflatex"
+  "Study_sites_figure.png" 1777218112.29839 1921762 1f5469c95b1d865dbe50a584cff68ce1 ""
+  "TFM_Gallego_Jimenez_Albert.aux" 1777218982.33467 12612 3cc4bf25ec0848a4438e97e37621c2a0 "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.bbl" 1777218714.52665 11146 8160d34e230ffd4b5ba651367d0c8cc0 "bibtex TFM_Gallego_Jimenez_Albert"
+  "TFM_Gallego_Jimenez_Albert.lof" 1777218982.33571 2427 b9cd62714fcf1cb9e8f08727a4bfe51a "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.lot" 1777218982.33574 289 102828ea2671a136d64935e934cc7f9a "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.tex" 1777218980.89524 49050 9a0d32bd48750f4d464ce4d5b16896da ""
+  "TFM_Gallego_Jimenez_Albert.toc" 1777218982.33568 2752 0aaeb4bc795990ee6a9d787be2d238f9 "pdflatex"
   "TFUOC.cls" 1773537502 20562 015c03f8929cfbadde72fcc0d4c2e5a1 ""
   "UOCllarg.jpg" 1773382276 104016 5daf87688360f8a2e9c7c5e0a4e29859 ""
   "eimt.png" 1773382276 3446 5a2f780b252dace9fa9692a2adcbef8a ""

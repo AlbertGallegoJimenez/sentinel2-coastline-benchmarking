@@ -17,19 +17,19 @@
 \contentsline {section}{\numberline {2.6}The Shift towards Deep Learning in Earth Observation}{22}{}%
 \contentsline {chapter}{\numberline {3}Materials and Methods}{25}{}%
 \contentsline {section}{\numberline {3.1}Study Areas}{25}{}%
-\contentsline {section}{\numberline {3.2}Data Acquisition and Preprocessing}{25}{}%
-\contentsline {section}{\numberline {3.3}Ground Truth Generation (Reference Data)}{25}{}%
-\contentsline {section}{\numberline {3.4}Traditional Baseline: Spectral Indices and Thresholding}{25}{}%
-\contentsline {subsection}{\numberline {3.4.1}Spectral Water Indices}{25}{}%
-\contentsline {subsection}{\numberline {3.4.2}Thresholding Techniques}{25}{}%
-\contentsline {section}{\numberline {3.5}Deep Learning Semantic Segmentation}{25}{}%
-\contentsline {subsection}{\numberline {3.5.1}Model Architectures}{25}{}%
-\contentsline {subsection}{\numberline {3.5.2}Encoders}{25}{}%
-\contentsline {subsection}{\numberline {3.5.3}Training Setup}{25}{}%
-\contentsline {section}{\numberline {3.6}Waterline Extraction Pipeline}{25}{}%
-\contentsline {section}{\numberline {3.7}Evaluation Methodology}{26}{}%
-\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{26}{}%
-\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{26}{}%
-\contentsline {chapter}{\numberline {4}Results}{27}{}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{28}{}%
-\contentsline {chapter}{\numberline {6}Glossary}{29}{}%
+\contentsline {section}{\numberline {3.2}Data Acquisition and Preprocessing}{27}{}%
+\contentsline {section}{\numberline {3.3}Ground Truth Generation (Reference Data)}{27}{}%
+\contentsline {section}{\numberline {3.4}Traditional Baseline: Spectral Indices and Thresholding}{27}{}%
+\contentsline {subsection}{\numberline {3.4.1}Spectral Water Indices}{27}{}%
+\contentsline {subsection}{\numberline {3.4.2}Thresholding Techniques}{27}{}%
+\contentsline {section}{\numberline {3.5}Deep Learning Semantic Segmentation}{27}{}%
+\contentsline {subsection}{\numberline {3.5.1}Model Architectures}{27}{}%
+\contentsline {subsection}{\numberline {3.5.2}Encoders}{27}{}%
+\contentsline {subsection}{\numberline {3.5.3}Training Setup}{27}{}%
+\contentsline {section}{\numberline {3.6}Waterline Extraction Pipeline}{27}{}%
+\contentsline {section}{\numberline {3.7}Evaluation Methodology}{27}{}%
+\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{27}{}%
+\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{27}{}%
+\contentsline {chapter}{\numberline {4}Results}{28}{}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{29}{}%
+\contentsline {chapter}{\numberline {6}Glossary}{30}{}%
