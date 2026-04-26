@@ -99,9 +99,9 @@ Given the challenges posed by macrotidal coasts and the limitations of tradition
 
 \noindent\textbf{Secondary Objectives:}
 \begin{itemize}
-    \item To generate a high-quality ``Ground Truth'' dataset of coastal masks. This dataset will be rigidly constructed through manual photo-interpretation of the Sentinel-2 satellite imagery, utilizing AI-assisted annotation tools (such as the Segment Anything Model, SAM \citep{kirillov_segment_2023}) solely to refine and accelerate the manual digitization process.
+    \item To generate a high-quality ``Ground Truth'' dataset of coastal masks (classifying pixels into \textit{water}, \textit{white-water}, \textit{wet sand}, and \textit{sand}). This dataset will be used exclusively to train and validate the Deep Learning segmentation models, and will be rigidly constructed through manual photo-interpretation, utilizing AI-assisted annotation tools (such as the Segment Anything Model, SAM \citep{kirillov_segment_2023}) solely to refine and accelerate the process.
+    \item To generate a high-quality ``Ground Truth'' dataset of photo-interpreted waterlines directly derived from the Sentinel-2 imagery. This dataset will serve primarily to benchmark the accuracy of the extracted waterlines (testing both traditional spectral indices-based models and Deep Learning segmentation models).
     \item To systematically evaluate and compare the performance degradation of both classical indices and Neural Networks under specifically adverse oceanographic and atmospheric conditions (e.g., the presence of extensive white foam, variations in intertidal sand moisture, and partial cloud cover).
-    % (Pendiente de incluir si da tiempo) \item To assess the transferability of trained models between different coastal typologies (Cantabrian vs. Mediterranean).
 \end{itemize}
 
 \section{Impact on Sustainability, Ethics-Social and Diversity}
@@ -129,10 +129,10 @@ Overall impact: neutral.
 The methodology is structured into four main phases as illustrated in the workflow diagram (Figure~\ref{fig:workflow}):
 \begin{enumerate}
     \item \textbf{Data Acquisition:} Downloading Sentinel-2 Level-2A (atmospherically corrected) products from Google Earth Engine, covering the period 2015–2025. A built-in cloud detection algorithm will be applied as an initial filter to discard obstructed scenes, utilizing the remaining available cloud-free images.
-    \item \textbf{Preprocessing \& Labelling:} Calculation of spectral indices (NDWI, MNDWI). Generation of Ground Truth masks using the Segment Anything Model (SAM) through an interactive annotation tool \citep{bhattiprolu_digitalsreeni_2026}.
+    \item \textbf{Preprocessing \& Labelling:} Calculation of spectral indices (NDWI, MNDWI). Generation of Ground Truth masks using the Segment Anything Model (SAM) through an interactive annotation tool \citep{bhattiprolu_digitalsreeni_2026}. Generation of Ground Truth coastline vectors through manual photo-interpretation of RGB composites derived from Sentinel-2 images.
     \item \textbf{Model Implementation:}
     \begin{itemize}
-        \item \textit{Baseline:} Automatic Otsu thresholding applied to spectral indices.
+        \item \textit{Baseline:} Automatic thresholding methods applied to spectral indices.
         \item \textit{Deep Learning:} {\sloppy Training semantic segmentation models like U-Net \citep{navab_u-net_2015} or SegFormer \citep{xie_segformer_2021}. Model training will be run locally on an NVIDIA RTX 3060 GPU, with an institutional computing cluster (2 nodes, 2x NVIDIA A30 each) available for scaling if required.}
     \end{itemize}
     \item \textbf{Evaluation:} Comparison using pixel-based metrics (IoU, Dice) and geometric validation (calculating the mean Euclidean distance between the predicted and real coastline).
@@ -157,12 +157,13 @@ The project is planned to be developed over a 5-month period (including the thes
         \item Satellite images download for northern Spanish coast beaches: Salinas (Asturias), El Sardinero (Cantabria), and El Puntal (Cantabria).
         % (Pendiente de incluir si da tiempo) \item Satellite images download for Beach 2 (Mediterranean environment).
     \end{itemize}
-    \item \textbf{Task 2:} Calculation of spectral indices and generation of Ground Truth masks.
+    \item \textbf{Task 2:} Calculation of spectral indices and generation of Ground Truth datasets.
     \begin{itemize}
         \item Preparation of the GitHub repository structure for the project's codebase.
         \item Calculation of spectral indices (e.g., NDWI, MNDWI).
         \item Create RGB composites to assist in the annotation process.
         \item Ground Truth generation through manually photo-interpretation of the RGB composites.
+        \item Generation of Ground Truth coastline vectors directly from the Sentinel-2 images, to be used for benchmarking.
     \end{itemize}
     \item \textbf{Task 3:} Model implementation: Development of baseline and Deep Learning architectures.
     \begin{itemize}
@@ -237,7 +238,7 @@ Topobathymetric monitoring using Global Navigation Satellite Systems (GNSS), par
 
 To bridge the spatial gap of ground surveys, researchers increasingly turned to advanced airborne scanning technologies such as Light Detection and Ranging (LiDAR). Airborne LiDAR allows for the rapid acquisition of dense, high-resolution 3D point clouds over hundreds of kilometers of coast, from which datum-based shorelines can be extracted objectively \citep{stockdon_estimation_2002}. However, the high economic cost of instrument deployment restricts its use to infrequent, opportunistic, or project-specific flights, failing to provide the high-frequency temporal data necessary for continuous monitoring.
 
-Addressing the temporal limitations of physical surveys, fixed coastal video monitoring systems—most notably the Argus system \citep{holman_application_1993}—were developed in the 1990s. These ground-based camera networks capture high-frequency images (e.g., every 10 minutes) and can produce time-averaged images to derive robust shoreline-proxy indicators. While providing excellent temporal resolution to track short-term morphological changes, their spatial coverage remains inextricably confined to the camera's visual field of view (typically 1–3 kilometers), leaving vast stretches of the coastline unmonitored.
+Addressing the temporal limitations of physical surveys, fixed coastal video monitoring systems (most notably the Argus system \citep{holman_application_1993}) were developed in the 1990s. These ground-based camera networks capture high-frequency images (e.g., every 10 minutes) and can produce time-averaged images to derive robust shoreline-proxy indicators. While providing excellent temporal resolution to track short-term morphological changes, their spatial coverage remains inextricably confined to the camera's visual field of view (typically 1–3 kilometers), leaving vast stretches of the coastline unmonitored.
 
 More recently, the rise of ubiquitous smartphone technology has catalyzed the development of Citizen Science approaches for coastal monitoring, best exemplified by the global CoastSnap project \citep{harley_coastsnap_2022}. By installing simple, low-cost smartphone cradles at strategic coastal viewpoints, these initiatives crowdsource beach imagery from the general public. While this drastically reduces both initial deployment and operational costs while providing data with a spatial resolution similar to video stations, the temporal frequency and reliability of the data are inherently opportunistic, depending entirely on community participation and favorable weather conditions.
 
@@ -339,23 +340,53 @@ Despite these architectural advancements, a critical analysis of the current sta
 
 \end{itemize}
 
-By presenting a direct, data-driven comparison of classical spectral thresholding and modern semantic segmentation models—specifically optimized for multi-class detection in macrotidal settings—this project directly targets these gaps. It seeks not only to improve accuracy but to provide a rigorous assessment of whether AI-based workflows offer a justifiable operational advantage over established index-based monitoring tools.
+By presenting a direct, data-driven comparison of classical spectral thresholding and modern semantic segmentation models (specifically optimized for multi-class detection in macrotidal settings), this project directly targets these gaps. It seeks not only to improve accuracy but to provide a rigorous assessment of whether AI-based workflows offer a justifiable operational advantage over established index-based monitoring tools.
 
 \chapter{Materials and Methods}
 
-TO BE WRITTEN
+\section{Study Areas}
+% Description of the selected beaches: Salinas, El Sardinero, and El Puntal.
+% Justification for their choice (complex macrotidal environments, high energy, etc.).
 
-In these sections, it is necessary to describe:
-\begin{itemize}
-    \item The most relevant aspects of the design and development of the work.
-    \item The methodology chosen to carry out this development, describing the possible alternatives, the decisions taken, and the criteria used to make these decisions.
-    \item The products obtained.
-\end{itemize}
+\section{Data Acquisition and Preprocessing}
+% Characteristics of Sentinel-2 (L2A) imagery.
+% Search and filtering criteria (time periods, cloud cover).
+% Basic preprocessing (spatial cropping/ROIs for each beach).
+
+\section{Ground Truth Generation (Reference Data)}
+% Methodology for manual/visual annotation (assisted by Segment Anything Model - SAM).
+% Definition of the 4 mask classes: water, white-water, wet sand, and sand.
+% Dataset distribution (Train, Validation, and Test splits).
+
+\section{Traditional Baseline: Spectral Indices and Thresholding}
+\subsection{Spectral Water Indices}
+% Mathematical description of NDWI, MNDWI, AWEINSH, and SCoWI applied to Sentinel-2 bands.
+
+\subsection{Thresholding Techniques}
+% Description of the thresholds used (Zero-threshold, traditional Otsu, and modified Otsu proposed by Bergsma et al., 2024).
+
+\section{Deep Learning Semantic Segmentation}
+\subsection{Model Architectures}
+% Explanation of U-Net, DeepLabV3+, and SegFormer.
+
+\subsection{Encoders}
+% Detail of the chosen backbones (ResNet, EfficientNet, MiT) specifying light and heavy versions.
+
+\subsection{Training Setup}
+% Details on loss functions, optimizers, learning rate, batch size, and data augmentation.
+
+\section{Waterline Extraction Pipeline}
+% Post-segmentation process: moving from probability/class maps (indices and NNs) to a 2D continuous vector delineating the coast (e.g., marching squares).
+
+\section{Evaluation Methodology}
+\subsection{Pixel-based Evaluation}
+% Metrics to evaluate the quality of multiclass and binary segmentation masks (overall IoU, class IoU, Dice).
+
+\subsection{Geometric Evaluation}
+% Methodology for final coastline evaluation. Generation of perpendicular transects and distance metrics calculation (1D Euclidean errors, mean error, RMSE) between predicted coast and ground truth.
 
  
-\textbf{Chapter structuring may vary depending on the type of work.}  
- 
-If applicable, a section on “Economic evaluation of work” will be included. This section will indicate the expenses associated with the development and maintenance of work, as well as the economic benefits obtained and a final analysis on the viability of the product.
+
 
 
 
