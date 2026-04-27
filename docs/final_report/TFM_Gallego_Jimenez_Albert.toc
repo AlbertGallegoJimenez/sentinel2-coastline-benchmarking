@@ -1,37 +1,37 @@
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {1}Introduction}{8}{}%
-\contentsline {section}{\numberline {1.1}Context and Justification of Work}{8}{}%
-\contentsline {section}{\numberline {1.2}Work Objectives}{10}{}%
-\contentsline {section}{\numberline {1.3}Impact on Sustainability, Ethics-Social and Diversity}{10}{}%
-\contentsline {section}{\numberline {1.4}Focus and Method Followed}{11}{}%
-\contentsline {section}{\numberline {1.5}Work Schedule}{12}{}%
-\contentsline {section}{\numberline {1.6}Brief Summary of Products Obtained}{14}{}%
-\contentsline {section}{\numberline {1.7}Brief Description of Other Memory Chapters}{14}{}%
-\contentsline {section}{\numberline {1.8}Statement on the Use of Generative Artificial Intelligence}{14}{}%
-\contentsline {chapter}{\numberline {2}State of Art}{15}{}%
-\contentsline {section}{\numberline {2.1}Coastal Monitoring and Shoreline Definition}{15}{}%
-\contentsline {section}{\numberline {2.2}Traditional Coastal Monitoring Methods}{17}{}%
-\contentsline {section}{\numberline {2.3}Satellite Remote Sensing for Coastal Monitoring}{18}{}%
-\contentsline {section}{\numberline {2.4}Traditional Waterline Extraction via Spectral Indices}{20}{}%
-\contentsline {section}{\numberline {2.5}Challenges and Limitations in Macrotidal Environments}{21}{}%
-\contentsline {section}{\numberline {2.6}The Shift towards Deep Learning in Earth Observation}{22}{}%
-\contentsline {chapter}{\numberline {3}Materials and Methods}{25}{}%
-\contentsline {section}{\numberline {3.1}Study Areas}{25}{}%
-\contentsline {section}{\numberline {3.2}Data Acquisition and Preprocessing}{27}{}%
-\contentsline {section}{\numberline {3.3}Ground Truth Generation (Reference Datasets)}{27}{}%
-\contentsline {subsection}{\numberline {3.3.1}Coastal Mask Classes}{27}{}%
-\contentsline {subsection}{\numberline {3.3.2}Waterline Vectorization}{28}{}%
-\contentsline {section}{\numberline {3.4}Traditional Baseline: Spectral Indices and Thresholding}{29}{}%
-\contentsline {subsection}{\numberline {3.4.1}Spectral Water Indices}{29}{}%
-\contentsline {subsection}{\numberline {3.4.2}Thresholding Techniques}{30}{}%
-\contentsline {section}{\numberline {3.5}Deep Learning Semantic Segmentation}{30}{}%
-\contentsline {subsection}{\numberline {3.5.1}Model Architectures}{30}{}%
-\contentsline {subsection}{\numberline {3.5.2}Encoders}{30}{}%
-\contentsline {subsection}{\numberline {3.5.3}Training Setup}{30}{}%
-\contentsline {section}{\numberline {3.6}Waterline Extraction Pipeline}{30}{}%
-\contentsline {section}{\numberline {3.7}Evaluation Methodology}{30}{}%
-\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{31}{}%
-\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{31}{}%
-\contentsline {chapter}{\numberline {4}Results}{32}{}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{33}{}%
-\contentsline {chapter}{\numberline {6}Glossary}{34}{}%
+\contentsline {chapter}{\numberline {1}Introduction}{9}{}%
+\contentsline {section}{\numberline {1.1}Context and Justification of Work}{9}{}%
+\contentsline {section}{\numberline {1.2}Work Objectives}{11}{}%
+\contentsline {section}{\numberline {1.3}Impact on Sustainability, Ethics-Social and Diversity}{11}{}%
+\contentsline {section}{\numberline {1.4}Focus and Method Followed}{12}{}%
+\contentsline {section}{\numberline {1.5}Work Schedule}{13}{}%
+\contentsline {section}{\numberline {1.6}Brief Summary of Products Obtained}{15}{}%
+\contentsline {section}{\numberline {1.7}Brief Description of Other Memory Chapters}{15}{}%
+\contentsline {section}{\numberline {1.8}Statement on the Use of Generative Artificial Intelligence}{15}{}%
+\contentsline {chapter}{\numberline {2}State of Art}{16}{}%
+\contentsline {section}{\numberline {2.1}Coastal Monitoring and Shoreline Definition}{16}{}%
+\contentsline {section}{\numberline {2.2}Traditional Coastal Monitoring Methods}{18}{}%
+\contentsline {section}{\numberline {2.3}Satellite Remote Sensing for Coastal Monitoring}{19}{}%
+\contentsline {section}{\numberline {2.4}Traditional Waterline Extraction via Spectral Indices}{21}{}%
+\contentsline {section}{\numberline {2.5}Challenges and Limitations in Macrotidal Environments}{22}{}%
+\contentsline {section}{\numberline {2.6}The Shift towards Deep Learning in Earth Observation}{23}{}%
+\contentsline {chapter}{\numberline {3}Materials and Methods}{26}{}%
+\contentsline {section}{\numberline {3.1}Study Areas}{26}{}%
+\contentsline {section}{\numberline {3.2}Data Acquisition and Preprocessing}{28}{}%
+\contentsline {section}{\numberline {3.3}Ground Truth Generation (Reference Datasets)}{28}{}%
+\contentsline {subsection}{\numberline {3.3.1}Coastal Mask Classes}{28}{}%
+\contentsline {subsection}{\numberline {3.3.2}Waterline Vectorization}{29}{}%
+\contentsline {section}{\numberline {3.4}Traditional Baseline: Spectral Indices and Thresholding}{30}{}%
+\contentsline {subsection}{\numberline {3.4.1}Spectral Water Indices}{30}{}%
+\contentsline {subsection}{\numberline {3.4.2}Thresholding Techniques}{31}{}%
+\contentsline {section}{\numberline {3.5}Deep Learning Semantic Segmentation}{32}{}%
+\contentsline {subsection}{\numberline {3.5.1}Model Architectures}{32}{}%
+\contentsline {subsection}{\numberline {3.5.2}Encoders}{32}{}%
+\contentsline {subsection}{\numberline {3.5.3}Training Setup}{33}{}%
+\contentsline {section}{\numberline {3.6}Waterline Extraction Pipeline}{33}{}%
+\contentsline {section}{\numberline {3.7}Evaluation Methodology}{33}{}%
+\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{33}{}%
+\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{33}{}%
+\contentsline {chapter}{\numberline {4}Results}{34}{}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{35}{}%
+\contentsline {chapter}{\numberline {6}Glossary}{36}{}%

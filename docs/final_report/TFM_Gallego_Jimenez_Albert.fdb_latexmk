@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex TFM_Gallego_Jimenez_Albert"] 1777226699.72468 "TFM_Gallego_Jimenez_Albert.aux" "TFM_Gallego_Jimenez_Albert.bbl" "TFM_Gallego_Jimenez_Albert" 1777226701.18362 0
+["bibtex TFM_Gallego_Jimenez_Albert"] 1777312367.56712 "TFM_Gallego_Jimenez_Albert.aux" "TFM_Gallego_Jimenez_Albert.bbl" "TFM_Gallego_Jimenez_Albert" 1777312369.35744 0
   "./references.bib" 1777221653.50365 32016 12236bb6a0321a107752dce2d268dfeb ""
   "/usr/local/texlive/2026basic/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "TFM_Gallego_Jimenez_Albert.aux" 1777226701.10295 13512 93e73704e217941503634121fc247175 "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.aux" 1777312369.27075 13929 9c723a0e09019bb5fe83b883bf791e29 "pdflatex"
   (generated)
   "TFM_Gallego_Jimenez_Albert.bbl"
   "TFM_Gallego_Jimenez_Albert.blg"
   (rewritten before read)
-["pdflatex"] 1777226699.74151 "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" "TFM_Gallego_Jimenez_Albert.pdf" "TFM_Gallego_Jimenez_Albert" 1777226701.18373 0
-  "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" 1777226698.04903 57180 3050b0962f73d28d2a4a1a8337a4a01d ""
+["pdflatex"] 1777312367.58637 "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" "TFM_Gallego_Jimenez_Albert.pdf" "TFM_Gallego_Jimenez_Albert" 1777312369.35754 0
+  "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" 1777312365.62367 61035 558a26998b40cc9e3a06204c59595510 ""
   "/Users/albert/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1776357492.85815 14040 f2487687848f8824d159b8ea49fcbec1 ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -100,12 +100,12 @@
   "Methodological_Workflow.png" 1776358499.9455 664397 9016358e5d5e891150a25e2d52975eca ""
   "Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg" 1773735520 31333 03281b15ae5de13587df6971d25658b5 ""
   "Study_sites_figure.png" 1777218112.29839 1921762 1f5469c95b1d865dbe50a584cff68ce1 ""
-  "TFM_Gallego_Jimenez_Albert.aux" 1777226701.10295 13512 93e73704e217941503634121fc247175 "pdflatex"
-  "TFM_Gallego_Jimenez_Albert.bbl" 1777226699.74023 11146 8160d34e230ffd4b5ba651367d0c8cc0 "bibtex TFM_Gallego_Jimenez_Albert"
-  "TFM_Gallego_Jimenez_Albert.lof" 1777226701.10403 2701 9ef535023e8446d785a3199b0bc00f61 "pdflatex"
-  "TFM_Gallego_Jimenez_Albert.lot" 1777226701.10405 289 102828ea2671a136d64935e934cc7f9a "pdflatex"
-  "TFM_Gallego_Jimenez_Albert.tex" 1777226698.04903 57180 3050b0962f73d28d2a4a1a8337a4a01d ""
-  "TFM_Gallego_Jimenez_Albert.toc" 1777226701.10401 2909 2cd857fbdef94a36d1739d5181220ab3 "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.aux" 1777312369.27075 13929 9c723a0e09019bb5fe83b883bf791e29 "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.bbl" 1777312367.5846 11146 8160d34e230ffd4b5ba651367d0c8cc0 "bibtex TFM_Gallego_Jimenez_Albert"
+  "TFM_Gallego_Jimenez_Albert.lof" 1777312369.27186 2922 952ca4fbad20ecf9ca20968bebbf2de2 "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.lot" 1777312369.27191 289 2cd0b788d1df1855e2bce98efd42f2eb "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.tex" 1777312365.62367 61035 558a26998b40cc9e3a06204c59595510 ""
+  "TFM_Gallego_Jimenez_Albert.toc" 1777312369.27184 2909 c03fa3f7d12cbec4374c19fef77a550e "pdflatex"
   "TFUOC.cls" 1773537502 20562 015c03f8929cfbadde72fcc0d4c2e5a1 ""
   "UOCllarg.jpg" 1773382276 104016 5daf87688360f8a2e9c7c5e0a4e29859 ""
   "eimt.png" 1773382276 3446 5a2f780b252dace9fa9692a2adcbef8a ""
@@ -116,6 +116,7 @@
   "noulogo.png" 1773382276 20022 5855e46f3c2ee8ffcea1adcf7e324923 ""
   "satellite_timeline.png" 1773744406 126222 ccc9be438b2dc9ea4118764ec278889c ""
   "screenshot_example_image_annotator_software.png" 1777221548.49112 773150 b7e936ea8fe58773fd672afd864642ab ""
+  "screenshot_vectorization_waterline.png" 1777309715.04745 2702151 0325ea9500f3067a6fc0795bc1939d4a ""
   "shoreline_misidentification_example.png" 1776358669.22126 408846 0a4d0e08e1e8c808223c91a3541fd1c9 ""
   "tfm_gantt.png" 1772282276 91663 47a9b24aa049ff32dfea709cc2bb9f1e ""
   (generated)

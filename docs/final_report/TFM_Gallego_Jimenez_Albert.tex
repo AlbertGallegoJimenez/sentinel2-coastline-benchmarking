@@ -392,7 +392,14 @@ The annotation process was performed manually via photo-interpretation using the
 
 Alongside the pixel-wise masks, a separate reference dataset consisting of continuous vectorial waterlines was required to evaluate the geometric precision of the shorelines extracted by both the traditional indices and the DL models. For this purpose, a total of 285 reference waterlines (combined from Salinas and El Puntal) were generated.
 
-This process was carried out using the geographic information system software ArcGIS Pro. The instantaneous waterline was manually digitized by tracing the spatial interface between the water mass and the emerged beach. The preprocessed 10~m resolution Sentinel-2 RGB composites were utilized as the visual background reference for this task. The resulting vector lines were then exported as standard Shapefiles (.shp), establishing the absolute geometric Ground Truth for the final benchmarking phase.
+This process was carried out using the geographic information system software ArcGIS Pro (Figure \ref{fig:vector_waterline}). The instantaneous waterline was manually digitized by tracing the spatial interface between the water mass and the emerged beach. The preprocessed 10~m resolution Sentinel-2 RGB composites were utilized as the visual background reference for this task. The resulting vector lines were then exported as standard Shapefiles (.shp), establishing the absolute geometric Ground Truth for the final benchmarking phase.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15truecm]{screenshot_vectorization_waterline.png}
+    \caption{Screenshot of the ArcGIS Pro interface (El Puntal beach). The manually digitized waterline (black dashed line) is overlaid on the Sentinel-2 RGB composite.}
+    \label{fig:vector_waterline}
+\end{figure}
 
 \section{Traditional Baseline: Spectral Indices and Thresholding}
 
@@ -437,11 +444,27 @@ Once the spectral indices are calculated, creating continuous unbouded greyscale
 \end{enumerate}
 
 \section{Deep Learning Semantic Segmentation} \label{sec:dl_models}
+
+To overcome the limitations of threshold-based spectral techniques, the core of this study evaluates the performance of state-of-the-art semantic segmentation neural networks. Similar to the baseline methodology, a systematic grid evaluation was designed by combining different model architectures with various feature-extracting encoders (backbones).
+
 \subsection{Model Architectures}
-% Explanation of U-Net, DeepLabV3+, and SegFormer.
+
+Three widely recognized semantic segmentation architectures were selected to represent different evolutionary stages and paradigms in computer vision:
+\begin{enumerate}
+    \item \textbf{U-Net:} A foundational encoder-decoder convolutional architecture originally developed for biomedical imaging \citep{navab_u-net_2015}. Its defining feature is the use of skip connections that concatenate high-resolution feature maps from the encoder directly to the decoder. This enables the precise localization of fine details, which is highly advantageous for delineating a continuous, sharp waterline.
+    \item \textbf{DeepLabV3+:} An advanced Convolutional Neural Network (CNN) \citep{chen_encoder-decoder_2018} that utilizes Atrous Spatial Pyramid Pooling (ASPP) to explicitly evaluate the image at multiple scales simultaneously. This architecture allows the model to capture a wider field of view and understand the broader coastal geometry without losing the resolution necessary to trace the complex land-water boundary accurately.
+    \item \textbf{SegFormer:} A novel and highly efficient Transformer-based architecture \citep{xie_segformer_2021}. Unlike traditional CNNs, it unifies a hierarchically structured Vision Transformer (ViT) encoder (which avoids strict positional encoding interpolation issues) with a lightweight multilayer perceptron (MLP) decoder. It excels at incorporating global contextual information, which is critical for navigating the semantic ambiguity of extensive wave splash and dark wet sand.
+\end{enumerate}
 
 \subsection{Encoders}
-% Detail of the chosen backbones (ResNet, EfficientNet, MiT) specifying light and heavy versions.
+
+The feature extraction capability of a segmentation network relies heavily on its encoder backbone. To balance computational efficiency and feature extraction depth, two distinct encoder families were chosen:
+\begin{itemize}
+    \item \textbf{EfficientNet:} Specifically the \textit{efficientnet-b4} variant, chosen as a robust and well-scaled Convolutional Neural Network baseline known for optimizing the trade-off between network depth, width, and resolution.
+    \item \textbf{Mix Transformer (MiT):} Representing the hierarchical Vision Transformer paradigm, we selected the \textit{mit\_b2} (lighter) and \textit{mit\_b4} (heavier) variants. These transformers are naturally designed to extract both local and global attention features.
+\end{itemize}
+
+It is worth noting a deliberate methodological divergence in this study's experimental matrix. From a strict theoretical standpoint, CNN-based decoders (such as U-Net or DeepLabV3+) are traditionally paired with CNN-based encoders, whereas Transformer decoders (like SegFormer) are paired with ViT encoders to maintain architectural purity. However, preliminary empirical testing during this project revealed an interesting dynamic: hybridizing the architectures---specifically, injecting the global-context awareness of the MiT transformer encoders into the precise local-feature CNN decoders---yielded remarkably superior and robust segmentation results in the most challenging coastal scenes (e.g., distinguishing Salinas' dark wet sand from the water). Consequently, to fully explore this advantage, an exhaustive grid approach was adopted where all candidate encoders (EfficientNet-B4, MiT-B2, and MiT-B4) were systematically crossed and tested across all three model architectures.
 
 \subsection{Training Setup}
 % Details on loss functions, optimizers, learning rate, batch size, and data augmentation.
