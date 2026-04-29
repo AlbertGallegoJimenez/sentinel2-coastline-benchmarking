@@ -116,6 +116,11 @@ Sánchez-García, E., Palomar-Vázquez, J., Pardo-Pascual, J., Almonacid-Caballe
 \newblock An efficient protocol for accurate and massive shoreline definition from mid-resolution satellite imagery.
 \newblock {\em Coastal Engineering}, 160:103732.
 
+\bibitem[Tan and Le, 2019]{tan_efficientnet_2019}
+Tan, M. and Le, Q.~V. (2019).
+\newblock {EfficientNet}: {Rethinking} {Model} {Scaling} for {Convolutional} {Neural} {Networks}.
+\newblock Version Number: 5.
+
 \bibitem[Tian et~al., 2024]{tian_deep_2024}
 Tian, Z., Anagnostopoulos, C., Wang, Q., Gao, Z., and Hurst, M. (2024).
 \newblock Deep learning-based coastal feature detection: A survey of shoreline, waterline, and vegetation line segmentation methods.

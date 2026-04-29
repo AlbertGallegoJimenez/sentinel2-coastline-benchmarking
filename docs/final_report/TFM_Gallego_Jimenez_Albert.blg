@@ -3,44 +3,46 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: TFM_Gallego_Jimenez_Albert.aux
 The style file: apalike.bst
 Database file #1: references.bib
-You've used 36 entries,
+Warning--empty journal in tan_efficientnet_2019
+You've used 37 entries,
             1935 wiz_defined-function locations,
-            687 strings with 12856 characters,
-and the built_in function-call counts, 17262 in all, are:
-= -- 1607
-> -- 1053
-< -- 12
-+ -- 389
-- -- 378
-* -- 1622
-:= -- 3081
-add.period$ -- 112
-call.type$ -- 36
-change.case$ -- 367
-chr.to.int$ -- 35
-cite$ -- 36
-duplicate$ -- 523
-empty$ -- 996
-format.name$ -- 422
-if$ -- 3253
+            691 strings with 13009 characters,
+and the built_in function-call counts, 17576 in all, are:
+= -- 1637
+> -- 1066
+< -- 13
++ -- 393
+- -- 382
+* -- 1646
+:= -- 3139
+add.period$ -- 115
+call.type$ -- 37
+change.case$ -- 374
+chr.to.int$ -- 36
+cite$ -- 38
+duplicate$ -- 536
+empty$ -- 1016
+format.name$ -- 429
+if$ -- 3312
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 31
-newline$ -- 184
-num.names$ -- 110
-pop$ -- 299
+missing$ -- 32
+newline$ -- 189
+num.names$ -- 113
+pop$ -- 306
 preamble$ -- 1
-purify$ -- 367
+purify$ -- 374
 quote$ -- 0
-skip$ -- 395
+skip$ -- 406
 stack$ -- 0
-substring$ -- 1077
+substring$ -- 1089
 swap$ -- 61
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 216
-warning$ -- 0
-while$ -- 121
+type$ -- 222
+warning$ -- 1
+while$ -- 123
 width$ -- 0
-write$ -- 472
+write$ -- 484
+(There was 1 warning)
