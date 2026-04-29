@@ -1,4 +1,5 @@
 ﻿\documentclass[ENG]{TFUOC}%IB: CASTELLÀ, CAT: CATALÀ, ENG: ENGLISH
+\usepackage{amsmath}
 
 % Robust line breaks for long URLs/DOIs in references and text
 \PassOptionsToPackage{hyphens}{url}
@@ -344,7 +345,17 @@ By presenting a direct, data-driven comparison of classical spectral thresholdin
 
 \chapter{Materials and Methods}
 
+This chapter details the comprehensive methodological framework developed to evaluate and benchmark the performance of traditional spectral methods against Deep Learning semantic segmentation models for macrotidal waterline extraction. To provide a clear roadmap of the research, Figure \ref{fig:ch3_workflow} illustrates the end-to-end processing pipeline. The workflow encompasses five primary stages: the definition of the study areas (Section \ref{sec:study_areas}), the acquisition and preprocessing of satellite and oceanographic data (Section \ref{sec:data_acquisition}), the generation of Ground Truth reference datasets (Section \ref{sec:ground_truth}), the implementation of both traditional and AI-based extraction pipelines (Sections \ref{sec:baseline_spectral} to \ref{sec:waterline_pipeline}), and finally, the pixel-based and geometric evaluation methodologies (Section \ref{sec:evaluation_methodology}).
+
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=\linewidth]{chapter3_workflow.png} % Descomenta esta línea cuando tengas la imagen lista
+    \caption{General methodological workflow of the study. The diagram outlines the data acquisition, model training, extraction pipelines, and evaluation stages detailed throughout this chapter.}
+    \label{fig:ch3_workflow}
+\end{figure}
+
 \section{Study Areas}
+\label{sec:study_areas}
 
 The study focuses on two beaches located on the northern coast of Spain: Salinas (Asturias) and El Puntal (Cantabria) (Figure \ref{fig:study_sites}).
 
@@ -364,6 +375,7 @@ The selection of Salinas and El Puntal as study areas responds to their represen
 However, while they share this macrotidal nature, they exhibit key differences that allow for a comprehensive evaluation of the models under varying degrees of complexity. El Puntal, being sheltered from direct wave impact, serves as a baseline scenario with standard, golden-colored sand. In stark contrast, Salinas is fully exposed to energetic wave climates, resulting in a significantly higher presence of breaking wave foam (white-water) across a wide surf zone. Furthermore, the frequent accumulation of coal and carbonaceous shales along its intertidal profile creates noticeably dark patches of saturated sand. This stark color closely mimics the inherently low reflectance signature of water bodies in optical satellite imagery. Together, the excessive foam and the deceptively dark wet sand render Salinas an ideal stress-test. It provides a robust framework to critically evaluate whether Deep Learning architectures can successfully leverage spatial and structural context to differentiate the actual waterline, overcoming the limitations where traditional spectral methods typically fail.
 
 \section{Data Acquisition and Preprocessing}
+\label{sec:data_acquisition}
 
 An initial dataset of freely available Sentinel-2 Level-2A imagery, spanning the period from 2015 to 2025, was acquired for both study areas. The imagery was downloaded using the Python API for the Google Earth Engine. To ensure optimal visibility of the coastal features, an initial filtering process was applied to download only cloud-free scenes.
 
@@ -374,6 +386,7 @@ Following the data acquisition, a dedicated preprocessing pipeline was implement
 In addition to the optical imagery, historical oceanographic data provided by Puertos del Estado (https://www.puertos.es/) were acquired to accurately characterize the hydrodynamic conditions of each scene. Time-series records of sea level and wave climate were downloaded and temporally intersected to associate each Sentinel-2 image with its corresponding tide level and wave conditions at the exact moment of image acquisition. This comprehensive metadata association served a dual purpose: first, to execute a robust stratified train-test split, and second, to allow for the systematic evaluation and comparison of the models' performance under varying oceanographic regimes. Specifically, the train-test dataset subdivision was strictly stratified based on both the associated instantaneous tide values and the study area (Salinas or El Puntal). This ensures that scenes capturing high-tide and low-tide scenarios, along with both geographical settings, were equitably distributed across the sets, guaranteeing that the models are trained and evaluated on a balanced representation of the highly dynamic intertidal zones.
 
 \section{Ground Truth Generation (Reference Datasets)}
+\label{sec:ground_truth}
 
 To rigorously train the algorithms and benchmark their performance, two distinct sets of Ground Truth (GT) data were generated: pixel-wise multi-class masks for the semantic segmentation models, and continuous vector lines for the final geometric benchmarking evaluation with spectral-index-based methods.
 
@@ -404,6 +417,7 @@ This process was carried out using the geographic information system software Ar
 \end{figure}
 
 \section{Traditional Baseline: Spectral Indices and Thresholding}
+\label{sec:baseline_spectral} \label{sec:baseline_spectral}
 
 To establish a solid comparative baseline, we evaluated the performance of four different spectral water indices, coupled with three distinct thresholding techniques. This approach replicates the traditional operational pipelines currently dominating satellite-derived shoreline extraction.
 
@@ -481,15 +495,55 @@ Finally, to significantly increase the model's robustness and generalization cap
 To guarantee the statistical reliability of the results and account for the stochastic nature of network initialization and optimization, the training process for each model configuration (architecture-encoder pair) was repeated 10 independent times under varying random seeds. Following each set of iterations, the optimal run was selected based on its segmentation performance strictly along the coastal boundary zone. This was achieved by collapsing the multi-class predictions into binary masks (water versus non-water) and computing the Intersection over Union (IoU) exclusively within a reduced buffer region adjacent to the ground-truth waterline. A comprehensive explanation of this boundary-focused pixel-based evaluation and class mapping strategy is provided later in Section \ref{sec:pixel_eval}.
 
 \section{Waterline Extraction Pipeline}
-% Post-segmentation process: moving from probability/class maps (indices and NNs) to a 2D continuous vector delineating the coast (e.g., marching squares).
+\label{sec:waterline_pipeline}
+
+To systematically compare the performance of traditional spectral indices against the Semantic Segmentation Deep Learning models, it is necessary to translate their respective pixel-based outputs into continuous, comparable geographic vectors. This process, known as sub-pixel contouring, is critical for achieving the high spatial precision required for shoreline monitoring.
+
+For the traditional baselines (see Section \ref{sec:baseline_spectral}), the extraction pipeline follows a strict three-step sequence. First, continuous intensity rasters are computed using the mathematical formulations of the four selected spectral water indices (e.g., MNDWI, SCoWI). Second, discrete binary masks ("water" versus "non-water") are created by applying the cutoff threshold values evaluated for each method (Zero, Otsu, and Modified Otsu). Third, the final waterlines are generated in vector format by utilizing the Marching Squares contouring algorithm \citep{lorensen_marching_1987} to trace a smooth boundary where the binary mask transitions from 0 to 1. This algorithm effectively interpolates the exact sub-pixel location of the water boundary, allowing for a more precise vector representation of the waterline.
+
+Conversely, for the Deep Learning models, the segmentation output requires a slight mathematical adaptation to maximize its utility for vectorization. After processing a $128 \times 128$ image patch, the neural network outputs multi-class prediction logits. These logits are converted into confidence scores (ranging from 0.0 to 1.0) using a Softmax activation function. Subsequently, the pixels segmented as \textit{water} and \textit{white-water} classes are collapsed into a single "water" class, while the \textit{wet sand} and \textit{sand} classes are collapsed into a single "non-water" class. Then, the final waterlines are extracted using the same Marching Squares contouring algorithm as in the traditional pipeline, applied to the resulting binary mask. This ensures that the final output from both approaches is directly comparable in terms of format and spatial precision.
+
+Finally, for both traditional and DL approaches, the individual continuous line segments extracted in each image are merged together. A morphological length filter is then applied, discarding any discontinuous segments shorter than a minimum threshold length. This filtering effectively removes small landlocked ponds, temporary tidal puddles, and isolated false positive artifacts, resulting in a single, robust, and continuous vector representation of the waterline.
 
 \section{Evaluation Methodology}
+\label{sec:evaluation_methodology}
+
+To comprehensively assess the performance of the tested methodologies, the accuracy of the outputs was evaluated across two distinct structural domains: a purely pixel-based evaluation of the semantic segmentation masks, and a rigorous geometric validation of the final continuous vector waterlines.
+
 \subsection{Pixel-based Evaluation}
 \label{sec:pixel_eval}
-% Metrics to evaluate the quality of multiclass and binary segmentation masks (overall IoU, class IoU, Dice).
+
+Evaluating segmentation performance across full coastal scenes introduces a significant statistical bias due to extreme spatial class imbalance. When traditional pixel-based metrics are calculated over the entire image grid, their scores are highly susceptible to artificial inflation. Because the vast majority of pixels in a standard satellite patch belong to unambiguous, easily classified regions (such as the open ocean or stable inland areas) a model can achieve exceptionally high scores even if it completely misidentifies the delicate land-water boundary. Since the actual intertidal transition zone constitutes only a minuscule fraction of the total image, critical segmentation errors along the shoreline are mathematically overshadowed by the large number of correctly classified background pixels.
+
+To counteract this statistical bias, a highly constrained, boundary-focused evaluation protocol was designed. Initially, the native multi-class structure of the ground-truth masks (and the corresponding Deep Learning predictions) was mathematically collapsed into binary domains: \textit{water} and \textit{white-water} were unified under the definitive "Water" class, while \textit{wet sand} and \textit{sand} were clustered into "Land". Any unannotated background elements assigned with the \textit{ignore\_index} (value 255) were strictly excluded from the calculations.
+
+Subsequently, a symmetric spatial buffer equivalent to 10 pixels (representing a physical distance of 100 meters, given Sentinel-2's native 10 m resolution) was dynamically generated exclusively around the exact ground-truth waterline. The evaluation was strictly constrained to this 100-meter buffer zone algorithmically identified using the Euclidean Distance Transform. By completely masking out the deep water body and the inland sectors, the models were forced to perform, and be penalized, exclusively on the challenging semantic ambiguity of the intertidal zone.
+
+% Figura de ejemplo de la máscara de evaluación, mostrando el buffer de 10 píxeles alrededor de la línea de costa GT, y cómo solo se evalúan los píxeles dentro de ese buffer.
+
+Within this restricted boundary zone, the segmentation performance was quantified using two standard computer vision metrics:
+\begin{itemize}
+    \item \textbf{Intersection over Union (IoU):} Also known as the Jaccard Index, it calculates the ratio of the intersection of the predicted and ground-truth water masks to their union. It is a strict metric that heavily penalizes false positives (e.g., misclassifying wet sand as water).
+    \item \textbf{Dice Coefficient:} Similar to the IoU but assigning double weight to the correct positive predictions, providing a slightly more forgiving, harmonized measure of the overlap.
+\end{itemize}
 
 \subsection{Geometric Evaluation}
-% Methodology for final coastline evaluation. Generation of perpendicular transects and distance metrics calculation (1D Euclidean errors, mean error, RMSE) between predicted coast and ground truth.
+
+While the pixel-based evaluation determines how well a model categorizes the image grid, the geometric evaluation translates those results into the real-world metric required by coastal engineers: tracking the physical position of the coast in meters. 
+
+To achieve this, the continuous vectorial waterlines derived from both the traditional sub-pixel contouring and the Deep Learning probability maps (as described in Section 3.6) were benchmarked against the manually digitized Ground Truth shapefiles. This assessment was performed using the standard shore-perpendicular cross-shore transect methodology.
+
+A fixed, static landward baseline roughly parallel to the general orientation of the beach was established. From this baseline, perpendicular transects were cast seaward at evenly spaced intervals (i.e., every 50 meters) along the entire longitude of the study area. For each individual transect, the intersection points with both the predicted vector shoreline and the reference GT shoreline were mathematically calculated. The 1D Euclidean distance between these two points constitutes the extraction error at that specific profile. It's worth mentioning that, within the specific context of remote sensing applied to shoreline monitoring, this calculated error (the spatial distance between the actual and the predicted position) is widely referred to in the literature as the extraction "offset".
+
+% Figura de ejemplo de la metodología de transectos perpendiculares, mostrando la línea de costa GT, la línea de costa predicha, el baseline y los transectos, con un ejemplo de cómo se calcula el offset para un transecto específico.
+
+By aggregating the distances recorded across all intersecting transects for a given satellite image, four robust statistical metrics were computed:
+\begin{itemize}
+    \item \textbf{Mean Error (Bias):} The arithmetic average of all transect distances. It evaluates the systematic tendency of the model to underestimate or overestimate the water extent. A negative Bias indicates a systematic landward offset (the model predicts water further inland than reality, a common failure over wet sand), while a positive Bias indicates a seaward bias.
+    \item \textbf{Mean Absolute Error (MAE):} The average of the absolute values of the offsets. Unlike Bias, MAE does not allow positive and negative errors to cancel each other out, providing a straightforward measure of the average magnitude of the extraction error.
+    \item \textbf{Median Absolute Deviation/Error (MAD):} The median of the absolute offsets. Because it relies on the median rather than the mean, MAD is highly robust against severe outliers (such as specific transects with an extreme errors due to a contouring artifact or specific complex scenarios because a highly energetic wave event), offering a highly representative value of the "typical" coastline error.
+    \item \textbf{Root Mean Square Error (RMSE):} Measures the overall magnitude of the spatial discrepancy. Because it squares the errors before averaging, the RMSE strongly penalizes extreme localized deviations (such as the model mistakenly tracing an isolated intertidal pool or wave foam), providing a conservative and reliable metric of the extraction's operational viability.
+\end{itemize}
 
  
 

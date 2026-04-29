@@ -98,26 +98,33 @@
 \citation{tian_deep_2024}
 \citation{tian_deep_2024}
 \citation{tian_deep_2024}
-\citation{cabezas_site-specific_2026}
-\citation{cabezas_site-specific_2026}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Materials and Methods}{26}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces General methodological workflow of the study. The diagram outlines the data acquisition, model training, extraction pipelines, and evaluation stages detailed throughout this chapter.}}{26}{}\protected@file@percent }
+\newlabel{fig:ch3_workflow}{{3.1}{26}{}{figure.3.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Study Areas}{26}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Location of the study sites: Salinas (left) and El Puntal (right) beaches. RGB image (top), topobathymetry (middle) using the ETRS89 / UTM 30N coordinate system, and beach profile (bottom) highlighting the intertidal range defined by the HAT/LAT (Highest/Lowest Astronomical Tide). (Source: \citealp  {cabezas_site-specific_2026})}}{27}{}\protected@file@percent }
-\newlabel{fig:study_sites}{{3.1}{27}{}{figure.3.1}{}}
+\newlabel{sec:study_areas}{{3.1}{26}{}{section.3.1}{}}
+\citation{cabezas_site-specific_2026}
+\citation{cabezas_site-specific_2026}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Location of the study sites: Salinas (left) and El Puntal (right) beaches. RGB image (top), topobathymetry (middle) using the ETRS89 / UTM 30N coordinate system, and beach profile (bottom) highlighting the intertidal range defined by the HAT/LAT (Highest/Lowest Astronomical Tide). (Source: \citealp  {cabezas_site-specific_2026})}}{27}{}\protected@file@percent }
+\newlabel{fig:study_sites}{{3.2}{27}{}{figure.3.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Data Acquisition and Preprocessing}{28}{}\protected@file@percent }
+\newlabel{sec:data_acquisition}{{3.2}{28}{}{section.3.2}{}}
 \citation{bhattiprolu_digitalsreeni_2026}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Ground Truth Generation (Reference Datasets)}{29}{}\protected@file@percent }
+\newlabel{sec:ground_truth}{{3.3}{29}{}{section.3.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Coastal Mask Classes}{29}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Screenshot of the DigitalSreeni Image Annotator software interface (Salinas beach). The overlaid mask displays the four annotated classes: water (yellow), white-water (red), wet sand (purple), and sand (cyan).}}{30}{}\protected@file@percent }
-\newlabel{fig:mask_classes}{{3.2}{30}{}{figure.3.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Screenshot of the DigitalSreeni Image Annotator software interface (Salinas beach). The overlaid mask displays the four annotated classes: water (yellow), white-water (red), wet sand (purple), and sand (cyan).}}{30}{}\protected@file@percent }
+\newlabel{fig:mask_classes}{{3.3}{30}{}{figure.3.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Waterline Vectorization}{30}{}\protected@file@percent }
 \citation{mcfeeters_use_1996}
 \citation{xu_modification_2006}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Screenshot of the ArcGIS Pro interface (El Puntal beach). The manually digitized waterline (black dashed line) is overlaid on the Sentinel-2 RGB composite.}}{31}{}\protected@file@percent }
-\newlabel{fig:vector_waterline}{{3.3}{31}{}{figure.3.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Screenshot of the ArcGIS Pro interface (El Puntal beach). The manually digitized waterline (black dashed line) is overlaid on the Sentinel-2 RGB composite.}}{31}{}\protected@file@percent }
+\newlabel{fig:vector_waterline}{{3.4}{31}{}{figure.3.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.4}Traditional Baseline: Spectral Indices and Thresholding}{31}{}\protected@file@percent }
+\newlabel{sec:baseline_spectral}{{3.4}{31}{}{section.3.4}{}}
+\newlabel{sec:baseline_spectral}{{3.4}{31}{}{section.3.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Spectral Water Indices}{31}{}\protected@file@percent }
 \citation{feyisa_automated_2014}
 \citation{bergsma_shoreliner_2024}
@@ -134,20 +141,23 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Model Architectures}{33}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Encoders}{33}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5.3}Training Setup}{34}{}\protected@file@percent }
+\citation{lorensen_marching_1987}
 \@writefile{toc}{\contentsline {section}{\numberline {3.6}Waterline Extraction Pipeline}{35}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Evaluation Methodology}{35}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{35}{}\protected@file@percent }
-\newlabel{sec:pixel_eval}{{3.7.1}{35}{}{subsection.3.7.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{35}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Results}{36}{}\protected@file@percent }
+\newlabel{sec:waterline_pipeline}{{3.6}{35}{}{section.3.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Evaluation Methodology}{36}{}\protected@file@percent }
+\newlabel{sec:evaluation_methodology}{{3.7}{36}{}{section.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{36}{}\protected@file@percent }
+\newlabel{sec:pixel_eval}{{3.7.1}{36}{}{subsection.3.7.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{37}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Results}{38}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{37}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{39}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibstyle{apalike}
 \bibdata{references}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Glossary}{38}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Glossary}{40}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{almeida_coastal_2021}{{1}{2021}{{Almeida et~al.}}{{}}}
@@ -187,4 +197,4 @@
 \bibcite{xu_modification_2006}{{35}{2006}{{Xu}}{{}}}
 \bibcite{zhan_usv-seg_2025}{{36}{2025}{{Zhan et~al.}}{{}}}
 \bibcite{zheng_rethinking_2020}{{37}{2020}{{Zheng et~al.}}{{}}}
-\gdef \@abspage@last{44}
+\gdef \@abspage@last{46}

@@ -29,9 +29,9 @@
 \contentsline {subsection}{\numberline {3.5.2}Encoders}{33}{}%
 \contentsline {subsection}{\numberline {3.5.3}Training Setup}{34}{}%
 \contentsline {section}{\numberline {3.6}Waterline Extraction Pipeline}{35}{}%
-\contentsline {section}{\numberline {3.7}Evaluation Methodology}{35}{}%
-\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{35}{}%
-\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{35}{}%
-\contentsline {chapter}{\numberline {4}Results}{36}{}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{37}{}%
-\contentsline {chapter}{\numberline {6}Glossary}{38}{}%
+\contentsline {section}{\numberline {3.7}Evaluation Methodology}{36}{}%
+\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{36}{}%
+\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{37}{}%
+\contentsline {chapter}{\numberline {4}Results}{38}{}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{39}{}%
+\contentsline {chapter}{\numberline {6}Glossary}{40}{}%
