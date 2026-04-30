@@ -345,11 +345,11 @@ By presenting a direct, data-driven comparison of classical spectral thresholdin
 
 \chapter{Materials and Methods}
 
-This chapter details the comprehensive methodological framework developed to evaluate and benchmark the performance of traditional spectral methods against Deep Learning semantic segmentation models for macrotidal waterline extraction. To provide a clear roadmap of the research, Figure \ref{fig:ch3_workflow} illustrates the end-to-end processing pipeline. The workflow encompasses five primary stages: the definition of the study areas (Section \ref{sec:study_areas}), the acquisition and preprocessing of satellite and oceanographic data (Section \ref{sec:data_acquisition}), the generation of Ground Truth reference datasets (Section \ref{sec:ground_truth}), the implementation of both traditional and AI-based extraction pipelines (Sections \ref{sec:baseline_spectral} to \ref{sec:waterline_pipeline}), and finally, the pixel-based and geometric evaluation methodologies (Section \ref{sec:evaluation_methodology}).
+This chapter details the comprehensive methodological framework developed to evaluate and benchmark the performance of traditional spectral methods against Deep Learning semantic segmentation models for macrotidal waterline extraction. To provide a clear roadmap of the research, Figure \ref{fig:ch3_workflow} illustrates the end-to-end processing pipeline. The workflow encompasses five primary stages: the definition of the study areas (Section \ref{sec:study_areas}); the acquisition and preprocessing of satellite and oceanographic data (Section \ref{sec:data_acquisition}); the generation of Ground Truth reference datasets (Section \ref{sec:ground_truth}); the implementation of both traditional and AI-based extraction pipelines (Sections \ref{sec:baseline_spectral} to \ref{sec:waterline_pipeline}); and finally, the pixel-based and geometric evaluation methodologies (Section \ref{sec:evaluation_methodology}).
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=\linewidth]{chapter3_workflow.png} % Descomenta esta línea cuando tengas la imagen lista
+    \includegraphics[scale=0.45]{diagram_methodology.png}
     \caption{General methodological workflow of the study. The diagram outlines the data acquisition, model training, extraction pipelines, and evaluation stages detailed throughout this chapter.}
     \label{fig:ch3_workflow}
 \end{figure}
@@ -545,10 +545,35 @@ By aggregating the distances recorded across all intersecting transects for a gi
     \item \textbf{Root Mean Square Error (RMSE):} Measures the overall magnitude of the spatial discrepancy. Because it squares the errors before averaging, the RMSE strongly penalizes extreme localized deviations (such as the model mistakenly tracing an isolated intertidal pool or wave foam), providing a conservative and reliable metric of the extraction's operational viability.
 \end{itemize}
 
- 
+\subsection{Summary of Evaluated Models}
 
+To provide a clear overview of the entire experimental matrix, Table \ref{tab:evaluation_recap} summarizes all the models and configurations tested in this project, explicitly detailing which evaluation protocols were applied to each.
 
-
+\begin{table}[H]
+    \centering
+    \caption{Summary of the evaluated extraction methods, their configurations, and the corresponding applied evaluation protocols.}
+    \vspace{0.1cm}
+    \renewcommand{\arraystretch}{1.4}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{l l l c c}
+        \hline
+        \textbf{Category} & \textbf{Base Model / Index} & \textbf{Evaluated Variations / Encoders} & \textbf{Pixel-based Eval.} & \textbf{Geometric Eval.} \\
+        \hline
+        \multirow{4}{*}{Spectral-based} 
+        & NDWI & Zero, Otsu, Modified Otsu & No & Yes \\
+        & MNDWI & Zero, Otsu, Modified Otsu & No & Yes \\
+        & AWEInsh & Zero, Otsu, Modified Otsu & No & Yes \\
+        & SCoWI & Zero, Otsu, Modified Otsu & No & Yes \\
+        \hline
+        \multirow{3}{*}{Deep Learning-based} 
+        & U-Net & EfficientNet-B4/B7, MiT-B2/B4 & Yes & Yes \\
+        & DeepLabV3+ & EfficientNet-B4/B7, MiT-B2/B4 & Yes & Yes \\
+        & SegFormer & EfficientNet-B4/B7, MiT-B2/B4 & Yes & Yes \\
+        \hline
+    \end{tabular}
+    }
+    \label{tab:evaluation_recap}
+\end{table}
 
 \chapter{Results}
 
