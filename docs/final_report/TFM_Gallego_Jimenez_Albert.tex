@@ -510,9 +510,14 @@ Evaluating segmentation performance across full coastal scenes introduces a sign
 
 To counteract this statistical bias, a highly constrained, boundary-focused evaluation protocol was designed. Initially, the native multi-class structure of the ground-truth masks (and the corresponding Deep Learning predictions) was mathematically collapsed into binary domains: \textit{water} and \textit{white-water} were unified under the definitive "Water" class, while \textit{wet sand} and \textit{sand} were clustered into "Land". Any unannotated background elements assigned with the \textit{ignore\_index} (value 255) were strictly excluded from the calculations.
 
-Subsequently, a symmetric spatial buffer equivalent to 10 pixels (representing a physical distance of 100 meters, given Sentinel-2's native 10 m resolution) was dynamically generated exclusively around the exact ground-truth waterline. The evaluation was strictly constrained to this 100-meter buffer zone algorithmically identified using the Euclidean Distance Transform. By completely masking out the deep water body and the inland sectors, the models were forced to perform, and be penalized, exclusively on the challenging semantic ambiguity of the intertidal zone.
+Subsequently, a symmetric spatial buffer equivalent to 10 pixels (representing a physical distance of 100 meters, given Sentinel-2's native 10 m resolution) was dynamically generated exclusively around the exact ground-truth waterline (see Figure \ref{fig:evaluation_mask}). The evaluation was strictly constrained to this 100-meter buffer zone algorithmically identified using the Euclidean Distance Transform. By completely masking out the deep water body and the inland sectors, the models were forced to perform, and be penalized, exclusively on the challenging semantic ambiguity of the intertidal zone.
 
-% Figura de ejemplo de la máscara de evaluación, mostrando el buffer de 10 píxeles alrededor de la línea de costa GT, y cómo solo se evalúan los píxeles dentro de ese buffer.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15truecm]{boundary_zone_visualization.png}
+    \caption{Example of the pixel-based evaluation mask. The left panel shows the original RGB image. The dynamic evaluation buffer (right) highlights the 10-pixel zone around the GT waterline where the pixel-based metrics are calculated, effectively excluding the deep water and inland areas from the evaluation.}
+    \label{fig:evaluation_mask}
+\end{figure}
 
 Within this restricted boundary zone, the segmentation performance was quantified using two standard computer vision metrics:
 \begin{itemize}

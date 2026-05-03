@@ -13,6 +13,7 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Comparison between the continuous oceanographic time-series (purple) and the conditions captured exactly during Sentinel-2 overpasses (yellow dots) for Salinas beach. The top panels highlight the Astronomical Tide, demonstrating the observational bias caused by the sun-synchronous orbit that systematically trims the extreme high-tide peaks. The bottom panels show the Significant Wave Height ($H_s$), which more closely follows the theoretical distribution, albeit missing the extreme storm events.}}{30}{}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Screenshot of the DigitalSreeni Image Annotator software interface (Salinas beach). The overlaid mask displays the four annotated classes: water (yellow), white-water (red), wet sand (purple), and sand (cyan).}}{31}{}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Screenshot of the ArcGIS Pro interface (El Puntal beach). The manually digitized waterline (black dashed line) is overlaid on the Sentinel-2 RGB composite.}}{32}{}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Example of the pixel-based evaluation mask. The left panel shows the original RGB image. The dynamic evaluation buffer (right) highlights the 10-pixel zone around the GT waterline where the pixel-based metrics are calculated, effectively excluding the deep water and inland areas from the evaluation.}}{38}{}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
