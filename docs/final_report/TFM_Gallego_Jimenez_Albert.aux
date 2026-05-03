@@ -106,7 +106,7 @@
 \newlabel{fig:study_sites}{{3.2}{28}{}{figure.3.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Data Acquisition and Preprocessing}{29}{}\protected@file@percent }
 \newlabel{sec:data_acquisition}{{3.2}{29}{}{section.3.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Comparison between the continuous oceanographic time-series (purple) and the conditions captured exactly during Sentinel-2 overpasses (yellow dots) for Salinas beach. The top panels highlight the Astronomical Tide, demonstrating the observational bias caused by the sun-synchronous orbit that systematically trims the extreme high-tide peaks. The bottom panels show the Significant Wave Height ($H_s$), which more closely follows the theoretical distribution, albeit missing the extreme storm events.}}{30}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Comparison between the continuous oceanographic time-series (purple) and the conditions captured exactly during Sentinel-2 overpasses (yellow dots) for Salinas beach. The top panels highlight the Astronomical Tide, demonstrating the observational bias caused by the sun-synchronous orbit that systematically trims the high-tide peaks. The bottom panels show the Significant Wave Height ($H_s$), which more closely follows the theoretical distribution, albeit missing the extreme storm events.}}{30}{}\protected@file@percent }
 \newlabel{fig:marine_data_comparison}{{3.3}{30}{}{figure.3.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Ground Truth Generation (Reference Datasets)}{30}{}\protected@file@percent }
 \newlabel{sec:ground_truth}{{3.3}{30}{}{section.3.3}{}}
@@ -149,7 +149,9 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Example of the pixel-based evaluation mask. The left panel shows the original RGB image. The dynamic evaluation buffer (right) highlights the 10-pixel zone around the GT waterline where the pixel-based metrics are calculated, effectively excluding the deep water and inland areas from the evaluation.}}{38}{}\protected@file@percent }
 \newlabel{fig:evaluation_mask}{{3.6}{38}{}{figure.3.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{38}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Summary of Evaluated Models}{39}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Example of the perpendicular transect methodology for geometric evaluation. The black line represents the manually digitized GT waterline, while the purple line represents the predicted waterline from either the DL or index-based method (in this case, MNDWI using Zero threshold). The yellow line is the fixed landward baseline. The cyan lines are the perpendicular transects cast from the baseline to the predicted and GT waterlines. The offset is calculated as the absolute distance between the intersection points of the predicted and GT waterlines along each transect.}}{39}{}\protected@file@percent }
+\newlabel{fig:transect_methodology}{{3.7}{39}{}{figure.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Summary of Evaluated Models}{40}{}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Summary of the evaluated extraction methods, their configurations, and the corresponding applied evaluation protocols.}}{40}{}\protected@file@percent }
 \newlabel{tab:evaluation_recap}{{3.1}{40}{}{table.3.1}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {4}Results}{41}{}\protected@file@percent }
