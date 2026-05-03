@@ -127,25 +127,6 @@ Overall impact: neutral.
 
 \section{Focus and Method Followed}
 
-The methodology is structured into four main phases as illustrated in the workflow diagram (Figure~\ref{fig:workflow}):
-\begin{enumerate}
-    \item \textbf{Data Acquisition:} Downloading Sentinel-2 Level-2A (atmospherically corrected) products from Google Earth Engine, covering the period 2015–2025. A built-in cloud detection algorithm will be applied as an initial filter to discard obstructed scenes, utilizing the remaining available cloud-free images.
-    \item \textbf{Preprocessing \& Labelling:} Calculation of spectral indices (NDWI, MNDWI). Generation of Ground Truth masks using the Segment Anything Model (SAM) through an interactive annotation tool \citep{bhattiprolu_digitalsreeni_2026}. Generation of Ground Truth coastline vectors through manual photo-interpretation of RGB composites derived from Sentinel-2 images.
-    \item \textbf{Model Implementation:}
-    \begin{itemize}
-        \item \textit{Baseline:} Automatic thresholding methods applied to spectral indices.
-        \item \textit{Deep Learning:} {\sloppy Training semantic segmentation models like U-Net \citep{navab_u-net_2015} or SegFormer \citep{xie_segformer_2021}. Model training will be run locally on an NVIDIA RTX 3060 GPU, with an institutional computing cluster (2 nodes, 2x NVIDIA A30 each) available for scaling if required.}
-    \end{itemize}
-    \item \textbf{Evaluation:} Comparison using pixel-based metrics (IoU, Dice) and geometric validation (calculating the mean Euclidean distance between the predicted and real coastline).
-\end{enumerate}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{Methodological_Workflow.png}
-    \caption{Schematic representation of the methodological workflow.}
-    \label{fig:workflow}
-\end{figure}
-
 
 \section{Work Schedule}
 
@@ -359,7 +340,7 @@ This chapter details the comprehensive methodological framework developed to eva
 
 The study focuses on two beaches located on the northern coast of Spain: Salinas (Asturias) and El Puntal (Cantabria) (Figure \ref{fig:study_sites}).
 
-Salinas is a 2.5 km embayed sandy beach system located on the left bank of the Avilés estuarine inlet (Asturias). The beach is bounded by the inlet jetty to the east and a rocky headland (La Peñona) to the west. Its western sector, adjacent to the urban area of Salinas, is backed by a seawall and promenade, while the eastern sector (El Espartal) preserves a natural dune field rising up to 15 m above mean sea level. The beach is characterized by a wide intertidal zone (up to 300 m at spring tides) and a mean tidal range of 4.5 m, classifying it as a macrotidal environment. The wave climate is predominantly energetic and approach from the northwest, impacting directly with mean significant wave heights around 1 m and frequent storm events that can exceed 4 m. The sand often shows dark patches due to the accumulation of coal and carbonaceous shales, which can further complicate spectral differentiation between wet sand and water.
+Salinas is a 2.5 km embayed sandy beach system located on the left bank of the Avilés estuarine inlet (Asturias). The beach is bounded by an inlet jetty to the east and a rocky headland (La Peñona) to the west. Its western sector, adjacent to the urban area of Salinas, is backed by a seawall and promenade, while the eastern sector (El Espartal) preserves a natural dune field rising up to 15 m above mean sea level. The beach is characterized by a wide intertidal zone (up to 300 m at spring tides) and a mean tidal range of 4.5 m, classifying it as a macrotidal environment. The wave climate is predominantly energetic and approach from the northwest, impacting directly with mean significant wave heights around 1 m and frequent storm events that can exceed 4 m. The sand often shows dark patches due to the accumulation of coal and carbonaceous shales, which can further complicate spectral differentiation between wet sand and water.
 
 El Puntal is a 4 km sandy spit at the entrance of Santander Bay (Cantabria), formed by the interaction of estuarine and marine dynamics. The beach is backed by a dune system that reaches up to 10 m high and 50–100 m wide. In the same way as Salinas, El Puntal experiences a wide intertidal zone (up to 250 m) and a mean tidal range of around 4 m. However, unlike Salinas, El Puntal does not receive direct wave impact, as it is protected by the Magdalena Peninsula. Furthermore, also in contrast to Salinas, El Puntal features a much less dark, golden-colored sand.
 
@@ -383,7 +364,16 @@ From the available multispectral data, six specific bands were selected to provi
 
 Following the data acquisition, a dedicated preprocessing pipeline was implemented. First, the original massive satellite tiles were spatially cropped to strictly encompass the defined Regions of Interest (ROIs) for Salinas and El Puntal. Second, given that Sentinel-2 bands possess varying native spatial resolutions, spatial homogenization was required. The SWIR 1 and SWIR 2 bands, natively captured at a 20~m resolution, were resampled to match the 10~m spatial resolution of the visible and NIR bands. Finally, to prepare the dataset for the subsequent training phase of the Deep Learning semantic segmentation models (see Section \ref{sec:dl_models}), the preprocessed image ROIs were systematically divided into smaller patches of $128 \times 128$ pixels.
 
-In addition to the optical imagery, historical oceanographic data provided by Puertos del Estado (https://www.puertos.es/) were acquired to accurately characterize the hydrodynamic conditions of each scene. Time-series records of sea level and wave climate were downloaded and temporally intersected to associate each Sentinel-2 image with its corresponding tide level and wave conditions at the exact moment of image acquisition. This comprehensive metadata association served a dual purpose: first, to execute a robust stratified train-test split, and second, to allow for the systematic evaluation and comparison of the models' performance under varying oceanographic regimes. Specifically, the train-test dataset subdivision was strictly stratified based on both the associated instantaneous tide values and the study area (Salinas or El Puntal). This ensures that scenes capturing high-tide and low-tide scenarios, along with both geographical settings, were equitably distributed across the sets, guaranteeing that the models are trained and evaluated on a balanced representation of the highly dynamic intertidal zones.
+In addition to the optical imagery, historical oceanographic data provided by Puertos del Estado (https://www.puertos.es/) were acquired to accurately characterize the hydrodynamic conditions of each scene. Time-series records of sea level and wave climate were downloaded and temporally intersected to associate each Sentinel-2 image with its corresponding tide level and wave conditions at the exact moment of image acquisition. This comprehensive metadata association allows for the systematic evaluation and comparison of the extraction models' performance under varying oceanographic regimes. Furthermore, these associated tidal variables were directly utilized to perform a robust stratification of the dataset prior to the Deep Learning training phase, as detailed in Section \ref{sec:training_setup}.
+
+However, it is crucial to acknowledge an inherent temporal sampling bias in the dataset stemming from the satellite's orbital mechanics. Sentinel-2 operates on a sun-synchronous orbit, ensuring it passes over the study sites at approximately the same local solar time (mid-morning). Because the local astronomical tide cycles are partially phase-locked with the solar day, this strict overpass schedule implies that the satellite systematically misses the absolute high waters of spring tides at this specific location. As illustrated in Figure \ref{fig:marine_data_comparison}, this results in a truncated tidal distribution where extreme high tides are never captured. Conversely, the significant wave height ($H_s$) captured by the satellite generally preserves the overall statistical distribution of the full oceanic time-series, although extreme storm conditions remain underrepresented both due to their lower frequency and the fact that they are typically accompanied by heavy cloud cover, which filters them out during the optical image selection step.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=17truecm]{marine_data_comparison.png}
+    \caption{Comparison between the continuous oceanographic time-series (purple) and the conditions captured exactly during Sentinel-2 overpasses (yellow dots) for Salinas beach. The top panels highlight the Astronomical Tide, demonstrating the observational bias caused by the sun-synchronous orbit that systematically trims the extreme high-tide peaks. The bottom panels show the Significant Wave Height ($H_s$), which more closely follows the theoretical distribution, albeit missing the extreme storm events.}
+    \label{fig:marine_data_comparison}
+\end{figure}
 
 \section{Ground Truth Generation (Reference Datasets)}
 \label{sec:ground_truth}
@@ -392,7 +382,7 @@ To rigorously train the algorithms and benchmark their performance, two distinct
 
 \subsection{Coastal Mask Classes}
 
-To train and validate the Deep Learning models, a highly accurate pixel-level GT dataset was created. Given the complexity of the selected macrotidal environments, a multi-class approach was adopted rather than a simple binary (water/land) classification. The predefined classes were: \textit{water} (undisturbed water bodies), \textit{white-water} (breaking wave foam in the surf zone), \textit{wet sand} (the saturated intertidal zone), and \textit{sand} (dry beach).
+To train and validate the Deep Learning models, a highly accurate pixel-level GT dataset was created. Given the complexity of the selected macrotidal environments, a multi-class approach was adopted rather than a simple binary (water/land) classification. The predefined classes were: \textit{water} (undisturbed water bodies), \textit{white-water} (breaking wave foam in the surf zone), \textit{wet sand} (the saturated intertidal zone), and \textit{sand} (dry beach) (see Figure \ref{fig:mask_classes}).
 
 The annotation process was performed manually via photo-interpretation using the DigitalSreeni Image Annotator toolkit \citep{bhattiprolu_digitalsreeni_2026} (Figure \ref{fig:mask_classes}). To ensure the models focus solely on the relevant coastal features, any pixel not manually assigned to one of these four categories was automatically designated as an \textit{ignore\_index}. This ensures that background elements (like urban infrastructure or vegetation) do not interfere with the loss function calculation during training. In total, a dataset comprising 161 image patches (combined from Salinas and El Puntal) was manually annotated and exported into the standardized COCO JSON format.
 
@@ -483,8 +473,11 @@ The feature extraction capability of a segmentation network relies heavily on it
 It is worth noting a deliberate methodological divergence in this study's experimental matrix. From a strict theoretical standpoint, CNN-based decoders (such as U-Net or DeepLabV3+) are traditionally paired with CNN-based encoders, whereas Transformer decoders (like SegFormer) are paired with ViT encoders to maintain architectural purity. However, preliminary empirical testing during this project revealed an interesting dynamic: hybridizing the architectures (specifically, injecting the global-context awareness of the MiT transformer encoders into the precise local-feature CNN decoders) yielded remarkably superior and robust segmentation results in the most challenging coastal scenes. Consequently, to fully explore this advantage, an exhaustive grid approach was adopted where all candidate encoders (EfficientNet-B4, EfficientNet-B7, MiT-B2 and MiT-B4) were systematically crossed and tested across all three model architectures.
 
 \subsection{Training Setup}
+\label{sec:training_setup}
 
 To ensure a fair and equitable comparison, all deep learning models were trained from scratch following an identical hyperparameter configuration and optimization strategy. 
+
+Prior to training, the annotated dataset was partitioned into training, validation, and testing splits. To prevent the models from overfitting to a specific tidal state or geographical morphology, this subdivision was strictly stratified based on both the associated instantaneous tide values (acquired during the preprocessing stage) and the specific study area (Salinas or El Puntal). This rigorous stratification ensures that images capturing high-tide and low-tide scenarios, as well as sheltered and exposed conditions, were equitably distributed. Consequently, the networks were trained and evaluated on a perfectly balanced representation of the highly dynamic intertidal zones.
 
 The models were trained for a maximum of 100 epochs using a batch size of 16 patches. To minimize the loss function while mitigating overfitting, the AdamW optimizer (Adam with weight decay) was employed with an initial learning rate of $5 \times 10^{-4}$ and a weight decay coefficient of $1 \times 10^{-4}$. Furthermore, a dynamic learning rate scheduler (\textit{ReduceLROnPlateau}) was implemented, which reduces the learning rate by a factor of 0.5 if the validation loss plateaus for 5 consecutive epochs. Early stopping was also configured with a patience of 15 epochs to stop training when no further validation improvements were observed, thereby preventing over-parameterization and saving computational resources.
 
