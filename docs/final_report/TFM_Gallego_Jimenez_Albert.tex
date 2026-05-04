@@ -127,6 +127,11 @@ Overall impact: neutral.
 
 \section{Focus and Method Followed}
 
+To address the goal of automating and improving shoreline extraction from Sentinel-2 satellite imagery, several strategies were initially considered. One theoretical approach could involve developing a completely novel Deep Learning architecture from scratch, comprehensively designed for water-sand segmentation. Conversely, an entirely applied approach could rely on utilizing existing proprietary software or closed-source commercial solutions.
+
+However, the chosen strategy for this thesis is an applied comparative benchmarking approach. Rather than inventing a new architecture, this work focuses on adapting and fine-tuning existing, state-of-the-art open-source Deep Learning architectures (such as the U-Net with varying feature-extraction encoders) and rigorously evaluating them against widely adopted traditional baselines (e.g., spectral indices combined with Marching Squares sub-pixel contouring). 
+
+This comparative framework was selected to maximize both practical impact and scientific rigor. At present, the primary challenge in automated shoreline monitoring lies not in developing novel algorithms, but in validating existing state-of-the-art models through standardized coastal metrics. By embedding established semantic segmentation networks into a highly specialized evaluation pipeline, this work shifts the focus from model creation to operational viability and sub-pixel accuracy. Consequently, this ensures a transparent methodology capable of answering the fundamental research question (the operational superiority of Deep Learning over traditional spectral methods) without redundant efforts in foundational architectural design.
 
 \section{Work Schedule}
 
