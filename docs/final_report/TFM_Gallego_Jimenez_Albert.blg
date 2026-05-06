@@ -3,46 +3,48 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: TFM_Gallego_Jimenez_Albert.aux
 The style file: apalike.bst
 Database file #1: references.bib
+Warning--entry type for "github_sentinel2-coastline-benchmarking" isn't style-file defined
+--line 1101 of file references.bib
 Warning--empty journal in tan_efficientnet_2019
-You've used 37 entries,
+You've used 38 entries,
             1935 wiz_defined-function locations,
-            691 strings with 13009 characters,
-and the built_in function-call counts, 17576 in all, are:
-= -- 1637
-> -- 1066
-< -- 13
-+ -- 393
-- -- 382
-* -- 1646
-:= -- 3139
-add.period$ -- 115
-call.type$ -- 37
-change.case$ -- 374
-chr.to.int$ -- 36
-cite$ -- 38
-duplicate$ -- 536
-empty$ -- 1016
-format.name$ -- 429
-if$ -- 3312
+            694 strings with 13092 characters,
+and the built_in function-call counts, 17812 in all, are:
+= -- 1661
+> -- 1073
+< -- 14
++ -- 395
+- -- 384
+* -- 1661
+:= -- 3186
+add.period$ -- 117
+call.type$ -- 38
+change.case$ -- 380
+chr.to.int$ -- 37
+cite$ -- 39
+duplicate$ -- 546
+empty$ -- 1031
+format.name$ -- 432
+if$ -- 3355
 int.to.chr$ -- 2
 int.to.str$ -- 0
 missing$ -- 32
-newline$ -- 189
-num.names$ -- 113
-pop$ -- 306
+newline$ -- 193
+num.names$ -- 116
+pop$ -- 310
 preamble$ -- 1
-purify$ -- 374
+purify$ -- 380
 quote$ -- 0
-skip$ -- 406
+skip$ -- 415
 stack$ -- 0
-substring$ -- 1089
+substring$ -- 1101
 swap$ -- 61
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 222
+type$ -- 228
 warning$ -- 1
-while$ -- 123
+while$ -- 125
 width$ -- 0
-write$ -- 484
-(There was 1 warning)
+write$ -- 494
+(There were 2 warnings)

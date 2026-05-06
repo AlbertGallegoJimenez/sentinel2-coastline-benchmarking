@@ -45,6 +45,10 @@ Fu, L., Wang, Y., Wu, S., Zhuang, J., Wu, Z., Wu, J., Chen, H., and Chen, Y. (20
 \newblock {TCCFNet}: a semantic segmentation method for mangrove remote sensing images based on two-channel cross-fusion networks.
 \newblock {\em Frontiers in Marine Science}, 12:1535917.
 
+\bibitem[Gallego, 2026]{github_sentinel2-coastline-benchmarking}
+Gallego, A. (2026).
+\newblock Sentinel-2 coastline benchmarking.
+
 \bibitem[Ghosh et~al., 2015]{ghosh_monitoring_2015}
 Ghosh, M.~K., Kumar, L., and Roy, C. (2015).
 \newblock Monitoring the coastline change of {Hatiya} {Island} in {Bangladesh} using remote sensing techniques.

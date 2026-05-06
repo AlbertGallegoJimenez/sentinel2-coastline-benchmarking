@@ -139,30 +139,33 @@
 \citation{xie_segformer_2021}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5.3}Training Setup}{35}{}\protected@file@percent }
 \newlabel{sec:training_setup}{{3.5.3}{35}{}{subsection.3.5.3}{}}
+\citation{github_sentinel2-coastline-benchmarking}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.4}Hardware and Software Specifications}{36}{}\protected@file@percent }
+\newlabel{sec:hardware_software}{{3.5.4}{36}{}{subsection.3.5.4}{}}
 \citation{lorensen_marching_1987}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Waterline Extraction Pipeline}{36}{}\protected@file@percent }
-\newlabel{sec:waterline_pipeline}{{3.6}{36}{}{section.3.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Waterline Extraction Pipeline}{37}{}\protected@file@percent }
+\newlabel{sec:waterline_pipeline}{{3.6}{37}{}{section.3.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.7}Evaluation Methodology}{37}{}\protected@file@percent }
 \newlabel{sec:evaluation_methodology}{{3.7}{37}{}{section.3.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{37}{}\protected@file@percent }
 \newlabel{sec:pixel_eval}{{3.7.1}{37}{}{subsection.3.7.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces Example of the pixel-based evaluation mask. The left panel shows the original RGB image. The dynamic evaluation buffer (right) highlights the 10-pixel zone around the GT waterline where the pixel-based metrics are calculated, effectively excluding the deep water and inland areas from the evaluation.}}{38}{}\protected@file@percent }
 \newlabel{fig:evaluation_mask}{{3.6}{38}{}{figure.3.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{38}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Example of the perpendicular transect methodology for geometric evaluation. The black line represents the manually digitized GT waterline, while the purple line represents the predicted waterline from either the DL or index-based method (in this case, MNDWI using Zero threshold). The yellow line is the fixed landward baseline. The cyan lines are the perpendicular transects cast from the baseline to the predicted and GT waterlines. The offset is calculated as the absolute distance between the intersection points of the predicted and GT waterlines along each transect.}}{39}{}\protected@file@percent }
-\newlabel{fig:transect_methodology}{{3.7}{39}{}{figure.3.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Summary of Evaluated Models}{40}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Summary of the evaluated extraction methods, their configurations, and the corresponding applied evaluation protocols.}}{40}{}\protected@file@percent }
-\newlabel{tab:evaluation_recap}{{3.1}{40}{}{table.3.1}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Results}{41}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{39}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces Example of the perpendicular transect methodology for geometric evaluation. The black line represents the manually digitized GT waterline, while the purple line represents the predicted waterline from either the DL or index-based method (in this case, MNDWI using Zero threshold). The yellow line is the fixed landward baseline. The cyan lines are the perpendicular transects cast from the baseline to the predicted and GT waterlines. The offset is calculated as the absolute distance between the intersection points of the predicted and GT waterlines along each transect.}}{40}{}\protected@file@percent }
+\newlabel{fig:transect_methodology}{{3.7}{40}{}{figure.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7.3}Summary of Evaluated Models}{41}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Summary of the evaluated extraction methods, their configurations, and the corresponding applied evaluation protocols.}}{41}{}\protected@file@percent }
+\newlabel{tab:evaluation_recap}{{3.1}{41}{}{table.3.1}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Results}{42}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{42}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{43}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibstyle{apalike}
 \bibdata{references}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Glossary}{43}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Glossary}{44}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{almeida_coastal_2021}{{1}{2021}{{Almeida et~al.}}{{}}}
@@ -174,32 +177,33 @@
 \bibcite{chen_encoder-decoder_2018}{{7}{2018}{{Chen et~al.}}{{}}}
 \bibcite{feyisa_automated_2014}{{8}{2014}{{Feyisa et~al.}}{{}}}
 \bibcite{fu_tccfnet_2025}{{9}{2025}{{Fu et~al.}}{{}}}
-\bibcite{ghosh_monitoring_2015}{{10}{2015}{{Ghosh et~al.}}{{}}}
-\bibcite{hagenaars_accuracy_2018}{{11}{2018}{{Hagenaars et~al.}}{{}}}
-\bibcite{harley_coastsnap_2022}{{12}{2022}{{Harley and Kinsela}}{{}}}
-\bibcite{holman_application_1993}{{13}{1993}{{Holman et~al.}}{{}}}
-\bibcite{jing_bs-net_2021}{{14}{2021}{{Jing et~al.}}{{}}}
-\bibcite{kirillov_segment_2023}{{15}{2023}{{Kirillov et~al.}}{{}}}
-\bibcite{liu_analysis_2017}{{16}{2017}{{Liu et~al.}}{{}}}
-\bibcite{lorensen_marching_1987}{{17}{1987}{{Lorensen and Cline}}{{}}}
-\bibcite{mcfeeters_use_1996}{{18}{1996}{{McFeeters}}{{}}}
-\bibcite{morton_monitoring_1993}{{19}{1993}{{Morton et~al.}}{{}}}
-\bibcite{otsu_threshold_1979}{{20}{1979}{{Otsu}}{{}}}
-\bibcite{navab_u-net_2015}{{21}{2015}{{Ronneberger et~al.}}{{}}}
-\bibcite{stockdon_estimation_2002}{{22}{2002}{{Stockdon et~al.}}{{}}}
-\bibcite{sanchez-garcia_efficient_2020}{{23}{2020}{{Sánchez-García et~al.}}{{}}}
-\bibcite{tan_efficientnet_2019}{{24}{2019}{{Tan and Le}}{{}}}
-\bibcite{tian_deep_2024}{{25}{2024}{{Tian et~al.}}{{}}}
-\bibcite{tsiakos_use_2023}{{26}{2023}{{Tsiakos and Chalkias}}{{}}}
-\bibcite{valverde_historical_2025}{{27}{2025}{{Valverde et~al.}}{{}}}
-\bibcite{vitousek_future_2023}{{28}{2023}{{Vitousek et~al.}}{{}}}
-\bibcite{vos_sub-annual_2019}{{29}{2019a}{{Vos et~al.}}{{}}}
-\bibcite{vos_coastsat_2019}{{30}{2019b}{{Vos et~al.}}{{}}}
-\bibcite{vos_benchmarking_2023}{{31}{2023}{{Vos et~al.}}{{}}}
-\bibcite{wang_spatio-temporal_2017}{{32}{2017}{{Wang et~al.}}{{}}}
-\bibcite{warrick_shoreline_2025}{{33}{2025}{{Warrick et~al.}}{{}}}
-\bibcite{xie_segformer_2021}{{34}{2021}{{Xie et~al.}}{{}}}
-\bibcite{xu_modification_2006}{{35}{2006}{{Xu}}{{}}}
-\bibcite{zhan_usv-seg_2025}{{36}{2025}{{Zhan et~al.}}{{}}}
-\bibcite{zheng_rethinking_2020}{{37}{2020}{{Zheng et~al.}}{{}}}
-\gdef \@abspage@last{49}
+\bibcite{github_sentinel2-coastline-benchmarking}{{10}{2026}{{Gallego}}{{}}}
+\bibcite{ghosh_monitoring_2015}{{11}{2015}{{Ghosh et~al.}}{{}}}
+\bibcite{hagenaars_accuracy_2018}{{12}{2018}{{Hagenaars et~al.}}{{}}}
+\bibcite{harley_coastsnap_2022}{{13}{2022}{{Harley and Kinsela}}{{}}}
+\bibcite{holman_application_1993}{{14}{1993}{{Holman et~al.}}{{}}}
+\bibcite{jing_bs-net_2021}{{15}{2021}{{Jing et~al.}}{{}}}
+\bibcite{kirillov_segment_2023}{{16}{2023}{{Kirillov et~al.}}{{}}}
+\bibcite{liu_analysis_2017}{{17}{2017}{{Liu et~al.}}{{}}}
+\bibcite{lorensen_marching_1987}{{18}{1987}{{Lorensen and Cline}}{{}}}
+\bibcite{mcfeeters_use_1996}{{19}{1996}{{McFeeters}}{{}}}
+\bibcite{morton_monitoring_1993}{{20}{1993}{{Morton et~al.}}{{}}}
+\bibcite{otsu_threshold_1979}{{21}{1979}{{Otsu}}{{}}}
+\bibcite{navab_u-net_2015}{{22}{2015}{{Ronneberger et~al.}}{{}}}
+\bibcite{stockdon_estimation_2002}{{23}{2002}{{Stockdon et~al.}}{{}}}
+\bibcite{sanchez-garcia_efficient_2020}{{24}{2020}{{Sánchez-García et~al.}}{{}}}
+\bibcite{tan_efficientnet_2019}{{25}{2019}{{Tan and Le}}{{}}}
+\bibcite{tian_deep_2024}{{26}{2024}{{Tian et~al.}}{{}}}
+\bibcite{tsiakos_use_2023}{{27}{2023}{{Tsiakos and Chalkias}}{{}}}
+\bibcite{valverde_historical_2025}{{28}{2025}{{Valverde et~al.}}{{}}}
+\bibcite{vitousek_future_2023}{{29}{2023}{{Vitousek et~al.}}{{}}}
+\bibcite{vos_sub-annual_2019}{{30}{2019a}{{Vos et~al.}}{{}}}
+\bibcite{vos_coastsat_2019}{{31}{2019b}{{Vos et~al.}}{{}}}
+\bibcite{vos_benchmarking_2023}{{32}{2023}{{Vos et~al.}}{{}}}
+\bibcite{wang_spatio-temporal_2017}{{33}{2017}{{Wang et~al.}}{{}}}
+\bibcite{warrick_shoreline_2025}{{34}{2025}{{Warrick et~al.}}{{}}}
+\bibcite{xie_segformer_2021}{{35}{2021}{{Xie et~al.}}{{}}}
+\bibcite{xu_modification_2006}{{36}{2006}{{Xu}}{{}}}
+\bibcite{zhan_usv-seg_2025}{{37}{2025}{{Zhan et~al.}}{{}}}
+\bibcite{zheng_rethinking_2020}{{38}{2020}{{Zheng et~al.}}{{}}}
+\gdef \@abspage@last{50}
