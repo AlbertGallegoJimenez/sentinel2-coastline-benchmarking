@@ -34,6 +34,7 @@
 \contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{38}{}%
 \contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{39}{}%
 \contentsline {subsection}{\numberline {3.7.3}Summary of Evaluated Models}{42}{}%
-\contentsline {chapter}{\numberline {4}Results}{43}{}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{44}{}%
-\contentsline {chapter}{\numberline {6}Glossary}{45}{}%
+\contentsline {subsection}{\numberline {3.7.4}Sand Reflectance and Colorimetric Assessment}{42}{}%
+\contentsline {chapter}{\numberline {4}Results}{44}{}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{45}{}%
+\contentsline {chapter}{\numberline {6}Glossary}{46}{}%
