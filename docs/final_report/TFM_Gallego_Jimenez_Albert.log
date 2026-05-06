@@ -1,10 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  6 MAY 2026 17:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  6 MAY 2026 19:13
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex
-(/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex
+**TFM_Gallego_Jimenez_Albert.tex
+(./TFM_Gallego_Jimenez_Albert.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (./TFUOC.cls
@@ -13,7 +12,8 @@ Document Class: TFUOC 2021/09/21 LaTeX Package for UOC final projects
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/ucs/utf8x.def
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/ucs/utf8x.def
 File: utf8x.def 2023/11/09 UCS: Input encoding UTF-8
 
 
@@ -26,7 +26,8 @@ Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/omsenc.dfu
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/omsenc.dfu
 File: omsenc.dfu 2022/06/07 v1.3c UTF-8 support
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -37,7 +38,8 @@ File: omsenc.dfu 2022/06/07 v1.3c UTF-8 support
 )
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/ot1enc.dfu
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/ot1enc.dfu
 File: ot1enc.dfu 2022/06/07 v1.3c UTF-8 support
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -85,7 +87,8 @@ File: ot1enc.dfu 2022/06/07 v1.3c UTF-8 support
 )
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/t1enc.dfu
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/t1enc.dfu
 File: t1enc.dfu 2022/06/07 v1.3c UTF-8 support
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
@@ -364,7 +367,8 @@ File: t1enc.dfu 2022/06/07 v1.3c UTF-8 support
 )
 Now handling font encoding TS1 ...
 ... processing UTF-8 mapping file for font encoding TS1
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/ts1enc.dfu
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/ts1enc.dfu
 File: ts1enc.dfu 2022/06/07 v1.3c UTF-8 support
    defining Unicode char U+00A2 (decimal 162)
    defining Unicode char U+00A3 (decimal 163)
@@ -456,31 +460,41 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
    defining Unicode char U+FEFF (decimal 65279)
-))) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/ifthen.sty
+)))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/graphicx.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/keyval.sty
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks19
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/graphics.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/trig.sty
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: dvips.def on input line 106.
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-def/dvips.def
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-def/dvips.def
 File: dvips.def 2025/01/21 v3.2a Graphics/color driver for dvips
 ))
 \Gin@req@height=\dimen148
 \Gin@req@width=\dimen149
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/url/url.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
 \f@nch@headwidth=\skip49
 \f@nch@offset@elh=\skip50
 \f@nch@offset@erh=\skip51
@@ -496,15 +510,20 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthC=\skip61
 \f@nch@widthR=\skip62
 \@temptokenb=\toks20
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/color.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2025/01/14 v1.3e Standard LaTeX Color (DPC)
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/color.cfg
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-def/pdftex.def
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/array.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/array.sty
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \col@sep=\dimen150
 \ar@mcellbox=\box53
@@ -513,18 +532,22 @@ Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \extratabsurround=\skip63
 \backup@length=\skip64
 \ar@cellbox=\box54
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/colortbl/colortbl.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
 \everycr=\toks22
 \minrowclearance=\skip65
 \rownum=\count275
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/xcolor/xcolor.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/color.cfg
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 
-Package xcolor Warning: Package option `usenames' is obsolete and ignored on input line 265.
+Package xcolor Warning: Package option `usenames' is obsolete and ignored on in
+put line 265.
 
 Package xcolor Info: Driver file: pdftex.def on input line 274.
 LaTeX Info: Redefining \color on input line 762.
@@ -537,15 +560,18 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/dvipsnam.def
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/multirow/multirow.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip66
 \multirow@cntb=\count276
 \multirow@dima=\skip67
 \bigstrutjot=\dimen152
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/multicol.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2025/10/21 v2.0b multicolumn formatting (FMi)
 \c@tracingmulticols=\count277
 \mult@box=\box55
@@ -615,16 +641,24 @@ Package: multicol 2025/10/21 v2.0b multicolumn formatting (FMi)
 \colbreak@box=\box100
 \mc@col@check@num=\count286
 \g__mc_curr_col_int=\count287
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/stackengine/stackengine.sty
-Package: stackengine 2021/07/22 v4.11\ Stacking text and objects in convenient ways
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/stackengine/stackengine.sty
+Package: stackengine 2021/07/22 v4.11\ Stacking text and objects in convenient 
+ways
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count288
-) (/usr/local/texlive/2026basic/texmf-dist/tex/generic/listofitems/listofitems.sty (/usr/local/texlive/2026basic/texmf-dist/tex/generic/listofitems/listofitems.tex
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/listofitems/listofitems.st
+y
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/listofitems/listofitems.te
+x
 \loi_cnt_foreach_nest=\count289
 \loi_nestcnt=\count290
 )
-Package: listofitems 2024/03/09 v1.65 Grab items in lists using user-specified sep char (CT)
+Package: listofitems 2024/03/09 v1.65 Grab items in lists using user-specified 
+sep char (CT)
 ) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
 \calc@Acount=\count291
@@ -650,7 +684,8 @@ LaTeX Info: Redefining \addtolength on input line 87.
 \stackedbox=\box105
 \@centerbox=\box106
 \c@ROWcellindex@=\count295
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/report.cls
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2025/01/22 v1.4n Standard LaTeX document class
 (/usr/local/texlive/2026basic/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
@@ -667,11 +702,14 @@ File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip77
 \belowcaptionskip=\skip78
 \bibindent=\dimen164
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/geometry/geometry.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
- (/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/ifvtex.sty
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
- (/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/iftex.sty
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
 \Gm@cnth=\count305
@@ -686,8 +724,10 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 \Gm@layouthoffset=\dimen171
 \Gm@layoutvoffset=\dimen172
 \Gm@dimlist=\toks23
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/sectsty/sectsty.sty
-Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading styles
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/sectsty/sectsty.sty
+Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
+les
 
 
 LaTeX Warning: Command \underbar  has changed.
@@ -698,24 +738,36 @@ LaTeX Warning: Command \underline  has changed.
                Check if current package is valid.
 
 ) (/usr/local/texlive/2026basic/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaTeX and XeLaTeX
+Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
 \babel@savecnt=\count308
-LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input line 2078.
-LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input line 2080.
-LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input line 2082.
-LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input line 2083.
-LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) on input line 2084.
-LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) on input line 2086.
-LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) on input line 2111.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2078.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2080.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2082.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2083.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2084.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2086.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2111.
 \U@D=\dimen173
 \l@unhyphenated=\language23
- (/usr/local/texlive/2026basic/texmf-dist/tex/generic/babel/txtbabel.def)
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count309
- (/usr/local/texlive/2026basic/texmf-dist/tex/generic/babel/locale/en/babel-english.tex)
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/babel/locale/en/babel-engl
+ish.tex)
 Package babel Info: Importing font and identification data for english
 (babel)             from babel-en.ini. Reported on input line 4330.
- (/usr/local/texlive/2026basic/texmf-dist/tex/generic/babel-english/english.ldf
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
 (babel)             (\language0). Reported on input line 102.
@@ -730,14 +782,17 @@ Package: amsmath 2025/07/09 v2.17z AMS math features
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsgen.sty
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks24
 \ex@=\dimen174
-)) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsbsy.sty
+))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen175
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsopn.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count310
@@ -787,9 +842,11 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \mathdisplay@stack=\toks28
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/xurl/xurl.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/xurl/xurl.sty
 Package: xurl 2022/01/09 v 0.10 modify URL breaks
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/microtype/microtype.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
 \MT@toks=\toks29
 \MT@tempbox=\box109
@@ -803,8 +860,11 @@ LaTeX Info: Redefining \textls on input line 1449.
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
 \MT@listname@count=\count323
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/microtype/microtype-pdftex.d
+ef
 File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+
 LaTeX Info: Redefining \lsstyle on input line 944.
 LaTeX Info: Redefining \lslig on input line 944.
 \MT@outer@space=\skip82
@@ -821,13 +881,16 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box110
 \@float@everytoks=\toks32
 \@floatcapt=\box111
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/natbib/natbib.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip83
 \bibsep=\skip84
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count325
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.d
+ef
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count326
 ) (./TFM_Gallego_Jimenez_Albert.aux
@@ -864,32 +927,45 @@ LaTeX Font Info:    ... okay on input line 56.
 \MPnumerator=\count331
 \makeMPintoPDFobject=\count332
 \everyMPtoPDFconversion=\toks34
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.s
+ty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
  (/usr/local/texlive/2026basic/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 ) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/grfext/grfext.sty
 Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
- (/usr/local/texlive/2026basic/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.
+sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+))
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
- (/usr/local/texlive/2026basic/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+)
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-)) (/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+))
+(/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 504.
- (/usr/local/texlive/2026basic/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+
+(/usr/local/texlive/2026basic/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
 ))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -943,7 +1019,8 @@ Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
 (/usr/local/texlive/2026basic/texmf-dist/tex/latex/microtype/mt-cmr.cfg
-File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
 )
 
 Package geometry Warning: `bmargin' results in NEGATIVE (-30.15993pt).
@@ -1006,7 +1083,8 @@ Non-PDF special ignored!
 <special> papersize=614.295pt,794.96999pt
 
 
-{/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./UOCllarg.jpg>]
+{/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./
+UOCllarg.jpg>]
 <./licenc/ccby.png, id=9, 66.2475pt x 24.09pt>
 File: ./licenc/ccby.png Graphic file (type png)
 <use ./licenc/ccby.png>
@@ -1189,7 +1267,8 @@ Package pdftex.def Info: eimt.png  used on input line 81.
 <shoreline_misidentification_example.png, id=49, 165.0165pt x 123.8226pt>
 File: shoreline_misidentification_example.png Graphic file (type png)
 <use shoreline_misidentification_example.png>
-Package pdftex.def Info: shoreline_misidentification_example.png  used on input line 84.
+Package pdftex.def Info: shoreline_misidentification_example.png  used on input
+ line 84.
 (pdftex.def)             Requested size: 426.79134pt x 320.2798pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
@@ -1282,10 +1361,14 @@ Package pdftex.def Info: eimt.png  used on input line 189.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [14 <./tfm_gantt.png>]
 Chapter 2.
-<Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg, id=71, 77.088pt x 57.3342pt>
-File: Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg Graphic file (type jpg)
-<use Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg>
-Package pdftex.def Info: Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg  used on input line 204.
+<Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shore
+line_W640.jpg, id=71, 77.088pt x 57.3342pt>
+File: Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-
+shoreline_W640.jpg Graphic file (type jpg)
+<use Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-s
+horeline_W640.jpg>
+Package pdftex.def Info: Schematic-representation-of-Conceicao-Duquesa-beach-pr
+ofile-illustrating-shoreline_W640.jpg  used on input line 204.
 (pdftex.def)             Requested size: 341.43306pt x 254.02351pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
@@ -1321,7 +1404,8 @@ File: eimt.png Graphic file (type png)
 <use eimt.png>
 Package pdftex.def Info: eimt.png  used on input line 218.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[16 <./Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg>]
+[16 <./Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating
+-shoreline_W640.jpg>]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
 Package pdftex.def Info: noulogo.png  used on input line 232.
@@ -1347,7 +1431,8 @@ Package pdftex.def Info: satellite_timeline.png  used on input line 263.
 <evolution_shoreline_satellite.png, id=82, 643.6848pt x 282.0939pt>
 File: evolution_shoreline_satellite.png Graphic file (type png)
 <use evolution_shoreline_satellite.png>
-Package pdftex.def Info: evolution_shoreline_satellite.png  used on input line 267.
+Package pdftex.def Info: evolution_shoreline_satellite.png  used on input line 
+267.
 (pdftex.def)             Requested size: 426.79134pt x 187.04773pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
@@ -1386,7 +1471,8 @@ Package pdftex.def Info: eimt.png  used on input line 274.
 <figure_intro_spectral_indices.png, id=92, 817.0525pt x 494.84875pt>
 File: figure_intro_spectral_indices.png Graphic file (type png)
 <use figure_intro_spectral_indices.png>
-Package pdftex.def Info: figure_intro_spectral_indices.png  used on input line 280.
+Package pdftex.def Info: figure_intro_spectral_indices.png  used on input line 
+280.
 (pdftex.def)             Requested size: 341.43306pt x 206.79305pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
@@ -1597,14 +1683,16 @@ File: eimt.png Graphic file (type png)
 Package pdftex.def Info: eimt.png  used on input line 390.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [30 <./marine_data_comparison.png>]
-<screenshot_example_image_annotator_software.png, id=138, 1473.505pt x 978.65625pt>
+<screenshot_example_image_annotator_software.png, id=138, 1473.505pt x 978.6562
+5pt>
 File: screenshot_example_image_annotator_software.png Graphic file (type png)
 <use screenshot_example_image_annotator_software.png>
-Package pdftex.def Info: screenshot_example_image_annotator_software.png  used on input line 395.
+Package pdftex.def Info: screenshot_example_image_annotator_software.png  used 
+on input line 395.
 (pdftex.def)             Requested size: 426.79134pt x 283.45958pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 405.
+Package pdftex.def Info: noulogo.png  used on input line 403.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1616,17 +1704,18 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 405.
+Package pdftex.def Info: eimt.png  used on input line 403.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [31 <./screenshot_example_image_annotator_software.png>]
 <screenshot_vectorization_waterline.png, id=143, 2220.295pt x 1131.22626pt>
 File: screenshot_vectorization_waterline.png Graphic file (type png)
 <use screenshot_vectorization_waterline.png>
-Package pdftex.def Info: screenshot_vectorization_waterline.png  used on input line 408.
+Package pdftex.def Info: screenshot_vectorization_waterline.png  used on input 
+line 408.
 (pdftex.def)             Requested size: 426.79134pt x 217.43808pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 429.
+Package pdftex.def Info: noulogo.png  used on input line 424.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1638,7 +1727,7 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 429.
+Package pdftex.def Info: eimt.png  used on input line 424.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [32 <./screenshot_vectorization_waterline.png>]
 File: noulogo.png Graphic file (type png)
@@ -1660,7 +1749,7 @@ Package pdftex.def Info: eimt.png  used on input line 454.
 [33]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 474.
+Package pdftex.def Info: noulogo.png  used on input line 472.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1672,12 +1761,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 474.
+Package pdftex.def Info: eimt.png  used on input line 472.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [34]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 489.
+Package pdftex.def Info: noulogo.png  used on input line 487.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1689,12 +1778,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 489.
+Package pdftex.def Info: eimt.png  used on input line 487.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [35]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 507.
+Package pdftex.def Info: noulogo.png  used on input line 502.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1706,12 +1795,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 507.
+Package pdftex.def Info: eimt.png  used on input line 502.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [36]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 523.
+Package pdftex.def Info: noulogo.png  used on input line 519.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1723,17 +1812,18 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 523.
+Package pdftex.def Info: eimt.png  used on input line 519.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [37]
 <boundary_zone_visualization.png, id=165, 690.6603pt x 366.4089pt>
 File: boundary_zone_visualization.png Graphic file (type png)
 <use boundary_zone_visualization.png>
-Package pdftex.def Info: boundary_zone_visualization.png  used on input line 530.
+Package pdftex.def Info: boundary_zone_visualization.png  used on input line 53
+0.
 (pdftex.def)             Requested size: 426.79134pt x 226.42198pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 538.
+Package pdftex.def Info: noulogo.png  used on input line 534.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1745,17 +1835,35 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 538.
+Package pdftex.def Info: eimt.png  used on input line 534.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[38 <./boundary_zone_visualization.png>]
-<figure_example_offset_calc.png, id=170, 1778.645pt x 1185.42876pt>
+[38]
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 548.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 548.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[39 <./boundary_zone_visualization.png>]
+<figure_example_offset_calc.png, id=173, 1778.645pt x 1185.42876pt>
 File: figure_example_offset_calc.png Graphic file (type png)
 <use figure_example_offset_calc.png>
-Package pdftex.def Info: figure_example_offset_calc.png  used on input line 557.
+Package pdftex.def Info: figure_example_offset_calc.png  used on input line 557
+.
 (pdftex.def)             Requested size: 426.79134pt x 284.43636pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 562.
+Package pdftex.def Info: noulogo.png  used on input line 564.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1767,29 +1875,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 562.
-(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[39]
-File: noulogo.png Graphic file (type png)
-<use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 569.
-(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
-
-
-Package fancyhdr Warning: \headheight is too small (35.0pt): 
-(fancyhdr)                Make it at least 42.67912pt, for example:
-(fancyhdr)                \setlength{\headheight}{42.67912pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
-
-File: eimt.png Graphic file (type png)
-<use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 569.
+Package pdftex.def Info: eimt.png  used on input line 564.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [40 <./figure_example_offset_calc.png>]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 603.
+Package pdftex.def Info: noulogo.png  used on input line 580.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1801,13 +1892,30 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 603.
+Package pdftex.def Info: eimt.png  used on input line 580.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [41]
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 614.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 614.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[42]
 Chapter 4.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 629.
+Package pdftex.def Info: noulogo.png  used on input line 640.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 Package fancyhdr Warning: \headheight is too small (35.0pt): 
@@ -1818,15 +1926,15 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 629.
+Package pdftex.def Info: eimt.png  used on input line 640.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[42
+[43
 
 ]
 Chapter 5.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 672.
+Package pdftex.def Info: noulogo.png  used on input line 683.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 Package fancyhdr Warning: \headheight is too small (35.0pt): 
@@ -1837,9 +1945,9 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 672.
+Package pdftex.def Info: eimt.png  used on input line 683.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[43
+[44
 
 ]
 Chapter 6.
@@ -1860,7 +1968,7 @@ File: eimt.png Graphic file (type png)
 <use eimt.png>
 Package pdftex.def Info: eimt.png  used on input line 1.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[44
+[45
 
 ]
 File: noulogo.png Graphic file (type png)
@@ -1879,7 +1987,7 @@ File: eimt.png Graphic file (type png)
 <use eimt.png>
 Package pdftex.def Info: eimt.png  used on input line 61.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[45
+[46
 
 ]
 File: noulogo.png Graphic file (type png)
@@ -1898,7 +2006,7 @@ File: eimt.png Graphic file (type png)
 <use eimt.png>
 Package pdftex.def Info: eimt.png  used on input line 132.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[46]
+[47]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
 Package pdftex.def Info: noulogo.png  used on input line 193.
@@ -1915,10 +2023,10 @@ File: eimt.png Graphic file (type png)
 <use eimt.png>
 Package pdftex.def Info: eimt.png  used on input line 193.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[47])
+[48])
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 683.
+Package pdftex.def Info: noulogo.png  used on input line 694.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1930,12 +2038,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 683.
+Package pdftex.def Info: eimt.png  used on input line 694.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[48]
+[49]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 689.
+Package pdftex.def Info: noulogo.png  used on input line 700.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1947,9 +2055,9 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 689.
+Package pdftex.def Info: eimt.png  used on input line 700.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[49] (./TFM_Gallego_Jimenez_Albert.aux)
+[50] (./TFM_Gallego_Jimenez_Albert.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -1960,18 +2068,29 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9534 strings out of 469006
- 159819 string characters out of 5454813
+ 9533 strings out of 469006
+ 159575 string characters out of 5454813
  645953 words of memory out of 5000000
  37893 multiletter control sequences out of 15000+600000
  639419 words of font info for 149 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 72i,22n,98p,1695b,661s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </Users/albert/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on TFM_Gallego_Jimenez_Albert.pdf (50 pages, 12025427 bytes).
+ 72i,22n,98p,1675b,661s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </Users/albert/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/
+ec/tcrm1200.600pk></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmbx12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026basic/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026basic/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026basic/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026basic/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2026basic/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on TFM_Gallego_Jimenez_Albert.pdf (51 pages, 12027908 bytes).
 PDF statistics:
- 257 PDF objects out of 1000 (max. 8388607)
- 148 compressed objects within 2 object streams
+ 260 PDF objects out of 1000 (max. 8388607)
+ 150 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  25179 words of extra memory for PDF output out of 29859 (max. 10000000)
 

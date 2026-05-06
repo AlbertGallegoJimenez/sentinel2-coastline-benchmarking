@@ -19,21 +19,21 @@
 \contentsline {section}{\numberline {3.1}Study Areas}{27}{}%
 \contentsline {section}{\numberline {3.2}Data Acquisition and Preprocessing}{29}{}%
 \contentsline {section}{\numberline {3.3}Ground Truth Generation (Reference Datasets)}{30}{}%
-\contentsline {subsection}{\numberline {3.3.1}Coastal Mask Classes}{30}{}%
+\contentsline {subsection}{\numberline {3.3.1}Coastal Mask Classes}{31}{}%
 \contentsline {subsection}{\numberline {3.3.2}Waterline Vectorization}{31}{}%
 \contentsline {section}{\numberline {3.4}Traditional Baseline: Spectral Indices and Thresholding}{32}{}%
 \contentsline {subsection}{\numberline {3.4.1}Spectral Water Indices}{32}{}%
 \contentsline {subsection}{\numberline {3.4.2}Thresholding Techniques}{33}{}%
 \contentsline {section}{\numberline {3.5}Deep Learning Semantic Segmentation}{34}{}%
 \contentsline {subsection}{\numberline {3.5.1}Model Architectures}{34}{}%
-\contentsline {subsection}{\numberline {3.5.2}Encoders}{34}{}%
+\contentsline {subsection}{\numberline {3.5.2}Encoders}{35}{}%
 \contentsline {subsection}{\numberline {3.5.3}Training Setup}{35}{}%
 \contentsline {subsection}{\numberline {3.5.4}Hardware and Software Specifications}{36}{}%
 \contentsline {section}{\numberline {3.6}Waterline Extraction Pipeline}{37}{}%
 \contentsline {section}{\numberline {3.7}Evaluation Methodology}{37}{}%
-\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{37}{}%
+\contentsline {subsection}{\numberline {3.7.1}Pixel-based Evaluation}{38}{}%
 \contentsline {subsection}{\numberline {3.7.2}Geometric Evaluation}{39}{}%
-\contentsline {subsection}{\numberline {3.7.3}Summary of Evaluated Models}{41}{}%
-\contentsline {chapter}{\numberline {4}Results}{42}{}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{43}{}%
-\contentsline {chapter}{\numberline {6}Glossary}{44}{}%
+\contentsline {subsection}{\numberline {3.7.3}Summary of Evaluated Models}{42}{}%
+\contentsline {chapter}{\numberline {4}Results}{43}{}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{44}{}%
+\contentsline {chapter}{\numberline {6}Glossary}{45}{}%
