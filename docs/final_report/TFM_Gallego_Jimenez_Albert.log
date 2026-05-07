@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  7 MAY 2026 21:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  7 MAY 2026 22:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -827,7 +827,15 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibsep=\skip84
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count325
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2025-06-23 v0.14 Display of landscape pages in PDF
+ (/usr/local/texlive/2026basic/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2025-06-23 v0.14 Display of landscape pages in PDF (HO)
+ (/usr/local/texlive/2026basic/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count326
 ) (./TFM_Gallego_Jimenez_Albert.aux
@@ -837,20 +845,20 @@ LaTeX Warning: Label `sec:baseline_spectral' multiply defined.
 )
 \openout1 = `TFM_Gallego_Jimenez_Albert.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
  (/usr/local/texlive/2026basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count327
@@ -866,28 +874,7 @@ LaTeX Font Info:    ... okay on input line 56.
 \everyMPtoPDFconversion=\toks34
 ) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
- (/usr/local/texlive/2026basic/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/grfext/grfext.sty
-Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
- (/usr/local/texlive/2026basic/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
-Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
- (/usr/local/texlive/2026basic/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (/usr/local/texlive/2026basic/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
-Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-)) (/usr/local/texlive/2026basic/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 504.
  (/usr/local/texlive/2026basic/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
@@ -925,13 +912,13 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 56.
-Package microtype Info: Applying patch `item' on input line 56.
-Package microtype Info: Applying patch `toc' on input line 56.
-Package microtype Info: Applying patch `eqnum' on input line 56.
-Package microtype Info: Applying patch `footnote' on input line 56.
-Package microtype Info: Applying patch `verbatim' on input line 56.
-LaTeX Info: Redefining \microtypesetup on input line 56.
+LaTeX Info: Redefining \microtypecontext on input line 57.
+Package microtype Info: Applying patch `item' on input line 57.
+Package microtype Info: Applying patch `toc' on input line 57.
+Package microtype Info: Applying patch `eqnum' on input line 57.
+Package microtype Info: Applying patch `footnote' on input line 57.
+Package microtype Info: Applying patch `verbatim' on input line 57.
+LaTeX Info: Redefining \microtypesetup on input line 57.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -984,20 +971,20 @@ Package geometry Warning: `bmargin' results in NEGATIVE (-30.15993pt).
 <UOCllarg.jpg, id=1, 998.73125pt x 2642.87375pt>
 File: UOCllarg.jpg Graphic file (type jpg)
 <use UOCllarg.jpg>
-Package pdftex.def Info: UOCllarg.jpg  used on input line 58.
+Package pdftex.def Info: UOCllarg.jpg  used on input line 59.
 (pdftex.def)             Requested size: 177.82971pt x 470.57523pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
 []\OT1/cmr/bx/n/17.28 (+20) Carlos Cabezas Rabad^^San and
  []
 
 
-Overfull \hbox (35.99998pt too wide) in paragraph at lines 58--58
+Overfull \hbox (35.99998pt too wide) in paragraph at lines 59--59
 [][] 
  []
 
@@ -1010,12 +997,12 @@ Non-PDF special ignored!
 <./licenc/ccby.png, id=9, 66.2475pt x 24.09pt>
 File: ./licenc/ccby.png Graphic file (type png)
 <use ./licenc/ccby.png>
-Package pdftex.def Info: ./licenc/ccby.png  used on input line 58.
+Package pdftex.def Info: ./licenc/ccby.png  used on input line 59.
 (pdftex.def)             Requested size: 66.24733pt x 24.08992pt.
 <noulogo.png, id=11, 671.6292pt x 173.448pt>
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 58.
+Package pdftex.def Info: noulogo.png  used on input line 59.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1028,14 +1015,14 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 <eimt.png, id=12, 74.1972pt x 10.1178pt>
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 58.
+Package pdftex.def Info: eimt.png  used on input line 59.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [1
 
  <./noulogo.png> <./licenc/ccby.png> <./eimt.png>]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 58.
+Package pdftex.def Info: noulogo.png  used on input line 59.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1047,12 +1034,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 58.
+Package pdftex.def Info: eimt.png  used on input line 59.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [2]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 60.
+Package pdftex.def Info: noulogo.png  used on input line 61.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1064,7 +1051,7 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 60.
+Package pdftex.def Info: eimt.png  used on input line 61.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [3] (./TFM_Gallego_Jimenez_Albert.toc
 File: noulogo.png Graphic file (type png)
@@ -1091,7 +1078,7 @@ Package pdftex.def Info: eimt.png  used on input line 25.
 
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 62.
+Package pdftex.def Info: noulogo.png  used on input line 63.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1103,7 +1090,7 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 62.
+Package pdftex.def Info: eimt.png  used on input line 63.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [5] (./TFM_Gallego_Jimenez_Albert.lof
 File: noulogo.png Graphic file (type png)
@@ -1124,13 +1111,30 @@ Package pdftex.def Info: eimt.png  used on input line 14.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [6
 
-])
+]
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 23.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 23.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[7])
 \tf@lof=\write4
 \openout4 = `TFM_Gallego_Jimenez_Albert.lof'.
 
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 64.
+Package pdftex.def Info: noulogo.png  used on input line 65.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1142,15 +1146,15 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 64.
+Package pdftex.def Info: eimt.png  used on input line 65.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[7] (./TFM_Gallego_Jimenez_Albert.lot)
+[8] (./TFM_Gallego_Jimenez_Albert.lot)
 \tf@lot=\write5
 \openout5 = `TFM_Gallego_Jimenez_Albert.lot'.
 
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 69.
+Package pdftex.def Info: noulogo.png  used on input line 70.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1162,15 +1166,15 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 69.
+Package pdftex.def Info: eimt.png  used on input line 70.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[8
+[9
 
 ]
 Chapter 1.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 81.
+Package pdftex.def Info: noulogo.png  used on input line 82.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 Package fancyhdr Warning: \headheight is too small (35.0pt): 
@@ -1181,19 +1185,19 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 81.
+Package pdftex.def Info: eimt.png  used on input line 82.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[9
+[10
 
 ]
-<shoreline_misidentification_example.png, id=50, 165.0165pt x 123.8226pt>
+<shoreline_misidentification_example.png, id=54, 165.0165pt x 123.8226pt>
 File: shoreline_misidentification_example.png Graphic file (type png)
 <use shoreline_misidentification_example.png>
-Package pdftex.def Info: shoreline_misidentification_example.png  used on input line 84.
+Package pdftex.def Info: shoreline_misidentification_example.png  used on input line 85.
 (pdftex.def)             Requested size: 426.79134pt x 320.2798pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 94.
+Package pdftex.def Info: noulogo.png  used on input line 95.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1205,12 +1209,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 94.
+Package pdftex.def Info: eimt.png  used on input line 95.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[10 <./shoreline_misidentification_example.png>]
+[11 <./shoreline_misidentification_example.png>]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 115.
+Package pdftex.def Info: noulogo.png  used on input line 116.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1222,34 +1226,34 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 115.
-(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[11]
-File: noulogo.png Graphic file (type png)
-<use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 135.
-(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
-
-
-Package fancyhdr Warning: \headheight is too small (35.0pt): 
-(fancyhdr)                Make it at least 42.67912pt, for example:
-(fancyhdr)                \setlength{\headheight}{42.67912pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
-
-File: eimt.png Graphic file (type png)
-<use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 135.
+Package pdftex.def Info: eimt.png  used on input line 116.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [12]
-<tfm_gantt.png, id=64, 1338.50063pt x 630.10406pt>
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 136.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 136.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[13]
+<tfm_gantt.png, id=68, 1338.50063pt x 630.10406pt>
 File: tfm_gantt.png Graphic file (type png)
 <use tfm_gantt.png>
-Package pdftex.def Info: tfm_gantt.png  used on input line 172.
+Package pdftex.def Info: tfm_gantt.png  used on input line 173.
 (pdftex.def)             Requested size: 426.79134pt x 200.91632pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 176.
+Package pdftex.def Info: noulogo.png  used on input line 177.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1261,12 +1265,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 176.
+Package pdftex.def Info: eimt.png  used on input line 177.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[13]
+[14]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 189.
+Package pdftex.def Info: noulogo.png  used on input line 190.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1278,18 +1282,18 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 189.
+Package pdftex.def Info: eimt.png  used on input line 190.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[14 <./tfm_gantt.png>]
+[15 <./tfm_gantt.png>]
 Chapter 2.
-<Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg, id=72, 77.088pt x 57.3342pt>
+<Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg, id=76, 77.088pt x 57.3342pt>
 File: Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg Graphic file (type jpg)
 <use Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg>
-Package pdftex.def Info: Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg  used on input line 204.
+Package pdftex.def Info: Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg  used on input line 205.
 (pdftex.def)             Requested size: 341.43306pt x 254.02351pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 208.
+Package pdftex.def Info: noulogo.png  used on input line 209.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 Package fancyhdr Warning: \headheight is too small (35.0pt): 
@@ -1300,14 +1304,14 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 208.
+Package pdftex.def Info: eimt.png  used on input line 209.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[15
+[16
 
 ]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 218.
+Package pdftex.def Info: noulogo.png  used on input line 219.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1319,12 +1323,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 218.
+Package pdftex.def Info: eimt.png  used on input line 219.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[16 <./Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg>]
+[17 <./Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg>]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 232.
+Package pdftex.def Info: noulogo.png  used on input line 233.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1336,22 +1340,22 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 232.
+Package pdftex.def Info: eimt.png  used on input line 233.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[17]
-<satellite_timeline.png, id=82, 621.2811pt x 273.6624pt>
+[18]
+<satellite_timeline.png, id=87, 621.2811pt x 273.6624pt>
 File: satellite_timeline.png Graphic file (type png)
 <use satellite_timeline.png>
-Package pdftex.def Info: satellite_timeline.png  used on input line 263.
+Package pdftex.def Info: satellite_timeline.png  used on input line 264.
 (pdftex.def)             Requested size: 426.79134pt x 188.00044pt.
-<evolution_shoreline_satellite.png, id=83, 643.6848pt x 282.0939pt>
+<evolution_shoreline_satellite.png, id=88, 643.6848pt x 282.0939pt>
 File: evolution_shoreline_satellite.png Graphic file (type png)
 <use evolution_shoreline_satellite.png>
-Package pdftex.def Info: evolution_shoreline_satellite.png  used on input line 267.
+Package pdftex.def Info: evolution_shoreline_satellite.png  used on input line 268.
 (pdftex.def)             Requested size: 426.79134pt x 187.04773pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 271.
+Package pdftex.def Info: noulogo.png  used on input line 272.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1363,12 +1367,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 271.
+Package pdftex.def Info: eimt.png  used on input line 272.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[18]
+[19]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 274.
+Package pdftex.def Info: noulogo.png  used on input line 275.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1380,17 +1384,17 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 274.
+Package pdftex.def Info: eimt.png  used on input line 275.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[19 <./satellite_timeline.png> <./evolution_shoreline_satellite.png>]
-<figure_intro_spectral_indices.png, id=93, 817.0525pt x 494.84875pt>
+[20 <./satellite_timeline.png> <./evolution_shoreline_satellite.png>]
+<figure_intro_spectral_indices.png, id=97, 817.0525pt x 494.84875pt>
 File: figure_intro_spectral_indices.png Graphic file (type png)
 <use figure_intro_spectral_indices.png>
-Package pdftex.def Info: figure_intro_spectral_indices.png  used on input line 280.
+Package pdftex.def Info: figure_intro_spectral_indices.png  used on input line 281.
 (pdftex.def)             Requested size: 341.43306pt x 206.79305pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 290.
+Package pdftex.def Info: noulogo.png  used on input line 291.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1402,17 +1406,17 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 290.
+Package pdftex.def Info: eimt.png  used on input line 291.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[20 <./figure_intro_spectral_indices.png>]
-<mndwi_cross_section.png, id=98, 2342.7525pt x 741.77126pt>
+[21 <./figure_intro_spectral_indices.png>]
+<mndwi_cross_section.png, id=102, 2342.7525pt x 741.77126pt>
 File: mndwi_cross_section.png Graphic file (type png)
 <use mndwi_cross_section.png>
-Package pdftex.def Info: mndwi_cross_section.png  used on input line 299.
+Package pdftex.def Info: mndwi_cross_section.png  used on input line 300.
 (pdftex.def)             Requested size: 483.69684pt x 153.15067pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 303.
+Package pdftex.def Info: noulogo.png  used on input line 304.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1424,12 +1428,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 303.
+Package pdftex.def Info: eimt.png  used on input line 304.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[21]
+[22]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 313.
+Package pdftex.def Info: noulogo.png  used on input line 314.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1441,12 +1445,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 313.
+Package pdftex.def Info: eimt.png  used on input line 314.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[22 <./mndwi_cross_section.png>]
+[23 <./mndwi_cross_section.png>]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 324.
+Package pdftex.def Info: noulogo.png  used on input line 325.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1458,35 +1462,35 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 324.
-(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[23]
-File: noulogo.png Graphic file (type png)
-<use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 331.
-(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
-
-
-Package fancyhdr Warning: \headheight is too small (35.0pt): 
-(fancyhdr)                Make it at least 42.67912pt, for example:
-(fancyhdr)                \setlength{\headheight}{42.67912pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
-
-File: eimt.png Graphic file (type png)
-<use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 331.
+Package pdftex.def Info: eimt.png  used on input line 325.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [24]
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 332.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 332.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[25]
 Chapter 3.
-<diagram_methodology.png, id=113, 710.655pt x 1408.26125pt>
+<diagram_methodology.png, id=117, 710.655pt x 1408.26125pt>
 File: diagram_methodology.png Graphic file (type png)
 <use diagram_methodology.png>
-Package pdftex.def Info: diagram_methodology.png  used on input line 337.
+Package pdftex.def Info: diagram_methodology.png  used on input line 338.
 (pdftex.def)             Requested size: 305.57568pt x 605.54054pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 341.
+Package pdftex.def Info: noulogo.png  used on input line 342.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 Package fancyhdr Warning: \headheight is too small (35.0pt): 
@@ -1497,16 +1501,16 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 341.
+Package pdftex.def Info: eimt.png  used on input line 342.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[25
+[26
 
 ]
 Overfull \vbox (6.96048pt too high) has occurred while \output is active []
 
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 341.
+Package pdftex.def Info: noulogo.png  used on input line 342.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1518,17 +1522,17 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 341.
+Package pdftex.def Info: eimt.png  used on input line 342.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[26 <./diagram_methodology.png>]
-<Study_sites_figure.png, id=121, 1447.4075pt x 1261.71375pt>
+[27 <./diagram_methodology.png>]
+<Study_sites_figure.png, id=125, 1447.4075pt x 1261.71375pt>
 File: Study_sites_figure.png Graphic file (type png)
 <use Study_sites_figure.png>
-Package pdftex.def Info: Study_sites_figure.png  used on input line 353.
+Package pdftex.def Info: Study_sites_figure.png  used on input line 354.
 (pdftex.def)             Requested size: 426.79134pt x 372.02907pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 357.
+Package pdftex.def Info: noulogo.png  used on input line 358.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1540,12 +1544,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 357.
+Package pdftex.def Info: eimt.png  used on input line 358.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[27]
+[28]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 361.
+Package pdftex.def Info: noulogo.png  used on input line 362.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1557,12 +1561,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 361.
+Package pdftex.def Info: eimt.png  used on input line 362.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[28 <./Study_sites_figure.png>]
+[29 <./Study_sites_figure.png>]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 374.
+Package pdftex.def Info: noulogo.png  used on input line 375.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1574,17 +1578,17 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 374.
+Package pdftex.def Info: eimt.png  used on input line 375.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[29]
-<marine_data_comparison.png, id=133, 867.24pt x 433.62pt>
+[30]
+<marine_data_comparison.png, id=137, 867.24pt x 433.62pt>
 File: marine_data_comparison.png Graphic file (type png)
 <use marine_data_comparison.png>
-Package pdftex.def Info: marine_data_comparison.png  used on input line 377.
+Package pdftex.def Info: marine_data_comparison.png  used on input line 378.
 (pdftex.def)             Requested size: 483.69684pt x 241.85292pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 390.
+Package pdftex.def Info: noulogo.png  used on input line 391.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1596,17 +1600,17 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 390.
+Package pdftex.def Info: eimt.png  used on input line 391.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[30 <./marine_data_comparison.png>]
-<screenshot_example_image_annotator_software.png, id=139, 1473.505pt x 978.65625pt>
+[31 <./marine_data_comparison.png>]
+<screenshot_example_image_annotator_software.png, id=142, 1473.505pt x 978.65625pt>
 File: screenshot_example_image_annotator_software.png Graphic file (type png)
 <use screenshot_example_image_annotator_software.png>
-Package pdftex.def Info: screenshot_example_image_annotator_software.png  used on input line 395.
+Package pdftex.def Info: screenshot_example_image_annotator_software.png  used on input line 396.
 (pdftex.def)             Requested size: 426.79134pt x 283.45958pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 403.
+Package pdftex.def Info: noulogo.png  used on input line 404.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1618,17 +1622,17 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 403.
+Package pdftex.def Info: eimt.png  used on input line 404.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[31 <./screenshot_example_image_annotator_software.png>]
-<screenshot_vectorization_waterline.png, id=144, 2220.295pt x 1131.22626pt>
+[32 <./screenshot_example_image_annotator_software.png>]
+<screenshot_vectorization_waterline.png, id=147, 2220.295pt x 1131.22626pt>
 File: screenshot_vectorization_waterline.png Graphic file (type png)
 <use screenshot_vectorization_waterline.png>
-Package pdftex.def Info: screenshot_vectorization_waterline.png  used on input line 408.
+Package pdftex.def Info: screenshot_vectorization_waterline.png  used on input line 409.
 (pdftex.def)             Requested size: 426.79134pt x 217.43808pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 424.
+Package pdftex.def Info: noulogo.png  used on input line 425.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1640,12 +1644,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 424.
+Package pdftex.def Info: eimt.png  used on input line 425.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[32 <./screenshot_vectorization_waterline.png>]
+[33 <./screenshot_vectorization_waterline.png>]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 454.
+Package pdftex.def Info: noulogo.png  used on input line 455.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1657,29 +1661,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 454.
-(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[33]
-File: noulogo.png Graphic file (type png)
-<use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 472.
-(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
-
-
-Package fancyhdr Warning: \headheight is too small (35.0pt): 
-(fancyhdr)                Make it at least 42.67912pt, for example:
-(fancyhdr)                \setlength{\headheight}{42.67912pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
-
-File: eimt.png Graphic file (type png)
-<use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 472.
+Package pdftex.def Info: eimt.png  used on input line 455.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [34]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 487.
+Package pdftex.def Info: noulogo.png  used on input line 473.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1691,12 +1678,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 487.
+Package pdftex.def Info: eimt.png  used on input line 473.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [35]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 502.
+Package pdftex.def Info: noulogo.png  used on input line 488.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1708,12 +1695,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 502.
+Package pdftex.def Info: eimt.png  used on input line 488.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [36]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 518.
+Package pdftex.def Info: noulogo.png  used on input line 503.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1725,12 +1712,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 518.
+Package pdftex.def Info: eimt.png  used on input line 503.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [37]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 537.
+Package pdftex.def Info: noulogo.png  used on input line 519.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1742,17 +1729,34 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 537.
+Package pdftex.def Info: eimt.png  used on input line 519.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [38]
-<boundary_zone_visualization.png, id=168, 690.6603pt x 366.4089pt>
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 538.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 538.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[39]
+<boundary_zone_visualization.png, id=171, 690.6603pt x 366.4089pt>
 File: boundary_zone_visualization.png Graphic file (type png)
 <use boundary_zone_visualization.png>
-Package pdftex.def Info: boundary_zone_visualization.png  used on input line 555.
+Package pdftex.def Info: boundary_zone_visualization.png  used on input line 556.
 (pdftex.def)             Requested size: 426.79134pt x 226.42198pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 559.
+Package pdftex.def Info: noulogo.png  used on input line 560.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1764,12 +1768,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 559.
+Package pdftex.def Info: eimt.png  used on input line 560.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[39]
+[40]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 573.
+Package pdftex.def Info: noulogo.png  used on input line 574.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1781,17 +1785,17 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 573.
+Package pdftex.def Info: eimt.png  used on input line 574.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[40 <./boundary_zone_visualization.png>]
-<figure_example_offset_calc.png, id=176, 1778.645pt x 1185.42876pt>
+[41 <./boundary_zone_visualization.png>]
+<figure_example_offset_calc.png, id=179, 1778.645pt x 1185.42876pt>
 File: figure_example_offset_calc.png Graphic file (type png)
 <use figure_example_offset_calc.png>
-Package pdftex.def Info: figure_example_offset_calc.png  used on input line 582.
+Package pdftex.def Info: figure_example_offset_calc.png  used on input line 583.
 (pdftex.def)             Requested size: 426.79134pt x 284.43636pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 589.
+Package pdftex.def Info: noulogo.png  used on input line 590.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1803,12 +1807,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 589.
+Package pdftex.def Info: eimt.png  used on input line 590.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[41 <./figure_example_offset_calc.png>]
+[42 <./figure_example_offset_calc.png>]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 606.
+Package pdftex.def Info: noulogo.png  used on input line 607.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1820,30 +1824,30 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 606.
-(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[42]
-File: noulogo.png Graphic file (type png)
-<use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 641.
-(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
-
-
-Package fancyhdr Warning: \headheight is too small (35.0pt): 
-(fancyhdr)                Make it at least 42.67912pt, for example:
-(fancyhdr)                \setlength{\headheight}{42.67912pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
-
-File: eimt.png Graphic file (type png)
-<use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 641.
+Package pdftex.def Info: eimt.png  used on input line 607.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [43]
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 642.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 642.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[44]
 Chapter 4.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 653.
+Package pdftex.def Info: noulogo.png  used on input line 654.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 Package fancyhdr Warning: \headheight is too small (35.0pt): 
@@ -1854,19 +1858,19 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 653.
+Package pdftex.def Info: eimt.png  used on input line 654.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[44
+[45
 
 ]
-<figure_brightness_comparison_by_site.png, id=191, 730.8906pt x 297.2706pt>
+<figure_brightness_comparison_by_site.png, id=194, 730.8906pt x 297.2706pt>
 File: figure_brightness_comparison_by_site.png Graphic file (type png)
 <use figure_brightness_comparison_by_site.png>
-Package pdftex.def Info: figure_brightness_comparison_by_site.png  used on input line 656.
+Package pdftex.def Info: figure_brightness_comparison_by_site.png  used on input line 657.
 (pdftex.def)             Requested size: 426.79134pt x 173.58734pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 682.
+Package pdftex.def Info: noulogo.png  used on input line 683.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1878,17 +1882,17 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 682.
+Package pdftex.def Info: eimt.png  used on input line 683.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[45 <./figure_brightness_comparison_by_site.png>]
-<figure_overall_family_boxplots.png, id=196, 860.013pt x 353.1594pt>
+[46 <./figure_brightness_comparison_by_site.png>]
+<figure_overall_family_boxplots.png, id=199, 860.013pt x 353.1594pt>
 File: figure_overall_family_boxplots.png Graphic file (type png)
 <use figure_overall_family_boxplots.png>
-Package pdftex.def Info: figure_overall_family_boxplots.png  used on input line 689.
+Package pdftex.def Info: figure_overall_family_boxplots.png  used on input line 690.
 (pdftex.def)             Requested size: 483.69684pt x 198.62471pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 716.
+Package pdftex.def Info: noulogo.png  used on input line 702.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1900,12 +1904,17 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 716.
+Package pdftex.def Info: eimt.png  used on input line 702.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[46 <./figure_overall_family_boxplots.png>]
+[47 <./figure_overall_family_boxplots.png>]
+<figure_heatmap_mae.png, id=204, 854.4723pt x 316.7835pt>
+File: figure_heatmap_mae.png Graphic file (type png)
+<use figure_heatmap_mae.png>
+Package pdftex.def Info: figure_heatmap_mae.png  used on input line 711.
+(pdftex.def)             Requested size: 483.69684pt x 179.32137pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 723.
+Package pdftex.def Info: noulogo.png  used on input line 718.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1917,13 +1926,97 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 723.
+Package pdftex.def Info: eimt.png  used on input line 718.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[47]
+[48 <./figure_heatmap_mae.png>]
+<figure_hexbin_index_models.png, id=210, 843.3909pt x 1159.9335pt>
+File: figure_hexbin_index_models.png Graphic file (type png)
+<use figure_hexbin_index_models.png>
+Package pdftex.def Info: figure_hexbin_index_models.png  used on input line 729.
+(pdftex.def)             Requested size: 412.56496pt x 567.41664pt.
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 733.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 733.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[49]
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 734.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 734.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[50 <./figure_hexbin_index_models.png>]
+<figure_hexbin_dl_models.png, id=219, 1128.6165pt x 871.5762pt>
+File: figure_hexbin_dl_models.png Graphic file (type png)
+<use figure_hexbin_dl_models.png>
+Package pdftex.def Info: figure_hexbin_dl_models.png  used on input line 738.
+(pdftex.def)             Requested size: 569.05511pt x 439.4709pt.
+
+
+LaTeX Warning: Float too large for page by 11.60738pt on input line 741.
+
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 742.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 742.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[51 <./figure_hexbin_dl_models.png>]
+File: noulogo.png Graphic file (type png)
+<use noulogo.png>
+Package pdftex.def Info: noulogo.png  used on input line 768.
+(pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
+
+
+Package fancyhdr Warning: \headheight is too small (35.0pt): 
+(fancyhdr)                Make it at least 42.67912pt, for example:
+(fancyhdr)                \setlength{\headheight}{42.67912pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-7.67912pt}.
+
+File: eimt.png Graphic file (type png)
+<use eimt.png>
+Package pdftex.def Info: eimt.png  used on input line 768.
+(pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
+[52
+
+
+]
 Chapter 5.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 766.
+Package pdftex.def Info: noulogo.png  used on input line 811.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 Package fancyhdr Warning: \headheight is too small (35.0pt): 
@@ -1934,9 +2027,9 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 766.
+Package pdftex.def Info: eimt.png  used on input line 811.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[48
+[53
 
 ]
 Chapter 6.
@@ -1957,7 +2050,7 @@ File: eimt.png Graphic file (type png)
 <use eimt.png>
 Package pdftex.def Info: eimt.png  used on input line 1.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[49
+[54
 
 ]
 File: noulogo.png Graphic file (type png)
@@ -1976,7 +2069,7 @@ File: eimt.png Graphic file (type png)
 <use eimt.png>
 Package pdftex.def Info: eimt.png  used on input line 61.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[50
+[55
 
 ]
 File: noulogo.png Graphic file (type png)
@@ -1995,7 +2088,7 @@ File: eimt.png Graphic file (type png)
 <use eimt.png>
 Package pdftex.def Info: eimt.png  used on input line 132.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[51]
+[56]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
 Package pdftex.def Info: noulogo.png  used on input line 193.
@@ -2012,10 +2105,10 @@ File: eimt.png Graphic file (type png)
 <use eimt.png>
 Package pdftex.def Info: eimt.png  used on input line 193.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[52])
+[57])
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 777.
+Package pdftex.def Info: noulogo.png  used on input line 822.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -2027,12 +2120,12 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 777.
+Package pdftex.def Info: eimt.png  used on input line 822.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[53]
+[58]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 783.
+Package pdftex.def Info: noulogo.png  used on input line 828.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -2044,9 +2137,9 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 783.
+Package pdftex.def Info: eimt.png  used on input line 828.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
-[54] (./TFM_Gallego_Jimenez_Albert.aux)
+[59] (./TFM_Gallego_Jimenez_Albert.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -2057,18 +2150,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9563 strings out of 469006
- 160771 string characters out of 5454813
- 646294 words of memory out of 5000000
- 37918 multiletter control sequences out of 15000+600000
+ 9157 strings out of 469006
+ 153657 string characters out of 5454813
+ 638399 words of memory out of 5000000
+ 37530 multiletter control sequences out of 15000+600000
  639537 words of font info for 151 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  72i,22n,98p,1757b,661s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/albert/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on TFM_Gallego_Jimenez_Albert.pdf (55 pages, 12376003 bytes).
+Output written on TFM_Gallego_Jimenez_Albert.pdf (60 pages, 16087443 bytes).
 PDF statistics:
- 277 PDF objects out of 1000 (max. 8388607)
- 159 compressed objects within 2 object streams
+ 298 PDF objects out of 1000 (max. 8388607)
+ 169 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 25189 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 25204 words of extra memory for PDF output out of 29859 (max. 10000000)
 
