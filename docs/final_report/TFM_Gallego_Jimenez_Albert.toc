@@ -36,5 +36,13 @@
 \contentsline {subsection}{\numberline {3.7.3}Geometric Evaluation}{40}{}%
 \contentsline {subsection}{\numberline {3.7.4}Summary of Evaluated Models}{43}{}%
 \contentsline {chapter}{\numberline {4}Results}{44}{}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{45}{}%
-\contentsline {chapter}{\numberline {6}Glossary}{46}{}%
+\contentsline {section}{\numberline {4.1}Physical Context: Sand Reflectance and Colorimetric Assessment}{44}{}%
+\contentsline {section}{\numberline {4.2}Deep Learning Pixel-based Performance}{45}{}%
+\contentsline {section}{\numberline {4.3}Geometric Evaluation: Cross-shore Offsets}{45}{}%
+\contentsline {subsection}{\numberline {4.3.1}Overarching Family Performance (Index-based vs. Deep Learning)}{45}{}%
+\contentsline {subsection}{\numberline {4.3.2}Intra-Family Model Assessment and Spatial Bias}{46}{}%
+\contentsline {subsection}{\numberline {4.3.3}Environmental Drivers of Error Variability}{46}{}%
+\contentsline {subsection}{\numberline {4.3.4}Cross-Site Generalization and Robustness}{47}{}%
+\contentsline {section}{\numberline {4.4}Final Multi-Criteria Ranking}{47}{}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{48}{}%
+\contentsline {chapter}{\numberline {6}Glossary}{49}{}%

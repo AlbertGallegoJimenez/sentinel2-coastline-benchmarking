@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex TFM_Gallego_Jimenez_Albert"] 1778175787.1459 "TFM_Gallego_Jimenez_Albert.aux" "TFM_Gallego_Jimenez_Albert.bbl" "TFM_Gallego_Jimenez_Albert" 1778176176.54261 0
+["bibtex TFM_Gallego_Jimenez_Albert"] 1778181595.97066 "TFM_Gallego_Jimenez_Albert.aux" "TFM_Gallego_Jimenez_Albert.bbl" "TFM_Gallego_Jimenez_Albert" 1778181598.60991 0
   "./references.bib" 1778081235.57076 32860 38844e644c500482b54ab3d6f2a1512e ""
   "/usr/local/texlive/2026basic/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "TFM_Gallego_Jimenez_Albert.aux" 1778176176.45653 17472 b31f59088ea208d33ed3a887231d5e4b "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.aux" 1778181598.51618 20251 d5812fb052d2b4eece602555bff28652 "pdflatex"
   (generated)
   "TFM_Gallego_Jimenez_Albert.bbl"
   "TFM_Gallego_Jimenez_Albert.blg"
   (rewritten before read)
-["pdflatex"] 1778176174.27155 "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" "TFM_Gallego_Jimenez_Albert.pdf" "TFM_Gallego_Jimenez_Albert" 1778176176.54271 0
-  "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" 1778176174.16514 88435 c14412ca02e0edb025e70aa474ecbb5b ""
+["pdflatex"] 1778181595.98789 "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" "TFM_Gallego_Jimenez_Albert.pdf" "TFM_Gallego_Jimenez_Albert" 1778181598.61002 0
+  "/Users/albert/Documents/GitHub/sentinel2-coastline-benchmarking/docs/final_report/TFM_Gallego_Jimenez_Albert.tex" 1778181593.03653 96923 98df6fd3e72f711bc346ba632ffefa5d ""
   "/Users/albert/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk" 1776357492.85815 14040 f2487687848f8824d159b8ea49fcbec1 ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -108,20 +108,22 @@
   "/usr/local/texlive/2026basic/texmf.cnf" 1772405582 628 bbc09d6d38872d53c11bb48dc9b14e88 ""
   "Schematic-representation-of-Conceicao-Duquesa-beach-profile-illustrating-shoreline_W640.jpg" 1773735520 31333 03281b15ae5de13587df6971d25658b5 ""
   "Study_sites_figure.png" 1777218112.29839 1921762 1f5469c95b1d865dbe50a584cff68ce1 ""
-  "TFM_Gallego_Jimenez_Albert.aux" 1778176176.45653 17472 b31f59088ea208d33ed3a887231d5e4b "pdflatex"
-  "TFM_Gallego_Jimenez_Albert.bbl" 1778175787.17371 11485 a4a3b3d90f330dc4872e1b625e8d071d "bibtex TFM_Gallego_Jimenez_Albert"
-  "TFM_Gallego_Jimenez_Albert.lof" 1778176176.45768 4607 e89998ba756aae4debc2ae44aa2edc06 "pdflatex"
-  "TFM_Gallego_Jimenez_Albert.lot" 1778176176.45771 471 a5fb444ac428ad391a7eeedb2702a785 "pdflatex"
-  "TFM_Gallego_Jimenez_Albert.tex" 1778176174.16514 88435 c14412ca02e0edb025e70aa474ecbb5b ""
-  "TFM_Gallego_Jimenez_Albert.toc" 1778176176.45765 3181 1581e75bd75a413427e67583b8749f10 "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.aux" 1778181598.51618 20251 d5812fb052d2b4eece602555bff28652 "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.bbl" 1778181595.98652 11485 a4a3b3d90f330dc4872e1b625e8d071d "bibtex TFM_Gallego_Jimenez_Albert"
+  "TFM_Gallego_Jimenez_Albert.lof" 1778181598.51759 5507 1dfd462af85c5ff08d65005711922e96 "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.lot" 1778181598.5193 471 a5fb444ac428ad391a7eeedb2702a785 "pdflatex"
+  "TFM_Gallego_Jimenez_Albert.tex" 1778181593.03653 96923 98df6fd3e72f711bc346ba632ffefa5d ""
+  "TFM_Gallego_Jimenez_Albert.toc" 1778181598.51755 3959 59632be270dba4ed3f9531e123554d38 "pdflatex"
   "TFUOC.cls" 1773537502 20562 015c03f8929cfbadde72fcc0d4c2e5a1 ""
   "UOCllarg.jpg" 1773382276 104016 5daf87688360f8a2e9c7c5e0a4e29859 ""
   "boundary_zone_visualization.png" 1777805505.36834 231544 1bbc3d2905763b9dd82e7f43c07db8fb ""
   "diagram_methodology.png" 1778176056.03818 187869 3337001a07c2588dfa90029f8d446826 ""
   "eimt.png" 1773382276 3446 5a2f780b252dace9fa9692a2adcbef8a ""
   "evolution_shoreline_satellite.png" 1773744810 164861 2f2edf7bcad51c7ed96ac11cdd603be9 ""
+  "figure_brightness_comparison_by_site.png" 1778178836.19479 129988 d16596d74ec6002adc547af599bbaca9 ""
   "figure_example_offset_calc.png" 1777828376.9536 1556774 291e7064cf37443acd3b8f674771e579 ""
   "figure_intro_spectral_indices.png" 1776358553.06211 330711 a67aab7f365b98c71ffbb97af32c629f ""
+  "figure_overall_family_boxplots.png" 1778181585.76626 223638 6eda44ad898dcef887a9c5b863a9c576 ""
   "licenc/ccby.png" 1773382276 6477 d9aeba89b9319dfdb4358642f573b825 ""
   "marine_data_comparison.png" 1777799812.48292 661242 d66a27f492d8d6ab3af94b3390f8660d ""
   "mndwi_cross_section.png" 1776358639.42098 942489 7c2c63f5dada3b5a2dcbd3c38309ed0f ""
