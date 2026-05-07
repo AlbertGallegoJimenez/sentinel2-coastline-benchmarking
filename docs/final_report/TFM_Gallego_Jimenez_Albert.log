@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  7 MAY 2026 21:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  7 MAY 2026 21:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1885,7 +1885,7 @@ Package pdftex.def Info: eimt.png  used on input line 682.
 File: figure_overall_family_boxplots.png Graphic file (type png)
 <use figure_overall_family_boxplots.png>
 Package pdftex.def Info: figure_overall_family_boxplots.png  used on input line 689.
-(pdftex.def)             Requested size: 426.79134pt x 175.259pt.
+(pdftex.def)             Requested size: 483.69684pt x 198.62471pt.
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
 Package pdftex.def Info: noulogo.png  used on input line 716.
@@ -2065,7 +2065,7 @@ Here is how much of TeX's memory you used:
  319 hyphenation exceptions out of 8191
  72i,22n,98p,1757b,661s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/albert/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on TFM_Gallego_Jimenez_Albert.pdf (55 pages, 12375978 bytes).
+Output written on TFM_Gallego_Jimenez_Albert.pdf (55 pages, 12376003 bytes).
 PDF statistics:
  277 PDF objects out of 1000 (max. 8388607)
  159 compressed objects within 2 object streams
