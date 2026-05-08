@@ -41,8 +41,8 @@
 \contentsline {section}{\numberline {4.3}Geometric Evaluation: Cross-shore Offsets}{46}{}%
 \contentsline {subsection}{\numberline {4.3.1}Overarching Family Performance (Index-based vs. Deep Learning)}{46}{}%
 \contentsline {subsection}{\numberline {4.3.2}Intra-Family Model Assessment and Spatial Bias}{47}{}%
-\contentsline {subsection}{\numberline {4.3.3}Environmental Drivers of Error Variability}{52}{}%
-\contentsline {subsection}{\numberline {4.3.4}Cross-Site Generalization and Robustness}{52}{}%
-\contentsline {section}{\numberline {4.4}Final Multi-Criteria Ranking}{52}{}%
-\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{53}{}%
-\contentsline {chapter}{\numberline {6}Glossary}{54}{}%
+\contentsline {subsection}{\numberline {4.3.3}Environmental Drivers of Error Variability}{53}{}%
+\contentsline {subsection}{\numberline {4.3.4}Cross-Site Generalization and Robustness}{57}{}%
+\contentsline {section}{\numberline {4.4}Final Multi-Criteria Ranking}{57}{}%
+\contentsline {chapter}{\numberline {5}Conclusions and Future Works}{58}{}%
+\contentsline {chapter}{\numberline {6}Glossary}{59}{}%

@@ -7,6 +7,7 @@
 \usepackage{microtype}
 \usepackage{float}
 \usepackage[authoryear,round]{natbib}
+\usepackage{pdflscape}
 
 % Prevent right-margin overflow (overfull hboxes) in difficult lines
 \emergencystretch=3em
@@ -142,7 +143,6 @@ The project is planned to be developed over a 5-month period (including the thes
         \item Literature review on traditional methods for satellite-derived coastline extraction.
         \item Literature review on Deep Learning models applied to coastal monitoring.
         \item Satellite images download for northern Spanish coast beaches: Salinas (Asturias) and El Puntal (Cantabria).
-        % (Pendiente de incluir si da tiempo) \item Satellite images download for Beach 2 (Mediterranean environment).
     \end{itemize}
     \item \textbf{Task 2:} Calculation of spectral indices and generation of Ground Truth datasets.
     \begin{itemize}
@@ -335,7 +335,7 @@ This chapter details the comprehensive methodological framework developed to eva
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.45]{diagram_methodology.png}
+    \includegraphics[scale=0.43]{diagram_methodology.png}
     \caption{General methodological workflow of the study. The diagram outlines the data acquisition, model training, extraction pipelines, and evaluation stages detailed throughout this chapter.}
     \label{fig:ch3_workflow}
 \end{figure}
@@ -347,7 +347,7 @@ The study focuses on two beaches located on the northern coast of Spain: Salinas
 
 Salinas is a 2.5 km embayed sandy beach system located on the left bank of the Avilés estuarine inlet (Asturias). The beach is bounded by an inlet jetty to the east and a rocky headland (La Peñona) to the west. Its western sector, adjacent to the urban area of Salinas, is backed by a seawall and promenade, while the eastern sector (El Espartal) preserves a natural dune field rising up to 15 m above mean sea level. The beach is characterized by a wide intertidal zone (up to 300 m at spring tides) and a mean tidal range of 4.5 m, classifying it as a macrotidal environment. The wave climate is predominantly energetic and approach from the northwest, impacting directly with mean significant wave heights around 1 m and frequent storm events that can exceed 4 m. The sand often shows dark patches due to the accumulation of coal and carbonaceous shales, which can further complicate spectral differentiation between wet sand and water.
 
-El Puntal is a 4 km sandy spit at the entrance of Santander Bay (Cantabria), formed by the interaction of estuarine and marine dynamics. The beach is backed by a dune system that reaches up to 10 m high and 50–100 m wide. In the same way as Salinas, El Puntal experiences a wide intertidal zone (up to 250 m) and a mean tidal range of around 4 m. However, unlike Salinas, El Puntal does not receive direct wave impact, as it is protected by the Magdalena Peninsula. Furthermore, also in contrast to Salinas, El Puntal features a much less dark, golden-colored sand.
+El Puntal is a 4 km sandy spit at the entrance of Santander Bay (Cantabria), formed by the interaction of estuarine and marine dynamics. The beach is backed by a dune system that reaches up to 10 m high and 50–100 m wide. The sandspit is located at its western end, whereas the eastern end is characterized by a more exposed morphology and the mouth of a small stream. In the same way as Salinas, El Puntal experiences a wide intertidal zone (up to 250 m) and a mean tidal range of around 4 m. However, unlike Salinas, El Puntal does not receive direct wave impact, as it is protected by the Magdalena Peninsula. Furthermore, also in contrast to Salinas, El Puntal features a much less dark, golden-colored sand.
 
 \begin{figure}[H]
     \centering
@@ -358,7 +358,7 @@ El Puntal is a 4 km sandy spit at the entrance of Santander Bay (Cantabria), for
 
 The selection of Salinas and El Puntal as study areas responds to their representativeness of highly dynamic macrotidal environments, which consistently pose the most significant challenges for automated shoreline extraction methodologies. Both beaches share practically identical macrotidal ranges, featuring extensive intertidal zones that undergo profound daily fluctuations and result in the recurrent exposure of vast stretches of saturated sand. This inherently generates a critical spectral ambiguity between shallow water and wet sand, severely penalizing traditional pixel-by-pixel segmentation indices.
 
-However, while they share this macrotidal nature, they exhibit key differences that allow for a comprehensive evaluation of the models under varying degrees of complexity. El Puntal, being sheltered from direct wave impact, serves as a baseline scenario with standard, golden-colored sand. In stark contrast, Salinas is fully exposed to energetic wave climates, resulting in a significantly higher presence of breaking wave foam (white-water) across a wide surf zone. Furthermore, the frequent accumulation of coal and carbonaceous shales along its intertidal profile creates noticeably dark patches of saturated sand. This stark color closely mimics the inherently low reflectance signature of water bodies in optical satellite imagery. Together, the excessive foam and the deceptively dark wet sand render Salinas an ideal stress-test. It provides a robust framework to critically evaluate whether Deep Learning architectures can successfully leverage spatial and structural context to differentiate the actual waterline, overcoming the limitations where traditional spectral methods typically fail.
+However, while they share this macrotidal nature, they exhibit key differences that allow for a comprehensive evaluation of the models under varying degrees of complexity. El Puntal, being sheltered from direct wave impact, serves as a baseline scenario with standard, golden-colored sand. Additionally, artificial dredging operations are routinely carried out at the very tip of El Puntal to maintain the required water depth for the navigation channel into the Bay of Santander. This dredging results in a much steeper beach slope in that specific area, which drastically reduces the extent of the intertidal zone, one of the main factors contributing to the reduced complexity of this environment. Summed to the other factors, this makes El Puntal a slightly less challenging environment compared to Salinas. In stark contrast, Salinas is fully exposed to energetic wave climates, resulting in a significantly higher presence of breaking wave foam (white-water) across a wide surf zone. Furthermore, the frequent accumulation of coal and carbonaceous shales along its intertidal profile creates noticeably dark patches of saturated sand. This stark color closely mimics the inherently low reflectance signature of water bodies in optical satellite imagery. Together, the excessive foam and the deceptively dark wet sand render Salinas an ideal stress-test. It provides a robust framework to critically evaluate whether Deep Learning architectures can successfully leverage spatial and structural context to differentiate the actual waterline, overcoming the limitations where traditional spectral methods typically fail.
 
 \section{Data Acquisition and Preprocessing}
 \label{sec:data_acquisition}
@@ -480,9 +480,9 @@ It is worth noting a deliberate methodological divergence in this study's experi
 \subsection{Training Setup}
 \label{sec:training_setup}
 
-To ensure a fair and equitable comparison, all deep learning models were trained from scratch following an identical hyperparameter configuration and optimization strategy. 
+To ensure a fair and equitable comparison, all deep learning models were fine-tuned following an identical hyperparameter configuration and optimization strategy. 
 
-Prior to training, the annotated dataset was partitioned into training, validation, and testing splits. To prevent the models from overfitting to a specific tidal state or geographical morphology, this subdivision was strictly stratified based on both the associated instantaneous tide values (acquired during the preprocessing stage) and the specific study area (Salinas or El Puntal). This rigorous stratification ensures that images capturing high-tide and low-tide scenarios, as well as sheltered and exposed conditions, were equitably distributed. Consequently, the networks were trained and evaluated on a perfectly balanced representation of the highly dynamic intertidal zones.
+Prior to training, the annotated dataset was partitioned into a strict 80\% training and 20\% testing split, with a subset of the training data allocated for internal epoch validation. To prevent the models from overfitting to a specific tidal state or geographical morphology, this subdivision was strictly stratified based on both the associated instantaneous tide values (acquired during the preprocessing stage) and the specific study area (Salinas or El Puntal). This rigorous stratification ensures that images capturing high-tide and low-tide scenarios, as well as sheltered and exposed conditions, were equitably distributed. Consequently, the networks were trained and evaluated on a perfectly balanced representation of the highly dynamic intertidal zones.
 
 The models were trained for a maximum of 100 epochs using a batch size of 16 patches. To minimize the loss function while mitigating overfitting, the AdamW optimizer (Adam with weight decay) was employed with an initial learning rate of $5 \times 10^{-4}$ and a weight decay coefficient of $1 \times 10^{-4}$. Furthermore, a dynamic learning rate scheduler (\textit{ReduceLROnPlateau}) was implemented, which reduces the learning rate by a factor of 0.5 if the validation loss plateaus for 5 consecutive epochs. Early stopping was also configured with a patience of 15 epochs to stop training when no further validation improvements were observed, thereby preventing over-parameterization and saving computational resources.
 
@@ -491,6 +491,15 @@ Given the multi-class formulation of the dataset, the standard Cross-Entropy Los
 Finally, to significantly increase the model's robustness and generalization capabilities against varying beach orientations and viewing angles, a spatial data augmentation pipeline was strictly applied to the training set. Utilizing the Albumentations library, image patches were randomly subjected to horizontal flips, vertical flips, 90-degree rotations, and transpositions, each with a 50\% probability during every training epoch. In contrast, the validation and test datasets were evaluated using the original, unaugmented distribution of the image patches.
 
 To guarantee the statistical reliability of the results and account for the stochastic nature of network initialization and optimization, the training process for each model configuration (architecture-encoder pair) was repeated 10 independent times under varying random seeds. Following each set of iterations, the optimal run was selected based on its segmentation performance strictly along the coastal boundary zone. This was achieved by collapsing the multi-class predictions into binary masks (water versus non-water) and computing the Intersection over Union (IoU) exclusively within a reduced buffer region adjacent to the ground-truth waterline. A comprehensive explanation of this boundary-focused pixel-based evaluation and class mapping strategy is provided later in Section \ref{sec:pixel_eval}.
+
+\subsection{Hardware and Software Specifications}
+\label{sec:hardware_software}
+
+All computational routines throughout this project, including data preprocessing, vector operations, and statistical evaluation, were developed in Python. The functional source code containing the reproducible experimental pipelines has been open-sourced and published in a public GitHub repository \citep{github_sentinel2-coastline-benchmarking}.
+
+For the deep learning implementation, the \textit{segmentation\_models.pytorch} library was utilized as the primary API, providing structured and accessible implementations of the U-Net, DeepLabV3+, and SegFormer architectures. Rather than initializing the feature extraction encoders with random values, they were instantiated utilizing pre-trained weights from the \textit{ImageNet} dataset (\texttt{encoder\_weights="imagenet"}). This transfer learning strategy accelerates network convergence and provides the models with a pre-existing, robust understanding of fundamental geometric features such as edges and textures before fine-tuning them on the coastal domain.
+
+Regarding hardware utilization, the computationally intensive task of training the semantic segmentation networks across all configurations, encoders, and random seeds was executed on a dedicated desktop PC equipped with an NVIDIA RTX 3060 GPU. Conversely, all other tasks (including dataset preprocessing, downloading of oceanographic data, programmatic thresholding of spectral indices, model inference, and the comprehensive spatial and geometric evaluations) were executed on an Apple MacBook Air featuring an M5 Apple Silicon chip.
 
 \section{Waterline Extraction Pipeline}
 \label{sec:waterline_pipeline}
@@ -506,7 +515,32 @@ Finally, for both traditional and DL approaches, the individual continuous line 
 \section{Evaluation Methodology}
 \label{sec:evaluation_methodology}
 
-To comprehensively assess the performance of the tested methodologies, the accuracy of the outputs was evaluated across two distinct structural domains: a purely pixel-based evaluation of the semantic segmentation masks, and a rigorous geometric validation of the final continuous vector waterlines.
+To comprehensively assess the performance of the tested methodologies, the accuracy of the outputs was evaluated across two distinct structural domains: a purely pixel-based evaluation of the semantic segmentation masks, and a rigorous geometric validation of the final continuous vector waterlines. In addition to these core evaluations, an independent empirical analysis of the sand reflectance and colorimetry was conducted to physically contextualize the spectral challenges inherent to the study sites, particularly in Salinas. This analysis is crucial to understand the underlying physical factors that may influence the performance of both traditional and AI-based extraction methods.
+
+\subsection{Sand Reflectance and Colorimetric Assessment}
+\label{sec:sand_reflectance}
+
+Prior to the core pixel-based and geometric evaluations, an independent empirical analysis was conducted to quantify the spectral differences of the supratidal sand between the two study sites. This assessment was designed to test the hypothesis that the severe degradation in the segmentation performance of traditional spectral indices at Salinas is fundamentally driven by the physical coloration of its beach. Specifically, the accumulation of dark carbonaceous shales and coal creates a low-reflectance environment that critically mimics the spectral signature of water, in stark contrast to the highly reflective, golden-colored sand of El Puntal.
+
+To quantitatively verify this spatial divergence without manual intervention across the entire temporal dataset, a strict constraint-based methodology was implemented to isolate the spectral signature of dry sand. First, a single "candidate image" was carefully selected for each beach. These reference images were chosen based on optimal conditions for dry beach exposure: cloud-free weather, minimum astronomical tide, and low energetic wave conditions. Utilizing these candidate scenes, a static Region of Interest (ROI) polygon was manually digitized strictly over the emerged, dry sand area of each beach.
+
+To extract a reliable time-series of sand reflectance values, it was imperative to ensure that the static ROIs were not contaminated by water or wave run-up in subsequent images. Therefore, the complete dataset was temporally filtered using the historical oceanographic metadata. For each beach, only the satellite acquisitions where the instantaneous tidal level, significant wave height ($H_s$), and peak period ($T_p$) were equal to or strictly lower than those of their respective candidate image were retained. This rigorous hydrodynamic thresholding guarantees that the pixels contained within the static ROIs predominantly represent undisturbed dry sand throughout the evaluated subset.
+
+Finally, using the preprocessed Sentinel-2 Level-2A imagery, two specific physical metrics were calculated for all pixels within the isolated ROIs to characterize the brightness and colorimetry of the sand:
+
+\begin{enumerate}
+    \item \textbf{Mean Visible Reflectance ($\bar{\rho}_{RGB}$):} Calculated as the unweighted arithmetic mean of the Red, Green, and Blue bands. This metric serves as a direct proxy for the overall albedo of the sand in the visible spectrum, evaluating its absolute darkness.
+    \begin{equation}
+        \bar{\rho}_{RGB} = \frac{\rho_{Red} + \rho_{Green} + \rho_{Blue}}{3}
+    \end{equation}
+
+    \item \textbf{Red-Blue Differential ($\Delta_{R-B}$):} This metric evaluates the colorimetric slope of the target. Standard golden sand typically exhibits strong reflectance in the red spectrum and higher absorption in the blue, yielding a large positive differential. Conversely, carbonaceous dark sand presents a flatter, wavelength-independent spectral response (grey/black), resulting in a significantly lower differential.
+    \begin{equation}
+        \Delta_{R-B} = \rho_{Red} - \rho_{Blue}
+    \end{equation}
+\end{enumerate}
+
+By comparing the probabilistic distributions of these two metrics between Salinas and El Puntal, this analysis establishes a measurable geologic and spectral baseline. This baseline is crucial to physically contextualize the statistical geometric errors evaluated in the subsequent algorithmic sections.
 
 \subsection{Pixel-based Evaluation}
 \label{sec:pixel_eval}
@@ -554,10 +588,24 @@ where $d_{mod,i}$ represents the cross-shore distance from the baseline to the \
 
 By aggregating the distances recorded across all intersecting transects for a given satellite image, four robust statistical metrics were computed:
 \begin{itemize}
-    \item \textbf{Mean Error (Bias):} The arithmetic average of all transect distances. It evaluates the systematic tendency of the model to underestimate or overestimate the water extent. A negative Bias indicates a systematic landward offset (the model predicts water further inland than reality, a common failure over wet sand), while a positive Bias indicates a seaward bias.
-    \item \textbf{Mean Absolute Error (MAE):} The average of the absolute values of the offsets. Unlike Bias, MAE does not allow positive and negative errors to cancel each other out, providing a straightforward measure of the average magnitude of the extraction error.
     \item \textbf{Median Absolute Deviation/Error (MAD):} The median of the absolute offsets. Because it relies on the median rather than the mean, MAD is highly robust against severe outliers (such as specific transects with an extreme errors due to a contouring artifact or specific complex scenarios because a highly energetic wave event), offering a highly representative value of the "typical" coastline error.
+    \item \textbf{Interquartile Range (IQR):} The range between the 25th and 75th percentiles of the offsets. This metric provides insight into the variability and consistency of the extraction errors across the entire coastline.
+    \item \textbf{Mean Absolute Error (MAE):} The average of the absolute values of the offsets. Unlike Bias, MAE does not allow positive and negative errors to cancel each other out, providing a straightforward measure of the average magnitude of the extraction error.
+    \item \textbf{Mean Error (Bias):} The arithmetic average of all transect distances. It evaluates the systematic tendency of the model to underestimate or overestimate the water extent. A negative Bias indicates a systematic landward offset (the model predicts water further inland than reality, a common failure over wet sand), while a positive Bias indicates a seaward bias.
     \item \textbf{Root Mean Square Error (RMSE):} Measures the overall magnitude of the spatial discrepancy. Because it squares the errors before averaging, the RMSE strongly penalizes extreme localized deviations (such as the model mistakenly tracing an isolated intertidal pool or wave foam), providing a conservative and reliable metric of the extraction's operational viability.
+    \item \textbf{Coefficient of Determination ($R^2$):} Evaluates the degree of correlation between the predicted and observed shoreline positions across all transects. An $R^2$ value close to 1 indicates a strong linear relationship, while a value close to 0 suggests no correlation.
+\end{itemize}
+
+\textbf{Statistical Analysis Framework:}
+
+Once the aforementioned cross-shore metrics were derived for the entire dataset, a comprehensive statistical framework was established to interpret the results and facilitate a structured comparison in Chapter 4. This framework relies on several analytical approaches to evaluate the models across different dimensions:
+
+\begin{itemize}
+    \item \textbf{Global and Distributional Analysis:} To compare the overarching performance between Index-based and Deep Learning families, as well as to identify morphological dependencies, the aggregated offset distributions are analyzed using boxplots and violin plots segregated by study area.
+    \item \textbf{Spatial Bias Evaluation:} Beyond absolute error magnitudes (MAE), the systematic orientation of the errors is evaluated. Hexbin scatter plots are utilized to map the extraction bias (landward vs. seaward) across the cross-shore distances, revealing intrinsic behaviors of specific architectures and thresholding techniques.
+    \item \textbf{Environmental Dependency Assessment:} To isolate the sources of error variability, the extraction offsets are cross-referenced with hydrodynamic forcing. Specifically, the offsets are analyzed across categorical quartiles of tidal levels and significant wave heights ($H_s$) to assess model degradation under complex coastal dynamics.
+    \item \textbf{Cross-Site Generalization:} The robustness of the models is quantified by calculating the MAE difference ($\Delta$ MAE) between the sheltered baseline site (El Puntal) and the highly dynamic stress-test site (Salinas). A minimized $\Delta$ MAE serves as the primary indicator of a model's capacity to generalize without overfitting to local morphologies.
+    \item \textbf{Multi-Criteria Ranking:} Finally, all computed metrics (RMSE, MAE, MAD, Bias, and $R^2$) are synthesized and normalized into heatmaps and bump charts to produce a definitive, objective ranking of the top-performing global configurations.
 \end{itemize}
 
 \subsection{Summary of Evaluated Models}
@@ -590,31 +638,180 @@ To provide a clear overview of the entire experimental matrix, Table \ref{tab:ev
     \label{tab:evaluation_recap}
 \end{table}
 
+
 \chapter{Results}
 
-TO BE WRITTEN
+\section{Physical Context: Sand Reflectance and Colorimetric Assessment}
+\label{sec:results_sand_reflectance}
 
-Detail in this section the results obtained using the methodology described in the previous section.
+To establish the physical baseline of the study areas and test the hypothesis regarding the spectral ambiguity at Salinas beach, the brightness and colorimetry of the supratidal sand were quantified. Following the strict hydrodynamic filtering detailed in Section \ref{sec:sand_reflectance}, a total of 28 optimal scenes for El Puntal and 24 scenes for Salinas were retained for this analysis. Figure \ref{fig:reflectance_boxplots} illustrates the probabilistic distributions of the two evaluated metrics across both locations.
 
+The Mean Visible Reflectance ($\bar{\rho}_{RGB}$) demonstrates a significant disparity in the overall albedo between the two sites. El Puntal exhibits highly reflective sand with a mean intensity value of $2313.09 \pm 312.91$. In stark contrast, the sand at Salinas is considerably darker, yielding a mean reflectance of $1733.10 \pm 146.25$. In relative terms, this represents a difference of -25\% for Salinas. This absolute reduction in baseline brightness physically confirms the presence of highly absorbent carbonaceous materials mixed within the Salinas intertidal zone.
 
-%Recull of job results. There should be a correspondence with the methodology that the results are what is obtained after applying the methodology.
+Furthermore, the Red-Blue Differential ($\Delta_{R-B}$) reveals an even more pronounced divergence in the colorimetric signature of the beaches. El Puntal displays the classic physical signature of golden sand (reflecting significantly more red light than blue) resulting in a high mean differential of $883.88 \pm 252.24$. Conversely, Salinas presents a drastically flattened spectral response, with a mean differential of $179.05 \pm 135.14$. In relative terms, this represents a difference of -80\% for Salinas. As observed in the boxplots, the interquartile ranges of these distributions do not overlap, indicating a fundamentally different geological coloration. The exceptionally low $\Delta_{R-B}$ at Salinas quantitatively proves that its sand behaves spectrally more like a neutral grey or black body, rather than standard beach sand.
 
-%The figures must be explained and quoted in the text, such as \ref{fig:my_label}, in which the error is shown depending on the distance, in arbitrary units. All graphs must have the title of the axes.
-%
-%\begin{figure}[!htbp]
-%    \centering
-%    %\includegraphics[width=7truecm]{Rplotmanh.png}
-%    %\caption{Error working distance in arbitrary units.}
-%    %\label{fig:my_label}
-%\end{figure}
+These empirical findings successfully validate the classification of Salinas as a morphological stress-test environment. The inherently dark and spectrally flat nature of its sand creates a low-reflectance background that closely mimics the radiometric signature typical of water bodies in optical imagery. This structural baseline establishes a critical semantic ambiguity that is hypothesized to severely penalize the segmentation performance of traditional normalized spectral indices, a phenomenon that will be systematically addressed in the subsequent geometric evaluations (see Section \ref{sec:results_geometric_eval}).
 
-%\chapter{Discussion}
-%Discussion of results in project context. It is in this section that they make sense and in which the research questions are answered and it is shown how the results respond to the problems raised.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15truecm]{figure_brightness_comparison_by_site.png}
+    \caption{Comparison of the sand reflectance metrics between El Puntal and Salinas. The left panel displays the absolute albedo proxy ($\bar{\rho}_{RGB}$), while the right panel highlights the colorimetric slope ($\Delta_{R-B}$). Boxplots represent the interquartile range and median, with overlaid stripplots detailing individual scene observations.}
+    \label{fig:reflectance_boxplots}
+\end{figure}
 
-%This part may not apply depending on the type of work.
+% Esta sección sirve para establecer el contexto físico antes de ver cómo fallan los modelos basados en índices espectrales.
+% Narrativa: Aquí presentarás las distribuciones probabilísticas (histogramas o KDEs) de \bar{\rho}_{RGB} y \Delta_{R-B} entre Salinas y El Puntal.
+% Objetivo: Confirmar la hipótesis de que la arena de Salinas es espectralmente más oscura, sentando la base para entender los fallos.
 
-%\chapter{Economic evaluation}
-%If applicable, a section of ``Economic evaluation of work' will be included. This section will indicate the expenses associated with the development and maintenance of work, as well as the economic benefits obtained. A final analysis on the viability of the product must be carried out.
+\section{Deep Learning Pixel-based Performance}
+\label{sec:results_pixel_eval}
+% Presentación de las métricas puramente basadas en la matriz de píxeles medidas dentro del buffer de 100m.
+% Objetivo: Demostrar que las arquitecturas aprendieron correctamente a segmentar la clase "agua" antes del proceso de vectorización subpíxel.
+
+\section{Geometric Evaluation: Cross-shore Offsets}
+\label{sec:results_geometric_eval}
+% Introducción breve indicando que esta sección traslada el análisis al dominio geométrico (metros) usando la metodología de transectos.
+
+\subsection{Overarching Family Performance (Index-based vs. Deep Learning)}
+\label{subsec:overarching_performance}
+
+To establish a macroscopic comparison between the two fundamental approaches, the cross-shore extraction errors (offsets) were initially aggregated by model family across both study areas. Figure \ref{fig:overall_family_boxplots} (left panel) presents the overall performance distributions, revealing a decisive superiority of the Deep Learning architectures over the traditional spectral baselines. 
+
+Globally, the DL-based models achieved a median offset of 5.56 m, nearly halving the 10.02 m median error recorded by the Index-based methods. Beyond the absolute magnitude of the error, the variance showcases an even more critical disparity. The interquartile range (IQR) for the DL family is remarkably tight (7.42 m), whereas the traditional indices exhibit a widespread error distribution (IQR of 21.08 m). This indicates that, regardless of the specific architecture or thresholding technique applied, semantic segmentation models consistently yield highly stable and precise waterline contours, minimizing severe extraction failures.
+
+However, the overarching advantage of the Deep Learning approach becomes most apparent when the error distributions are disaggregated by study area (Figure \ref{fig:overall_family_boxplots}, right panel). This spatial breakdown directly tests the models against the morphological complexities established in Section \ref{sec:results_sand_reflectance}. In Section \ref{subsec:environmental_drivers}, these differences will be further analyzed in detail.
+
+For the Index-based family, the extraction performance is highly site-dependent. At the relatively sheltered, golden-sanded baseline of El Puntal, the indices perform reasonably well, maintaining a median offset of 7.81 m and a relatively controlled 75th percentile (Q3: 16.69 m). In stark contrast, when deployed over the stress-test environment of Salinas, the traditional algorithms experience a severe degradation. The median error completely doubles to 16.32 m, and the distribution stretches massively, with the Q3 reaching 51.79 m. This severe structural downgrade confirms that pixel-by-pixel spectral formulations are fundamentally vulnerable to the radiometric ambiguity caused by dark carbonaceous sand and extensive wave foam.
+
+Conversely, the Deep Learning models demonstrate an outstanding geographic invariance. At El Puntal, the DL family achieves a median error of 5.47 m. When subjected to the challenging conditions of Salinas, the performance remains virtually unchanged, with a median offset of 5.72 m and a strictly bounded upper quartile (Q3: 10.53 m). This remarkable consistency proves that advanced neural networks successfully leverage broader spatial context and structural patterns. By understanding the semantic relationship between the breaking waves, the wet sand, and the ocean, the DL architectures effectively bypass the spectral limitations that severely penalize traditional thresholding techniques in highly dynamic macrotidal environments.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=17truecm]{figure_overall_family_boxplots.png}
+    \caption{Distribution of cross-shore extraction offsets by model family. The left panel (Boxplot) displays the aggregated global performance, highlighting the median and interquartile range (IQR). The right panel (Violin plot) disaggregates the errors by study area (El Puntal vs. Salinas), emphasizing the severe performance degradation of index-based methods in complex environments compared to the geographic robustness of DL models.}
+    \label{fig:overall_family_boxplots}
+\end{figure}
+
+% Responde a la Q1: Cuál de los dos grandes mundos algorítmicos tiene menos error absoluto y cuál sufre más dependiendo de la morfología de la playa.
+% Gráficos del notebook: El panel doble con el Boxplot general (izquierda) y el Violin plot dividido por playa (derecha).
+
+\subsection{Intra-Family Model Assessment and Spatial Bias}
+\label{subsec:intra_family_assessment}
+
+Having established the overarching superiority of the Deep Learning approach, it is necessary to intrinsically evaluate the specific configurations within each family. This intra-family assessment identifies which architectural combinations and thresholding techniques yield the highest predictive power, utilizing the Mean Absolute Error (MAE) as the primary evaluation metric.
+
+% Se destaca la inestabilidad y el buen rendimiento del SCoWI + LM Otsu.
+Regarding the Index-based models, the error matrix reveals an extreme sensitivity to the chosen binarization threshold. The performance of a single spectral index can fluctuate drastically depending on the thresholding algorithm applied. For instance, MNDWI suffers a massive degradation using a Zero threshold (MAE: 48.35 m) but improves significantly with the Local Minimum (LM) Otsu (17.34 m). Conversely, NDWI performs reasonably with a Zero cutoff (20.22 m) but completely fails under LM Otsu (48.43 m). Standard Otsu consistently yields poor results across most indices, struggling with the multimodal histograms of macrotidal beaches. Notably, the optimal configuration within this family is the subtractive SCoWI coupled with the LM Otsu threshold, achieving a MAE of 8.71 m. This result empirically validates the SCoWI's specific formulation designed to suppress wave foam and intertidal noise, provided it is paired with a context-aware thresholding technique.
+
+% Se destaca la estabilidad y el éxito de la hibridación (U-Net + MiT-B2).
+In stark contrast to the volatility of the traditional indices, the Deep Learning matrix exhibits remarkable algorithmic stability. Regardless of the architecture or encoder chosen, all DL configurations constrained their average error to a tight operational band between 7.27 m and 8.54 m. Within this high-performing group, the U-Net architecture consistently outperformed SegFormer and DeepLabV3+. Most importantly, the results confirm the hybridization hypothesis proposed in the methodological framework (Section \ref{sec:dl_models}). Combining the global-context awareness of the hierarchical Vision Transformers (MiT-B2 and MiT-B4) into the precise local-feature CNN decoder of U-Net yielded the absolute best global performance. Specifically, the U-Net paired with the MiT-B2 encoder achieved the lowest recorded error of the entire study, with a MAE of 7.27 m. Interestingly, a nuanced pattern emerges in this matrix regarding model capacity and feature extraction depth. With the exception of DeepLabV3+, which marginally benefited from increased parameterization, both the U-Net and SegFormer architectures systematically yielded better geometric accuracy when paired with lighter encoders, such as EfficientNet-B4 and MiT-B2, rather than heavier, more complex counterparts, such as EfficientNet-B7 and MiT-B4. This suggests that excessively deep encoders may induce a degree of spatial overfitting or loss of the high-resolution features necessary for precise shoreline delineation, particularly in the context of the complex coastal environments evaluated in this study.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figure_heatmap_mae.png}
+    \caption{Mean Absolute Error (MAE) heatmaps for intra-family configuration assessment. The left panel details the performance of spectral indices across different thresholding techniques, highlighting extreme variance. The right panel displays the Deep Learning configurations, demonstrating high stability and the superiority of the U-Net (MiT-B2) hybrid architecture.}
+    \label{fig:mae_heatmaps}
+\end{figure}
+
+% Frase de transición hacia la segunda mitad de la sección (Hexbins).
+Beyond the absolute magnitude of the extraction error, it is critical for coastal engineering applications to understand the orientation of this displacement. To assess whether the models exhibit a systematic spatial bias (tending to delineate the waterline either too far inland or too far seaward), the cross-shore predictions (SDW) were mapped against the ground-truth reference (RWL) using hexbin density plots.
+
+The hexbin distributions for traditional spectral indices (Figure \ref{fig:hexbins_index}) reveal extreme spatial dispersion and distinct systematic failure modes. The Coefficient of Determination ($R^2$) reflects this volatility, ranging from a low 0.31 (MNDWI Zero) to a highly correlated 0.91 (SCoWI LM Otsu). Visually, the vast majority of spectral combinations exhibit a pronounced \textit{Landward} bias, characterized by large negative Mean Error (Bias) values. For instance, MNDWI (Zero) and AWEInsh (Otsu) yielded biases of -47.87 m and -33.49 m, respectively. This severe landward offset demonstrates that standard indices systematically misclassify the saturated intertidal zone as water, effectively tracing the boundary between dry and wet sand rather than the true instantaneous waterline. 
+
+Conversely, NDWI (particularly when coupled with LM Otsu) exhibits an extreme \textit{Seaward} bias, recording a massive positive displacement of +46.18 m. This behavior aligns with the well documented vulnerability of the NDWI to breaking wave foam, causing the algorithm to falsely track the outer edge of the surf zone instead of the shoreline. The only robust exception within this traditional family is SCoWI (LM Otsu). It successfully clusters the bulk of its predictions along the 1:1 agreement bisector, achieving an $R^2$ of 0.91 and a minimal landward bias of -2.75 m.
+
+In stark contrast, the hexbin density plots for the Deep Learning models (Figure \ref{fig:hexbins_dl}) display very little spatial dispersion, visually confirming their structural robustness. The visual uniformity across the panels is supported by all evaluated DL configurations achieving a very high $R^2 \ge 0.96$, tightly positioning on the 1:1 bisector line. Unlike the index-based methods, the semantic segmentation architectures completely eliminate the severe landward (wet sand) and seaward (foam) failure modes. 
+
+The statistical metrics reveal a highly controlled, very slight \textit{Seaward} bias across all DL architectures, ranging narrowly from +3.20 m (DeepLabV3+ EfficientNet-B4) to +5.48 m (SegFormer MiT-B4). This indicates a minimal, systematic tendency of the DL models to delineate the waterline marginally closer to the swash zone, in contrast to the traditional baseline with its massive errors. Ultimately, the visual and statistical indistinguishability among the DL hexbins reaffirms that these neural networks have successfully learned the underlying semantic context of the coastal boundary, effectively rendering the extraction process immune to the spectral noise of macrotidal environments.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14.5cm]{figure_hexbin_index_models.png}
+    \caption{Hexbin error distributions for Index-based models. The plots map the predicted shoreline position (SDW) against the reference waterline (RWL). The dashed white line represents the 1:1 perfect agreement. Most indices show a severe Landward bias (wet sand confusion), while NDWI shows a Seaward bias (foam confusion). SCoWI (LM Otsu) stands out as the most accurate traditional method.}
+    \label{fig:hexbins_index}
+\end{figure}
+
+\begin{landscape}
+    \begin{figure}[p]
+        \centering
+        % Usar \linewidth asegura que la figura ocupe el ancho máximo de la página apaisada
+        \includegraphics[width=20cm]{figure_hexbin_dl_models.png} 
+        \caption{Hexbin error distributions for Deep Learning semantic segmentation models. In contrast to the traditional baseline, all DL configurations demonstrate minimal dispersion, uniformly tight clustering around the 1:1 bisector ($R^2 \ge 0.96$), and the complete elimination of extreme cross-shore biases.}
+        \label{fig:hexbins_dl}
+    \end{figure}
+\end{landscape}
+
+% Responde a la Q2: Evalúa los modelos intrínsecamente y mapea la orientación exacta del error.
+% Gráficos del notebook: 
+% 1. Los Heatmaps de MAE separados por familias (Thresholds vs Índices y Encoders vs Arquitecturas).
+% 2. Los paneles de Hexbins con la línea 1:1, mostrando si los modelos tienden al sesgo Landward (hacia la tierra) o Seaward.
+
+\subsection{Environmental Drivers of Error Variability}
+\label{subsec:environmental_drivers}
+
+% Introducción al análisis a lo largo de la costa (alongshore).
+Before evaluating the temporal and hydrodynamic forcing, it is essential to examine the spatial variability of the extraction error along the coastline. By analyzing the distribution of cross-shore offsets grouped by \texttt{transect\_id}, specific morphological, geological, or anthropogenic features that locally disrupt model performance can be identified.
+
+% Análisis de los modelos Index-based (Puntal y Salinas).
+Figure \ref{fig:transects_index} details this alongshore variability for the Index-based models. At El Puntal, a distinct spatial pattern emerges: the first 15 transects exhibit error metrics (median, third quartile, and maximum bounds) notably below the overall site average. This localized increase in accuracy is driven by two main factors. First, the initial $\approx8$ transects correspond to the navigation channel of the Santander Bay, an area subjected to periodic dredging operations. Second, this entire initial stretch is highly sheltered from incident wave energy, minimizing foam-induced spectral noise. From transect 15 onwards, the offsets closely align with the overall median, until the final 5 transects, where a sudden spike in error is recorded. This localized degradation coincides with a slight shift in the coastline orientation and the proximity to a small stream mouth, which likely introduces spectral confusion due to localized moisture and sediment discharge.
+
+At Salinas, the traditional spectral indices also display significant alongshore volatility. The initial transects record lower-than-average offsets; this physically corresponds to the narrowest sector of the beach where high tides frequently inundate the entire dry sand area, paradoxically restricting the physical space for the models to commit severe landward misclassifications. Conversely, a distinct cluster of elevated errors emerges between transects 12 and 21. This specific coastal stretch is backed by high-rise urban infrastructure. During the Sentinel-2 mid-morning overpass, these buildings project prominent shadows across the intertidal zone, severely confusing the pixel-by-pixel radiometric thresholding of traditional indices. Finally, the last two transects, located immediately adjacent to the eastern inlet jetty, show reduced offsets, likely due to the constrained morphodynamic mobility of the sand volume trapped against this rigid coastal structure.
+
+% Análisis de los modelos DL-based. Destacamos la estabilidad y el pequeño detalle del dique al final.
+In sharp contrast to the baseline, the spatial variability across transects for the Deep Learning models (Figure \ref{fig:transects_dl}) is remarkably lower, visually corroborating their geographic robustness. At El Puntal, there is a marginal reduction in offsets between transects 3 and 10, but the magnitude of this variation is virtually negligible compared to the volatility of the index-based models. Similarly, at Salinas, the DL predictions remain stable across the entire beach longitude, effectively bypassing the severe urban shadow artifacts seen in spectral indices. The only notable, albeit minor, anomaly occurs in the last four transects near the Salinas jetty. Here, the DL models register slightly higher offsets relative to their internal overall median.
+
+% --- Figura de Transectos: Index-based ---
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figure_boxplot_by_transect_index_models_with_map.png}
+    \caption{Alongshore variability of extraction offsets for Index-based models. The upper map panels reference the geographical location of the cross-shore transects. The boxplots show the error distribution per \texttt{transect\_id} compared to the overall site performance (right sub-panels).}
+    \label{fig:transects_index}
+\end{figure}
+
+% --- Figura de Transectos: DL-based ---
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figure_boxplot_by_transect_dl_models_with_map.png}
+    \caption{Alongshore variability of extraction offsets for Deep Learning models. The upper map panels reference the geographical location of the cross-shore transects. The boxplots show the error distribution per \texttt{transect\_id} compared to the overall site performance (right sub-panels).}
+    \label{fig:transects_dl}
+\end{figure}
+
+% Este texto cierra la sección 4.3.3. Empieza explicando cómo medimos la influencia hidrodinámica (con porcentajes) y luego ataca Marea y Oleaje.
+
+Beyond spatial artifacts, the temporal variability forced by hydrodynamic conditions, specifically astronomical tide and significant wave height ($H_s$) was evaluated. To isolate the environmental sensitivity of the models from their baseline errors, the performance was analyzed using the relative percentage change ($\Delta \%$) of the offset within each hydrodynamic quartile against the overall median of each specific study site.
+
+The tide quartile analysis reveals a critical, structurally consistent phenomenon: the lowest performance across all models occurs during low tide (Q1), rather than high tide (Q4). For the Index-based models, this degradation is catastrophic in the Salinas stress-test environment, where the Q1 relative offset spikes by +312.9\% (reaching an absolute median error of 67.38 m). Physically, low tide in macrotidal beaches exposes a vast intertidal zone characterized by water-saturated sand, complex rhythmic forms, and remnant pooling. This flat, dark, and highly reflective wetted surface critically confuses pixel-based thresholding algorithms. Conversely, during high tide (Q4), the complex intertidal zone is entirely submerged, leaving a starker dry sand-water boundary that improves the index-based relative performance by -51.6\% in Salinas and -22.0\% in El Puntal.
+
+The Deep Learning models exhibit a conceptually similar sensitivity profile to the tidal cycle, confirming that the exposure of the intertidal zone is an inherently challenging feature even for human annotators. However, the magnitude of their sensitivity is exceptionally controlled. In Salinas, the DL Q1 relative downgrade is only +30.2\%, which translates to a highly operational absolute median offset of just 7.44 m. This demonstrates that while the neural networks detect the physical ambiguity of the wet sand, their spatial context awareness prevents the catastrophic delineations that plague traditional indices.
+
+Regarding wave energy forcing, a direct correlation between significant wave height ($H_s$) and extraction error is observed. For the Index-based models, transitioning from calm seas (Q1) to storm conditions (Q4) steadily increases the relative error in both El Puntal (from -7.0\% to +16.9\%) and Salinas (from -16.5\% to +25.0\%). This deterioration is a direct consequence of extensive white water foam and wave run-up physically widening the swash zone, which the spectral indices misclassify. 
+
+The DL-based architectures once again demonstrate superior resilience against wave forcing. At El Puntal, the models remain completely stable regardless of the wave height, fluctuating minimally. In Salinas, the onset of extreme wave conditions (Q4) induces a slight relative increase of +18.0\%. Nevertheless, this relative bump corresponds to an absolute median error of only 6.74 m, confirming that the semantic segmentation networks can accurately track the underlying shoreline position regardless of extreme surf zone hydrodynamics.
+
+% --- Figura de los Cuartiles Hidrodinámicos (Relativo) ---
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figure_pointplot_relative_quartiles.png}
+    \caption{Relative performance sensitivity to hydrodynamic forcing. The plots display the percentage change in the median offset ($\Delta \%$) relative to the overall site median across astronomical tide (left) and significant wave height (right) quartiles. Index-based models (top row) show massive degradation during low tide (Q1) due to the exposed saturated intertidal zone. DL-based models (bottom row) demonstrate exceptional environmental resilience, maintaining highly stable predictions across all tidal and wave states.}
+    \label{fig:quartiles_relative}
+\end{figure}
+
+% Responde a la Q3: Demuestra si el error aumenta drásticamente durante pleamares o eventos de alto oleaje.
+% Gráficos del notebook:
+% 1. Los boxplots del offset distribuidos a lo largo del transect_id para ver zonas críticas locales.
+% 2. El panel de Stripplots + Pointplots agrupados por cuartiles de marea (tide_quartile) y de oleaje (hs_quartile).
+
+\subsection{Cross-Site Generalization and Robustness}
+\label{subsec:cross_site_generalization}
+% Responde a la Q4: Identifica qué modelos se "sobreajustan" a las condiciones fáciles (Puntal) y fracasan en el stress-test (Salinas).
+% Gráficos del notebook: El Lollipop Chart (horizontal) que muestra la diferencia (Delta MAE) entre Puntal y Salinas.
+
+\section{Final Multi-Criteria Ranking}
+\label{sec:final_ranking}
+% Responde a la Q5: Síntesis de todo el apartado anterior combinando todas las métricas en un único sistema de puntuación.
+% Gráficos del notebook:
+% 1. El Heatmap final combinado (overall_df_combined) con todas las métricas normalizadas.
+% 2. El Bump Chart (Ranking de líneas) que corona a los tres mejores modelos globales con estrellas.
 
 \chapter{Conclusions and Future Works}
 
