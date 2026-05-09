@@ -784,13 +784,19 @@ In sharp contrast to the baseline, the spatial variability across transects for 
 
 Beyond spatial artifacts, the temporal variability forced by hydrodynamic conditions, specifically astronomical tide and significant wave height ($H_s$) was evaluated. To isolate the environmental sensitivity of the models from their baseline errors, the performance was analyzed using the relative percentage change ($\Delta \%$) of the offset within each hydrodynamic quartile against the overall median of each specific study site.
 
+% Tide analysis: Se destaca la degradación catastrófica de los índices en Q1 (bajamar) y la estabilidad de los DL.
+% -- Index-based models
 The tide quartile analysis reveals a critical, structurally consistent phenomenon: the lowest performance across all models occurs during low tide (Q1), rather than high tide (Q4). For the Index-based models, this degradation is catastrophic in the Salinas stress-test environment, where the Q1 relative offset spikes by +312.9\% (reaching an absolute median error of 67.38 m). Physically, low tide in macrotidal beaches exposes a vast intertidal zone characterized by water-saturated sand, complex rhythmic forms, and remnant pooling. This flat, dark, and highly reflective wetted surface critically confuses pixel-based thresholding algorithms. Conversely, during high tide (Q4), the complex intertidal zone is entirely submerged, leaving a starker dry sand-water boundary that improves the index-based relative performance by -51.6\% in Salinas and -22.0\% in El Puntal.
 
-The Deep Learning models exhibit a conceptually similar sensitivity profile to the tidal cycle, confirming that the exposure of the intertidal zone is an inherently challenging feature even for human annotators. However, the magnitude of their sensitivity is exceptionally controlled. In Salinas, the DL Q1 relative downgrade is only +30.2\%, which translates to a highly operational absolute median offset of just 7.44 m. This demonstrates that while the neural networks detect the physical ambiguity of the wet sand, their spatial context awareness prevents the catastrophic delineations that plague traditional indices.
+% -- DL-based models
+The Deep Learning models exhibit a conceptually similar sensitivity profile to the tidal cycle, confirming that the exposure of the intertidal zone is an inherently challenging feature even for human annotators. However, the magnitude of their sensitivity is exceptionally controlled. In Salinas, the DL Q1 relative downgrade is only +30.2\%, which translates to a reasonably operational absolute median offset of just 7.44 m. This demonstrates that while the neural networks detect the physical ambiguity of the wet sand, their spatial context awareness prevents the catastrophic delineations that plague traditional indices.
 
+% Wave energy analysis: Se destaca la degradación de los índices con el aumento del oleaje y la estabilidad de los DL incluso en Q4.
+% -- Index-based models
 Regarding wave energy forcing, a direct correlation between significant wave height ($H_s$) and extraction error is observed. For the Index-based models, transitioning from calm seas (Q1) to storm conditions (Q4) steadily increases the relative error in both El Puntal (from -7.0\% to +16.9\%) and Salinas (from -16.5\% to +25.0\%). This deterioration is a direct consequence of extensive white water foam and wave run-up physically widening the swash zone, which the spectral indices misclassify. 
 
-The DL-based architectures once again demonstrate superior resilience against wave forcing. At El Puntal, the models remain completely stable regardless of the wave height, fluctuating minimally. In Salinas, the onset of extreme wave conditions (Q4) induces a slight relative increase of +18.0\%. Nevertheless, this relative bump corresponds to an absolute median error of only 6.74 m, confirming that the semantic segmentation networks can accurately track the underlying shoreline position regardless of extreme surf zone hydrodynamics.
+% -- DL-based models
+The DL-based architectures once again demonstrate superior resilience against wave forcing. At El Puntal, the models remain completely stable regardless of the wave height, fluctuating minimally. In Salinas, the presence of extreme wave conditions (Q4) induces a slight relative increase of +18.0\%. Nevertheless, this relative bump corresponds to an absolute median error of only 6.74 m, confirming that the semantic segmentation networks can accurately track the underlying shoreline position regardless of extreme surf zone hydrodynamics.
 
 % --- Figura de los Cuartiles Hidrodinámicos (Relativo) ---
 \begin{figure}[H]
@@ -800,13 +806,35 @@ The DL-based architectures once again demonstrate superior resilience against wa
     \label{fig:quartiles_relative}
 \end{figure}
 
-% Responde a la Q3: Demuestra si el error aumenta drásticamente durante pleamares o eventos de alto oleaje.
+% Responde a la Q3: Demuestra si el error aumenta drásticamente durante bajamares o eventos de alto oleaje.
 % Gráficos del notebook:
 % 1. Los boxplots del offset distribuidos a lo largo del transect_id para ver zonas críticas locales.
-% 2. El panel de Stripplots + Pointplots agrupados por cuartiles de marea (tide_quartile) y de oleaje (hs_quartile).
+% 2. El panel de lineplots agrupados por cuartiles de marea (tide_quartile) y de oleaje (hs_quartile).
 
 \subsection{Cross-Site Generalization and Robustness}
 \label{subsec:cross_site_generalization}
+
+% Explicamos la métrica Delta MAE y su propósito.
+A critical requirement for any automated waterline extraction pipeline is its ability to operate reliably across varying geographical environments without requiring site-specific recalibration. To evaluate this spatial robustness, the cross-site generalization was quantified by calculating the difference in Mean Absolute Error ($\Delta$ MAE) between the baseline environment (El Puntal) and the morphodynamic stress-test site (Salinas) for each model. A $\Delta$ MAE close to zero indicates perfect generalization, whereas large negative values denote severe performance degradation when transitioning to the complex beach.
+
+% Análisis de los índices tradicionales (la catástrofe y la excepción).
+As visualized in the lollipop charts (Figure \ref{fig:delta_mae_lollipop}), the traditional Index-based family struggles significantly with cross-site transferability, recording a massive mean degradation of 23.16 m. This confirms that spectral thresholding is highly sensitive to local radiometric conditions. NDWI (LM Otsu) suffers a catastrophic collapse, deteriorating by 79.04 m in Salinas, further proving its severe vulnerability to the wave foam prevalent in higher-energy macrotidal shores. Even the more robust thresholding configurations, such as MNDWI (Zero) and NDWI (Zero), degrade by 19.30 m and 30.80 m, respectively. The only acceptable outlier within this family is, once again, the SCoWI coupled with LM Otsu, which manages to constrain its degradation to 5.89 m. While commendable for a traditional index, this value still represents a substantial loss of precision.
+
+% Análisis de los modelos DL (la robustez casi mágica).
+In striking contrast, the Deep Learning family demonstrates an extraordinary level of cross-site robustness. The models exhibit a near-perfect generalization, with a mean $\Delta$ MAE of merely -0.68 m across all tested architectures. This structural stability implies that the neural networks degrade by less than a tenth of the native Sentinel-2 pixel size (10 m) when facing the dark sand, shadows, and complex intertidal morphology of Salinas. 
+
+Within this highly robust group, several configurations achieved virtually identical performance across both beaches. SegFormer (EfficientNet-B7) and DeepLabV3+ (MiT-B2) recorded $\Delta$ MAEs of just -0.03 m and -0.09 m, respectively. Even the U-Net (MiT-B2), which was previously identified as the top performer in terms of absolute MAE (Section \ref{subsec:intra_family_assessment}), generalized exceptionally well with a minor penalty of -0.96 m. Even the "worst-generalizing" DL model, DeepLabV3+ (EfficientNet-B4), only degraded by 1.57 m. 
+
+These results conclusively prove that semantic segmentation models do not overfit to the local radiometry of golden, sheltered beaches. Instead, they successfully abstract the universal semantic features of the land-water boundary, rendering them highly reliable for large-scale, automated coastal monitoring in heterogeneous environments.
+
+% --- Figura del Lollipop Chart (Delta MAE) ---
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figure_lollipop_delta.png}
+    \caption{Cross-site generalization evaluated through the difference in Mean Absolute Error ($\Delta$ MAE) between El Puntal and Salinas. Values closer to the zero vertical line indicate higher robustness to changing environmental conditions. The DL-based models (right panel) demonstrate near-perfect generalization compared to the highly site-dependent Index-based baseline (left panel).}
+    \label{fig:delta_mae_lollipop}
+\end{figure}
+
 % Responde a la Q4: Identifica qué modelos se "sobreajustan" a las condiciones fáciles (Puntal) y fracasan en el stress-test (Salinas).
 % Gráficos del notebook: El Lollipop Chart (horizontal) que muestra la diferencia (Delta MAE) entre Puntal y Salinas.
 
