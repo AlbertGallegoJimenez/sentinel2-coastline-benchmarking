@@ -646,9 +646,9 @@ To provide a clear overview of the entire experimental matrix, Table \ref{tab:ev
 
 To establish the physical baseline of the study areas and test the hypothesis regarding the spectral ambiguity at Salinas beach, the brightness and colorimetry of the supratidal sand were quantified. Following the strict hydrodynamic filtering detailed in Section \ref{sec:sand_reflectance}, a total of 28 optimal scenes for El Puntal and 24 scenes for Salinas were retained for this analysis. Figure \ref{fig:reflectance_boxplots} illustrates the probabilistic distributions of the two evaluated metrics across both locations.
 
-The Mean Visible Reflectance ($\bar{\rho}_{RGB}$) demonstrates a significant disparity in the overall albedo between the two sites. El Puntal exhibits highly reflective sand with a mean intensity value of $2313.09 \pm 312.91$. In stark contrast, the sand at Salinas is considerably darker, yielding a mean reflectance of $1733.10 \pm 146.25$. In relative terms, this represents a difference of -25\% for Salinas. This absolute reduction in baseline brightness physically confirms the presence of highly absorbent carbonaceous materials mixed within the Salinas intertidal zone.
+The Mean Visible Reflectance ($\bar{\rho}_{RGB}$) demonstrates a significant disparity in the overall albedo between the two sites. El Puntal exhibits highly reflective sand with a median intensity value of $2293.15$. In stark contrast, the sand at Salinas is considerably darker, yielding a median reflectance of $1737.90$. In relative terms, this represents a difference of -25\% for Salinas. This absolute reduction in baseline brightness physically confirms the presence of highly absorbent carbonaceous materials mixed within the Salinas intertidal zone.
 
-Furthermore, the Red-Blue Differential ($\Delta_{R-B}$) reveals an even more pronounced divergence in the colorimetric signature of the beaches. El Puntal displays the classic physical signature of golden sand (reflecting significantly more red light than blue) resulting in a high mean differential of $883.88 \pm 252.24$. Conversely, Salinas presents a drastically flattened spectral response, with a mean differential of $179.05 \pm 135.14$. In relative terms, this represents a difference of -80\% for Salinas. As observed in the boxplots, the interquartile ranges of these distributions do not overlap, indicating a fundamentally different geological coloration. The exceptionally low $\Delta_{R-B}$ at Salinas quantitatively proves that its sand behaves spectrally more like a neutral grey or black body, rather than standard beach sand.
+Furthermore, the Red-Blue Differential ($\Delta_{R-B}$) reveals an even more pronounced divergence in the colorimetric signature of the beaches. El Puntal displays the classic physical signature of golden sand (reflecting significantly more red light than blue) resulting in a high median differential of $963.45$. Conversely, Salinas presents a drastically flattened spectral response, with a median differential of $206.23$. In relative terms, this represents a difference of -80\% for Salinas. As observed in the boxplots, the interquartile ranges of these distributions do not overlap, indicating a fundamentally different geological coloration. The exceptionally low $\Delta_{R-B}$ at Salinas quantitatively proves that its sand behaves spectrally more like a neutral grey or black body, rather than standard beach sand.
 
 These empirical findings successfully validate the classification of Salinas as a morphological stress-test environment. The inherently dark and spectrally flat nature of its sand creates a low-reflectance background that closely mimics the radiometric signature typical of water bodies in optical imagery. This structural baseline establishes a critical semantic ambiguity that is hypothesized to severely penalize the segmentation performance of traditional normalized spectral indices, a phenomenon that will be systematically addressed in the subsequent geometric evaluations (see Section \ref{sec:results_geometric_eval}).
 
@@ -665,6 +665,45 @@ These empirical findings successfully validate the classification of Salinas as 
 
 \section{Deep Learning Pixel-based Performance}
 \label{sec:results_pixel_eval}
+% Introducción sobre por qué evaluamos los píxeles antes que la línea geométrica.
+Prior to evaluating the geometric accuracy of the extracted shorelines (Section \ref{sec:results_geometric_eval}), it is imperative to assess the internal semantic representations learned by the Deep Learning architectures. By analyzing the pixel-by-pixel classification performance, the models' capacity to correctly interpret the complex physical elements of the coastal environment can be validated. This evaluation initially focuses on the multi-class segmentation task across four distinct coastal categories: Water, Sand, Wet Sand, and White Water.
+
+% Análisis de las clases "fáciles" y la crucial "Wet Sand".
+The median Intersection over Union (IoU) and Dice coefficient metrics reveal a robust baseline understanding of the macroscopic coastal environments across both study areas. The models excel at identifying the primary definitive features, achieving outstanding median IoU scores for the \textit{Water} class (0.981 at El Puntal, 0.928 at Salinas) and the dry \textit{Sand} class (0.914 at El Puntal, 0.832 at Salinas). 
+
+Crucially for macrotidal applications, the semantic isolation of the \textit{Wet Sand} class proved highly successful. The networks maintained a median IoU of 0.875 and 0.843 (Dice: 0.933 and 0.915) at El Puntal and Salinas, respectively. This strong performance mathematically justifies the geometric superiority of the Deep Learning models observed in later sections; the architectures are explicitly capable of differentiating the water-saturated intertidal zone from the actual instantaneous waterline, avoiding the severe radiometric confusion that critically penalizes traditional spectral indices.
+
+% La discusión sobre la anomalía del "White Water".
+The most notable variance in the multi-class assessment occurs within the \textit{White Water} category, which highlights the direct influence of local hydrodynamic conditions on model training and inference. At the exposed, high-energy beach of Salinas, the models achieve a functional median IoU of 0.651 (Dice: 0.788), successfully delineating the prominent surf zone. Conversely, at El Puntal, the \textit{White Water} performance collapses to a median IoU of 0.159 (Dice: 0.274). Rather than an architectural failure, this is a direct reflection of the physical environment: El Puntal is characterized with a lower frequency wave foam and a narrower extent of white water features. This severe class imbalance natively limits the predictive confidence of the model in that specific region, though it bears no negative impact on the overall shoreline extraction since the feature itself is absent.
+
+% --- Figura de los Boxplots Multi-clase ---
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figure_boxplot_iou_dice_by_classes.png}
+    \caption{Pixel-based performance distributions (IoU and Dice coefficient) for the four annotated coastal classes, disaggregated by study area. The networks demonstrate exceptional accuracy for standard macro-features (Water, Sand) and maintain highly robust predictions for the morphodynamically complex Wet Sand. The performance drop in White Water at El Puntal is directly attributed to the physical scarcity of wave foam in the sheltered estuarine environment.}
+    \label{fig:multiclass_performance}
+\end{figure}
+
+% Continuación de la sección 4.2. Transición del problema multiclase al problema binario (Water vs Non-water) y análisis de eficiencia.
+
+To align the pixel-based evaluation with the ultimate objective of the study (the extraction of a singular geometric waterline) the four multi-class categories were collapsed into a binary classification problem: \textit{Water} (incorporating Water and White Water) versus \textit{Non-water} (incorporating Sand and Wet Sand). 
+
+When evaluated under this binary paradigm, the semantic performance of the Deep Learning models reaches near-saturation. As illustrated in the right panel of Figure \ref{fig:binary_efficiency}, all evaluated architectures achieved an exceptional Mean IoU tightly bounded between 0.924 and 0.941. On a standard absolute scale, the visual variance among the models is virtually imperceptible. This confirms that the fundamental semantic delineation of the land-water boundary is definitively resolved by modern convolutional and transformer-based architectures, effectively eliminating the radiometric confusion that plagues traditional indices.
+
+Because absolute semantic accuracy is saturated, the critical differentiator among the models shifts from raw predictive power to computational efficiency and architectural optimization. The left panel of Figure \ref{fig:binary_efficiency} maps the Mean IoU against the total number of trainable parameters for each configuration. 
+
+Counterintuitively, the highest performance is consistently achieved by the lighter architectures. The absolute maximum binary accuracy was recorded by SegFormer (MiT-B2), yielding a 0.941 mean IoU with a highly efficient footprint of approximately 24.7 million parameters. Similarly, the U-Net (MiT-B2) secured a 0.936 mean IoU requiring only 27.5 million parameters. 
+
+In stark contrast, scaling up the network capacity resulted in a marginal, yet systematic, degradation of performance. All configurations utilizing the heavy EfficientNet-B7 or MiT-B4 encoders (which demand computational footprints ranging from 61.3 to 67.1 million parameters) scored below the 0.935 mean IoU threshold. This inverse relationship between parameter count and binary accuracy highlights a critical architectural insight for the highly specific task of shoreline delineation: overparameterization does not yield better semantic abstraction. Instead, excessively deep encoders likely induce a degree of spatial overfitting, where the network sacrifices the fine-grained, high-resolution localization required to trace a sharp boundary in favor of unnecessary complex feature extraction. This pixel-level degradation of the boundary sharpness is a fundamental phenomenon that will be explicitly corroborated during the subsequent geometric offset evaluation (Section \ref{subsec:intra_family_assessment}).
+
+% --- Figura de Rendimiento Binario y Eficiencia ---
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figure_iou_vs_parameters.png}
+    \caption{Binary classification performance (Water vs. Non-water) and architectural efficiency. The right panel displays the Mean IoU on a standard 0-1 scale, highlighting the generalized predictive saturation across all models. The left panel maps the Mean IoU against the total parameter count, demonstrating that highly efficient encoders ($\sim$25M parameters, such as MiT-B2) systematically outperform their heavier, overparameterized counterparts ($>$60M parameters).}
+    \label{fig:binary_efficiency}
+\end{figure}
+
 % Presentación de las métricas puramente basadas en la matriz de píxeles medidas dentro del buffer de 100m.
 % Objetivo: Demostrar que las arquitecturas aprendieron correctamente a segmentar la clase "agua" antes del proceso de vectorización subpíxel.
 
@@ -838,8 +877,46 @@ These results conclusively prove that semantic segmentation models do not overfi
 % Responde a la Q4: Identifica qué modelos se "sobreajustan" a las condiciones fáciles (Puntal) y fracasan en el stress-test (Salinas).
 % Gráficos del notebook: El Lollipop Chart (horizontal) que muestra la diferencia (Delta MAE) entre Puntal y Salinas.
 
-\section{Final Multi-Criteria Ranking}
+\subsection{Final Multi-Criteria Ranking}
 \label{sec:final_ranking}
+
+% Introducción justificando por qué hacemos un ranking combinado.
+While the preceding sections isolated specific model vulnerabilities, such as spatial artifacts, urban shadows, and hydrodynamic forcing, a holistic evaluation requires synthesizing all geometric error metrics into a unified consensus. To definitively determine the optimal architecture for automated supratidal shoreline extraction, a multi-criteria ranking was established based on the aggregated performance across six robust statistical indicators: MAD, IQR, MAE, Bias, RMSE, and $R^2$.
+
+% Análisis del Heatmap de métricas absolutas. Aquí metemos el detalle brillante del SCoWI vs DL.
+The overall metrics heatmap (Figure \ref{fig:overall_metrics_heatmap}) illustrates the absolute performance values for all 24 evaluated configurations. The dichotomy between the two model families is numerically remarkable, with the Deep Learning architectures monopolizing the lowest error bands across almost all indicators. However, a highly notable anomaly exists within the traditional baseline: SCoWI (LM Otsu). This specific index achieved the absolute best global Median Absolute Deviation (MAD: 4.90 m) and the most neutral mean error (Bias: -2.75 m), outperforming even the neural networks in these specific central-tendency metrics. 
+
+Despite this impressive baseline precision, SCoWI (LM Otsu) suffers a significant penalty in its RMSE (16.67 m) and MAE (8.71 m) compared to the DL models. Physically, this indicates that while the SCoWI formulation successfully delineates the waterline accurately under optimal conditions, it remains vulnerable to severe, localized extraction failures (outliers) that heavily penalize the quadratic and absolute mean errors. Conversely, the Deep Learning models exhibit an extraordinary balance, maintaining tight IQRs (all $\le 11.95$ m) and extremely low RMSE values, proving their immunity to catastrophic extraction outliers.
+
+% Introducimos el Bump Chart y coronamos al Top 3.
+To distill these absolute values into a definitive hierarchy, a bump chart (Figure \ref{fig:bump_chart_ranking}) was generated by computing the rank of each model per metric and calculating their arithmetic mean. This comprehensive ranking system successfully identifies the top three performing architectures, crowning them as the definitive state-of-the-art for macrotidal environments:
+
+\begin{enumerate}
+    \item[$\star$] \textbf{1st Place: U-Net (MiT-B2) [Average Rank: 2.33].} This hybrid configuration is the undisputed global champion. By combining the precise spatial localization of the U-Net CNN decoder with the global context awareness of the MiT-B2 Vision Transformer, it secured the absolute \#1 rank in both MAE (7.27 m) and RMSE (11.35 m). This architecture provides the best overall balance between accuracy and outlier suppression.
+    
+    \item[$\star\star$] \textbf{2nd Place: DeepLabV3+ (MiT-B4) [Average Rank: 3.17].} This highly complex model proved to be the most consistent architecture of the study. It achieved the absolute \#1 rank in IQR (9.50 m) and $R^2$ (0.97), and the \#2 rank in MAE (7.45 m). Its performance demonstrates that advanced atrous spatial pyramid pooling (ASPP) paired with a deep transformer encoder yields incredibly stable waterline contours.
+    
+    \item[$\star\star\star$] \textbf{3rd Place: U-Net (EfficientNet-B4) [Average Rank: 3.33].} Proving that pure Convolutional Neural Networks are still highly competitive, this lightweight U-Net secured the third position globally. It ranked \#2 in $R^2$ and \#3 in both MAD and RMSE, offering an outstanding trade-off between architectural efficiency and geometric precision.
+\end{enumerate}
+
+Ultimately, this multi-criteria synthesis conclusively answers the core research question: Deep Learning semantic segmentation models (specifically hybrid U-Net architectures) drastically outperform traditional spectral indices, providing a structurally robust, environmentally resilient, and geographically invariant solution for satellite-derived waterline extraction.
+
+% --- Figura del Heatmap de Métricas ---
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figure_heatmap_overall_metrics.png}
+    \caption{Overall multi-criteria performance heatmap. The matrix displays the absolute values for MAD, IQR, MAE, Bias, RMSE, and $R^2$ across all evaluated models. The best absolute value for each metric is highlighted in bold, showcasing the Deep Learning dominance and the anomalous central-tendency precision of the SCoWI (LM Otsu) index.}
+    \label{fig:overall_metrics_heatmap}
+\end{figure}
+
+% --- Figura del Bump Chart (Ranking Final) ---
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figure_bump_chart_ranking.png}
+    \caption{Comprehensive bump chart ranking based on the six geometric and statistical metrics (1 = Best Performance). The arithmetic mean of these ranks dictates the global hierarchy, highlighting the Top 3 global architectures (U-Net MiT-B2, DeepLabV3+ MiT-B4, and U-Net EfficientNet-B4).}
+    \label{fig:bump_chart_ranking}
+\end{figure}
+
 % Responde a la Q5: Síntesis de todo el apartado anterior combinando todas las métricas en un único sistema de puntuación.
 % Gráficos del notebook:
 % 1. El Heatmap final combinado (overall_df_combined) con todas las métricas normalizadas.
