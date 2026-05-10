@@ -91,7 +91,7 @@ Consequently, there is a clear and urgent need to move beyond purely spectral fo
 
 \section{Work Objectives}
 
-Given the challenges posed by macrotidal coasts and the limitations of traditional spectral methods, the overarching goal of this Master's Thesis is to evaluate the operational viability of Deep Learning solutions for shoreline mapping. To ensure a robust assessment, the study will focus on three highly dynamic beaches located along the northern Spanish coast: Salinas (Asturias) and El Puntal (Cantabria). 
+Given the challenges posed by macrotidal coasts and the limitations of traditional spectral methods, the overarching goal of this Master's Thesis is to evaluate the operational viability of Deep Learning solutions for shoreline mapping. To ensure a robust assessment, the study will focus on two highly dynamic beaches located along the northern Spanish coast: Salinas (Asturias) and El Puntal (Cantabria). 
 
 \vspace{0.3cm}
 \noindent\textbf{Primary Objective:}
@@ -112,7 +112,7 @@ Given the challenges posed by macrotidal coasts and the limitations of tradition
 In compliance with the UOC's cross-disciplinary competence ``Ethical and global commitment'', this section identifies the positive and/or negative impacts of the Master's Thesis on the three dimensions: Sustainability, Ethical Behavior and Social Responsibility, and Diversity and Human Rights.
 
 \textbf{1. Sustainability} \\
-The project uses freely available Sentinel-2 Level-2A imagery from the Copernicus program and performs all processing either locally or on an institutional computing cluster. Traditional field-based coastal monitoring requires repeated physical surveys with vehicles, boats or aircraft, generating higher operational GHG emissions. The Deep Learning training phase incurs moderate energy consumption inherent to GPU usage; however, this is limited in scope and offset by the elimination of on-site campaigns. No other significant negative environmental impacts (resource depletion, waste generation or large-scale land use) are identified.
+The project uses freely available Sentinel-2 Level-2A imagery from the Copernicus program and performs all processing locally. Traditional field-based coastal monitoring requires repeated physical surveys with vehicles, boats or aircraft, generating higher operational GHG emissions. The Deep Learning training phase incurs moderate energy consumption inherent to GPU usage; however, this is limited in scope and offset by the elimination of on-site campaigns. No other significant negative environmental impacts (resource depletion, waste generation or large-scale land use) are identified.
 
 Overall impact: neutral to slightly positive.
 
@@ -161,8 +161,8 @@ The project is planned to be developed over a 5-month period (including the thes
     \item \textbf{Task 4:} Statistical analysis of results, benchmarking across different algorithms, and final evaluation.
     \begin{itemize}
         \item Pixel-based metrics evaluation (e.g., IoU, Dice Coefficient).
-        \item Geometric validation by calculating the mean Euclidean distance between predicted and real shorelines.
-        \item Comparison of performance under adverse conditions (foam, wet sand) and transferability assessment.
+        \item Geometric validation by calculating the error distance between predicted and real shorelines.
+        \item Comparison of performance under adverse conditions.
     \end{itemize}
     \item \textbf{Task 5:} Drafting report and interim deliveries.
     \item \textbf{Task 6:} Progress meetings with directors.
@@ -331,7 +331,7 @@ By presenting a direct, data-driven comparison of classical spectral thresholdin
 
 \chapter{Materials and Methods}
 
-This chapter details the comprehensive methodological framework developed to evaluate and benchmark the performance of traditional spectral methods against Deep Learning semantic segmentation models for macrotidal waterline extraction. To provide a clear roadmap of the research, Figure \ref{fig:ch3_workflow} illustrates the end-to-end processing pipeline. The workflow encompasses five primary stages: the definition of the study areas (Section \ref{sec:study_areas}); the acquisition and preprocessing of satellite and oceanographic data (Section \ref{sec:data_acquisition}); the generation of Ground Truth reference datasets (Section \ref{sec:ground_truth}); the implementation of both traditional and AI-based extraction pipelines (Sections \ref{sec:baseline_spectral} to \ref{sec:waterline_pipeline}); and finally, the pixel-based and geometric evaluation methodologies (Section \ref{sec:evaluation_methodology}).
+This chapter details the comprehensive methodological framework developed to evaluate and benchmark the performance of traditional spectral methods against Deep Learning semantic segmentation models for macrotidal waterline extraction. To provide a clear roadmap of the research, Figure \ref{fig:ch3_workflow} illustrates the end-to-end processing pipeline. The workflow encompasses five primary stages: the definition of the study areas (Section \ref{sec:study_areas}); the acquisition and preprocessing of satellite and oceanographic data (Section \ref{sec:data_acquisition}); the generation of Ground Truth reference datasets (Section \ref{sec:ground_truth}); the implementation of both traditional and AI-based extraction pipelines (Sections \ref{sec:baseline_spectral} to \ref{sec:waterline_pipeline}); and finally, the evaluation methodologies followed to assess the models (Section \ref{sec:evaluation_methodology}).
 
 \begin{figure}[H]
     \centering
@@ -345,7 +345,7 @@ This chapter details the comprehensive methodological framework developed to eva
 
 The study focuses on two beaches located on the northern coast of Spain: Salinas (Asturias) and El Puntal (Cantabria) (Figure \ref{fig:study_sites}).
 
-Salinas is a 2.5 km embayed sandy beach system located on the left bank of the Avilés estuarine inlet (Asturias). The beach is bounded by an inlet jetty to the east and a rocky headland (La Peñona) to the west. Its western sector, adjacent to the urban area of Salinas, is backed by a seawall and promenade, while the eastern sector (El Espartal) preserves a natural dune field rising up to 15 m above mean sea level. The beach is characterized by a wide intertidal zone (up to 300 m at spring tides) and a mean tidal range of 4.5 m, classifying it as a macrotidal environment. The wave climate is predominantly energetic and approach from the northwest, impacting directly with mean significant wave heights around 1 m and frequent storm events that can exceed 4 m. The sand often shows dark patches due to the accumulation of coal and carbonaceous shales, which can further complicate spectral differentiation between wet sand and water.
+Salinas is a 2.5 km embayed sandy beach system located on the left bank of the Avilés estuarine inlet (Asturias). The beach is bounded by an inlet jetty to the east and a rocky headland (La Peñona) to the west. Its western sector, adjacent to the urban area of Salinas, is backed by a seawall and promenade, while the eastern sector (El Espartal) preserves a natural dune field rising up to 15 m above mean sea level. The beach is characterized by a wide intertidal zone (up to 300 m at spring tides) and a mean tidal range of 4.5 m, classifying it as a macrotidal environment. The wave climate is predominantly energetic and approach from the northwest, impacting directly with mean significant wave heights around 1.5 m and frequent storm events that can exceed 4.5 m. The sand often shows dark patches due to the accumulation of coal and carbonaceous shales, which can further complicate spectral differentiation between wet sand and water.
 
 El Puntal is a 4 km sandy spit at the entrance of Santander Bay (Cantabria), formed by the interaction of estuarine and marine dynamics. The beach is backed by a dune system that reaches up to 10 m high and 50–100 m wide. The sandspit is located at its western end, whereas the eastern end is characterized by a more exposed morphology and the mouth of a small stream. In the same way as Salinas, El Puntal experiences a wide intertidal zone (up to 250 m) and a mean tidal range of around 4 m. However, unlike Salinas, El Puntal does not receive direct wave impact, as it is protected by the Magdalena Peninsula. Furthermore, also in contrast to Salinas, El Puntal features a much less dark, golden-colored sand.
 
@@ -508,6 +508,8 @@ To systematically compare the performance of traditional spectral indices agains
 
 For the traditional baselines (see Section \ref{sec:baseline_spectral}), the extraction pipeline follows a strict three-step sequence. First, continuous intensity rasters are computed using the mathematical formulations of the four selected spectral water indices (e.g., MNDWI, SCoWI). Second, discrete binary masks ("water" versus "non-water") are created by applying the cutoff threshold values evaluated for each method (Zero, Otsu, and Modified Otsu). Third, the final waterlines are generated in vector format by utilizing the Marching Squares contouring algorithm \citep{lorensen_marching_1987} to trace a smooth boundary where the binary mask transitions from 0 to 1. This algorithm effectively interpolates the exact sub-pixel location of the water boundary, allowing for a more precise vector representation of the waterline.
 
+% Añadir figura mostrando el proceso de pasar del ráster de un índice, a la máscara binaria, al vector de la waterline.
+
 Conversely, for the Deep Learning models, the segmentation output requires a slight mathematical adaptation to maximize its utility for vectorization. After processing a $128 \times 128$ image patch, the neural network outputs multi-class prediction logits. These logits are converted into confidence scores (ranging from 0.0 to 1.0) using a Softmax activation function. Subsequently, the pixels segmented as \textit{water} and \textit{white-water} classes are collapsed into a single "water" class, while the \textit{wet sand} and \textit{sand} classes are collapsed into a single "non-water" class. Then, the final waterlines are extracted using the same Marching Squares contouring algorithm as in the traditional pipeline, applied to the resulting binary mask. This ensures that the final output from both approaches is directly comparable in terms of format and spatial precision.
 
 Finally, for both traditional and DL approaches, the individual continuous line segments extracted in each image are merged together. A morphological length filter is then applied, discarding any discontinuous segments shorter than a minimum threshold length. This filtering effectively removes small landlocked ponds, temporary tidal puddles, and isolated false positive artifacts, resulting in a single, robust, and continuous vector representation of the waterline.
@@ -586,7 +588,7 @@ where $d_{mod,i}$ represents the cross-shore distance from the baseline to the \
     
 \end{figure}
 
-By aggregating the distances recorded across all intersecting transects for a given satellite image, four robust statistical metrics were computed:
+By aggregating the distances recorded across all intersecting transects for a given satellite image, several robust statistical metrics were computed:
 \begin{itemize}
     \item \textbf{Median Absolute Deviation/Error (MAD):} The median of the absolute offsets. Because it relies on the median rather than the mean, MAD is highly robust against severe outliers (such as specific transects with an extreme errors due to a contouring artifact or specific complex scenarios because a highly energetic wave event), offering a highly representative value of the "typical" coastline error.
     \item \textbf{Interquartile Range (IQR):} The range between the 25th and 75th percentiles of the offsets. This metric measures statistical dispersion.
@@ -622,7 +624,7 @@ To provide a clear overview of the entire experimental matrix, Table \ref{tab:ev
         \hline
         \textbf{Category} & \textbf{Base Model / Index} & \textbf{Evaluated Variations / Encoders} & \textbf{Pixel-based Eval.} & \textbf{Geometric Eval.} \\
         \hline
-        \multirow{4}{*}{Spectral-based} 
+        \multirow{4}{*}{Index-based} 
         & NDWI & Zero, Otsu, Modified Otsu & No & Yes \\
         & MNDWI & Zero, Otsu, Modified Otsu & No & Yes \\
         & AWEInsh & Zero, Otsu, Modified Otsu & No & Yes \\
@@ -791,7 +793,7 @@ The statistical metrics reveal a highly controlled, very slight \textit{Seaward}
 \textbf{Spatial Variability Along the Coastline:}
 
 % Introducción al análisis a lo largo de la costa (alongshore).
-Before evaluating the temporal and hydrodynamic forcing, it is essential to examine the spatial variability of the extraction error along the coastline. By analyzing the distribution of cross-shore offsets grouped by \texttt{transect\_id}, specific morphological, geological, or anthropogenic features that locally disrupt model performance can be identified.
+Before evaluating the hydrodynamic forcing, it is essential to examine the spatial variability of the extraction error along the coastline. By analyzing the distribution of cross-shore offsets grouped by \texttt{transect\_id}, specific morphological, geological, or anthropogenic features that locally disrupt model performance can be identified.
 
 % Análisis de los modelos Index-based (Puntal y Salinas).
 Figure \ref{fig:transects_index} details this alongshore variability for the Index-based models. At El Puntal, a distinct spatial pattern emerges: the first 15 transects exhibit error metrics (median, third quartile, and maximum bounds) notably below the overall site average. This localized increase in accuracy is driven by two main factors. First, the initial $\approx8$ transects correspond to the navigation channel of the Santander Bay, an area subjected to periodic dredging operations. Second, this entire initial stretch is highly sheltered from incident wave energy, minimizing foam-induced spectral noise. From transect 15 onwards, the offsets closely align with the overall median, until the final 5 transects, where a sudden spike in error is recorded. This localized degradation coincides with a slight shift in the coastline orientation and the proximity to a small stream mouth, which likely introduces spectral confusion due to localized moisture and sediment discharge.
@@ -881,12 +883,12 @@ These results conclusively prove that semantic segmentation models do not overfi
 \label{sec:final_ranking}
 
 % Introducción justificando por qué hacemos un ranking combinado.
-While the preceding sections isolated specific model vulnerabilities, such as spatial artifacts, urban shadows, and hydrodynamic forcing, a holistic evaluation requires synthesizing all geometric error metrics into a unified consensus. To definitively determine the optimal architecture for automated supratidal shoreline extraction, a multi-criteria ranking was established based on the aggregated performance across six robust statistical indicators: MAD, IQR, MAE, Bias, RMSE, and $R^2$.
+While the preceding subsections isolated specific model vulnerabilities, such as structural bias,spatial artifacts, and hydrodynamic forcing, a holistic evaluation requires synthesizing all geometric error metrics into a unified consensus. To definitively determine the optimal architecture for automated supratidal shoreline extraction, a multi-criteria ranking was established based on the aggregated performance across six robust statistical indicators: MAD, IQR, MAE, Bias, RMSE, and $R^2$.
 
 % Análisis del Heatmap de métricas absolutas. Aquí metemos el detalle brillante del SCoWI vs DL.
 The overall metrics heatmap (Figure \ref{fig:overall_metrics_heatmap}) illustrates the absolute performance values for all 24 evaluated configurations. The dichotomy between the two model families is numerically remarkable, with the Deep Learning architectures monopolizing the lowest error bands across almost all indicators. However, a highly notable anomaly exists within the traditional baseline: SCoWI (LM Otsu). This specific index achieved the absolute best global Median Absolute Deviation (MAD: 4.90 m) and the most neutral mean error (Bias: -2.75 m), outperforming even the neural networks in these specific central-tendency metrics. 
 
-Despite this impressive baseline precision, SCoWI (LM Otsu) suffers a significant penalty in its RMSE (16.67 m) and MAE (8.71 m) compared to the DL models. Physically, this indicates that while the SCoWI formulation successfully delineates the waterline accurately under optimal conditions, it remains vulnerable to severe, localized extraction failures (outliers) that heavily penalize the quadratic and absolute mean errors. Conversely, the Deep Learning models exhibit an extraordinary balance, maintaining tight IQRs (all $\le 11.95$ m) and extremely low RMSE values, proving their immunity to catastrophic extraction outliers.
+Despite this impressive baseline precision, SCoWI (LM Otsu) suffers a significant penalty in its RMSE (16.67 m) and MAE (8.71 m) compared to the DL models. Physically, this indicates that while the SCoWI formulation successfully delineates the waterline accurately under optimal conditions, it remains vulnerable to severe, localized extraction failures that heavily penalize the quadratic and absolute mean errors. Conversely, the Deep Learning models exhibit an extraordinary balance, maintaining tight IQRs (all $\le 11.95$ m) and extremely low RMSE values, proving their immunity to catastrophic extraction outliers.
 
 % Introducimos el Bump Chart y coronamos al Top 3.
 To distill these absolute values into a definitive hierarchy, a bump chart (Figure \ref{fig:bump_chart_ranking}) was generated by computing the rank of each model per metric and calculating their arithmetic mean. This comprehensive ranking system successfully identifies the top three performing architectures, crowning them as the definitive state-of-the-art for macrotidal environments:
@@ -899,7 +901,7 @@ To distill these absolute values into a definitive hierarchy, a bump chart (Figu
     \item[$\star\star\star$] \textbf{3rd Place: U-Net (EfficientNet-B4) [Average Rank: 3.33].} Proving that pure Convolutional Neural Networks are still highly competitive, this lightweight U-Net secured the third position globally. It ranked \#2 in $R^2$ and \#3 in both MAD and RMSE, offering an outstanding trade-off between architectural efficiency and geometric precision.
 \end{enumerate}
 
-Ultimately, this multi-criteria synthesis conclusively answers the core research question: Deep Learning semantic segmentation models (specifically hybrid U-Net architectures) drastically outperform traditional spectral indices, providing a structurally robust, environmentally resilient, and geographically invariant solution for satellite-derived waterline extraction.
+Ultimately, this multi-criteria synthesis conclusively answers the core research question: Deep Learning semantic segmentation models (specifically hybrid U-Net architectures) outperform traditional spectral indices, providing a structurally robust, environmentally resilient, and geographically invariant solution for satellite-derived waterline extraction.
 
 % --- Figura del Heatmap de Métricas ---
 \begin{figure}[H]
