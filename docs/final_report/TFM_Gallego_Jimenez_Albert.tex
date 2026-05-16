@@ -506,9 +506,14 @@ Regarding hardware utilization, the computationally intensive task of training t
 
 To systematically compare the performance of traditional spectral indices against the Semantic Segmentation Deep Learning models, it is necessary to translate their respective pixel-based outputs into continuous, comparable geographic vectors. This process, known as sub-pixel contouring, is critical for achieving the high spatial precision required for shoreline monitoring.
 
-For the traditional baselines (see Section \ref{sec:baseline_spectral}), the extraction pipeline follows a strict three-step sequence. First, continuous intensity rasters are computed using the mathematical formulations of the four selected spectral water indices (e.g., MNDWI, SCoWI). Second, discrete binary masks ("water" versus "non-water") are created by applying the cutoff threshold values evaluated for each method (Zero, Otsu, and Modified Otsu). Third, the final waterlines are generated in vector format by utilizing the Marching Squares contouring algorithm \citep{lorensen_marching_1987} to trace a smooth boundary where the binary mask transitions from 0 to 1. This algorithm effectively interpolates the exact sub-pixel location of the water boundary, allowing for a more precise vector representation of the waterline.
+For the traditional baselines (see Section \ref{sec:baseline_spectral}), the extraction pipeline follows a strict three-step sequence (Figure \ref{fig:waterline_pipeline}). First, continuous intensity rasters are computed using the mathematical formulations of the four selected spectral water indices (e.g., MNDWI, SCoWI). Second, discrete binary masks ("water" versus "non-water") are created by applying the cutoff threshold values evaluated for each method (Zero, Otsu, and Modified Otsu). Third, the final waterlines are generated in vector format by utilizing the Marching Squares contouring algorithm \citep{lorensen_marching_1987} to trace a smooth boundary where the binary mask transitions from 0 to 1. This algorithm effectively interpolates the exact sub-pixel location of the water boundary, allowing for a more precise vector representation of the waterline.
 
-% Añadir figura mostrando el proceso de pasar del ráster de un índice, a la máscara binaria, al vector de la waterline.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12truecm]{extraction_waterline_pipeline_example.png}
+    \caption{Diagram illustrating the waterline extraction pipeline for traditional spectral indices. The process involves a three-step sequence: (1) calculation of the continuous spectral index raster, (2) application of the cutoff threshold to create a binary mask, and (3) extraction of the waterline vector using the Marching Squares contouring algorithm.}
+    \label{fig:waterline_pipeline}
+\end{figure}
 
 Conversely, for the Deep Learning models, the segmentation output requires a slight mathematical adaptation to maximize its utility for vectorization. After processing a $128 \times 128$ image patch, the neural network outputs multi-class prediction logits. These logits are converted into confidence scores (ranging from 0.0 to 1.0) using a Softmax activation function. Subsequently, the pixels segmented as \textit{water} and \textit{white-water} classes are collapsed into a single "water" class, while the \textit{wet sand} and \textit{sand} classes are collapsed into a single "non-water" class. Then, the final waterlines are extracted using the same Marching Squares contouring algorithm as in the traditional pipeline, applied to the resulting binary mask. This ensures that the final output from both approaches is directly comparable in terms of format and spatial precision.
 
@@ -926,63 +931,88 @@ Ultimately, this multi-criteria synthesis conclusively answers the core research
 
 \chapter{Conclusions and Future Works}
 
-TO BE WRITTEN
+\section{Conclusions}
 
-%\section{Conclusions}
-This chapter must include:
+\subsection{Synthesis of Results and Key Findings}
+This study set out to rigorously evaluate and benchmark the performance of traditional spectral water indices against state-of-the-art Deep Learning (DL) semantic segmentation models for the task of satellite-derived waterline extraction in highly dynamic macrotidal environments.
+
+The results unequivocally demonstrate that Deep Learning architectures provide a structurally robust, environmentally resilient, and geographically invariant solution, drastically outperforming the traditional index-based baseline. While traditional indices (such as NDWI, MNDWI, and AWEInsh) showed acceptable performance in sheltered and golden-colored sand beach (El Puntal), they suffered catastrophic degradation when subjected to the stress-test of Salinas beach. The primary driver of this failure was the spectral ambiguity introduced by the vast expanses of dark, saturated sand exposed during low tide, which pixel-based thresholding algorithms systematically misclassified as water, leading to massive landward biases (e.g., median absolute offsets exceeding 67 m in extreme cases). Furthermore, traditional methods proved highly vulnerable to local radiometric noise, such as urban shadows and breaking wave foam.
+
+Conversely, the DL models successfully abstracted the general semantic features of the land-water boundary. By leveraging spatial context, architectures like U-Net, DeepLabV3+, and SegFormer effectively differentiated between shallow water, wave foam, and wet sand. Consequently, they maintained a remarkable cross-site generalization, degrading by less than a tenth of the native pixel size ($\Delta$ MAE of -0.68 m) when transitioning to the more complex environment. 
+
+A valuable finding of this research was the inverse relationship observed between network parameterization and geometric precision. It was initially expected that heavier, more complex encoders (such as EfficientNet-B7 or MiT-B4) would yield superior performance. However, the results revealed that lighter encoders (specifically MiT-B2 and EfficientNet-B4) consistently achieved higher sub-pixel accuracy and tighter extraction contours. This demonstrates that for the highly specific task of waterline delineation, overparameterization induces spatial overfitting, sacrificing the high-resolution localization required to trace a sharp boundary. Alongside this efficiency, the study highlighted the effectiveness of architectural hybridization. The results demonstrated that pairing the Vision Transformer encoders with the Convolutional Neural Network decoders creates a highly synergistic framework. Ultimately, this hybrid approach (specifically the U-Net architecture paired with the MiT-B2 encoder) emerged as the definitive state-of-the-art, achieving the lowest overall errors (MAE: 7.27 m) and the highest resistance to extraction outliers.
+
+\subsection{Achievement of Objectives}
+The primary objective of this Master's Thesis, that is, to establish a comprehensive, data-driven benchmarking framework comparing traditional and AI-based methods for continuous shoreline monitoring in complex coastal zones has been fully achieved. Furthermore, the specific secondary objectives were successfully met: a high-quality, multi-class Ground Truth dataset was generated; model degradation under adverse hydrodynamic conditions (such as low-tide exposure and high wave energy) was rigorously quantified; the cross-site transferability between baseline and stress-test coastal environments was validated; and the computational efficiency trade-offs among the different extraction architectures were systematically evaluated.
+
+\subsection{Project Planning and Methodological Evolution}
+The overall execution of the project successfully adhered to the initially established five-month schedule. The core planned methodology, encompassing satellite data acquisition, cross-shore spatial evaluation, and hydrodynamic sensitivity analysis, proved to be highly adequate for the intended research goals.
+
+\subsection{Evaluation of Foreseen Impacts}
+In accordance with institutional guidelines regarding cross-disciplinary competencies, the execution of this work maintained a neutral to positive footprint across all evaluated dimensions. 
+
+Regarding sustainability, the methodology relies on free, open-access satellite Earth Observation data, which effectively negates the need for physical, carbon-intensive topographical field campaigns. While the training of the neural networks incurred a localized energy cost via GPU processing, this was computationally optimized and strictly bounded, resulting in an overall positive environmental balance. 
+
+In terms of ethical behavior, social responsibility, and diversity, the project utilized exclusively anonymized, public remote sensing data. No unforeseen negative impacts materialized during the development of this strictly technical framework. The code and models were developed avoiding any implicit biases, ensuring full compliance with the initial assessments and maintaining a neutral societal footprint.
+
+\section{Future Works}
+While this study establishes a robust and operational framework for DL-based coastal monitoring, several tasks for future research remain open:
+
 \begin{itemize}
-\item A description of the conclusions of the work:
-\begin{itemize}
-    \item Once the results have been obtained, what conclusions are drawn?
-    \item Are these results as expected? Or have they been amazing? Why?
+    \item \textbf{Global Expansion of the Training Dataset:} The current models were successfully trained and validated on highly dynamic macrotidal beaches in Northern Spain. Future iterations should incorporate a globally distributed dataset encompassing diverse coastal morphologies to guarantee universal geographic invariance.
+    \item \textbf{Sub-pixel Resolution Enhancement:} Exploring advanced super-resolution neural networks over the Sentinel-2 data could further refine the spatial precision of shoreline extraction, potentially enhancing sub-meter accuracy necessary for critical coastal engineering applications.
+    \item \textbf{Development of an Open-Source Operational Tool:} Translating the optimal architecture (U-Net MiT-B2) into an accessible, end-to-end open-source software package or cloud-based API, enabling coastal managers and engineers to deploy this technology seamlessly without requiring deep learning expertise.
 \end{itemize}
-\item A critical reflection on the achievement of the objectives initially set:
-\begin{itemize}
-    \item Have we achieved all the objectives? If the answer is negative, why?
-\end{itemize}
-\item A critical analysis of the monitoring of planning and methodology throughout the product:
-\begin{itemize}
-    \item Has the schedule been followed?
-    \item Has the planned methodology been adequate enough?
-    \item Has it been necessary to introduce changes to ensure the success of the work? Why?
-\end{itemize}
-\item From the impacts foreseen in \ref{s:etic}, ethical-social, sustainability and diversity, evaluate/mention whether they have been mitigated (if they were negative) or whether they have been achieved (if they were positive). 
-\item If unforeseen impacts have appeared in \ref{s:etic}, evaluate/mention how they have mitigated (if they were negative) or what they have contributed (if they were positive).
-\item The future lines of work that have not been explored in this work and have remained pending.
-
-
-%\item A description of the conclusions of the work: What lessons have been learned from work?
-%\item A critical reflection on the achievement of the objectives initially set: Have we achieved all the objectives? If the answer is negative, why?
-%\item Of the impacts foreseen in the section \ref{s:etic}, an assessment, or at least mention, of whether they have been mitigated (if they were negative) or whether they have been achieved (if they were positive). 
-\end{itemize}
-
-%\section{Future Lines}
-%The future lines of work that could not be explored in this work and have been pending.
-
-%\section{Schedule Tracking}
-%A critical analysis of the monitoring of the planning and methodology throughout the work: 
-%\begin{itemize}
-%    \item  Have the schedule been followed? 
-%    \item Has the planned methodology been adequate? 
-%    \item Has it been necessary to introduce changes to ensure the success of the work? Why?
-%\end{itemize}
 
 \chapter{Glossary}
 
-TO BE WRITTEN
-
-Definition of the most relevant terms and acronyms used in the Report.
-
-%Defining the most relevant terms and acronyms used within the Memory.
+\begin{description}
+    \item[ASPP] Atrous Spatial Pyramid Pooling
+    \item[AWEInsh] Automated Water Extraction Index -- No Shadows
+    \item[CNN] Convolutional Neural Network
+    \item[DL] Deep Learning
+    \item[EO] Earth Observation
+    \item[ESA] European Space Agency
+    \item[GNSS] Global Navigation Satellite Systems
+    \item[GT] Ground Truth
+    \item[HAT] Highest Astronomical Tide
+    \item[$H_s$] Significant Wave Height
+    \item[HWL] High-Water Line
+    \item[IoU] Intersection over Union
+    \item[IQR] Interquartile Range
+    \item[LAT] Lowest Astronomical Tide
+    \item[LiDAR] Light Detection and Ranging
+    \item[MAD] Median Absolute Deviation
+    \item[MAE] Mean Absolute Error
+    \item[MHW] Mean High Water
+    \item[MiT] Mix Transformer
+    \item[ML] Machine Learning
+    \item[MLP] Multilayer Perceptron
+    \item[MNDWI] Modified Normalized Difference Water Index
+    \item[MSL] Mean Sea Level
+    \item[NDWI] Normalized Difference Water Index
+    \item[NIR] Near-Infrared
+    \item[RMSE] Root Mean Square Error
+    \item[ROI] Region of Interest
+    \item[RTK] Real-Time Kinematic
+    \item[RWL] Reference Waterline
+    \item[SAM] Segment Anything Model
+    \item[SCoWI] Subtractive Coastal Water Index
+    \item[SDW] Satellite-Derived Waterline
+    \item[SWIR] Shortwave-Infrared
+    \item[$T_p$] Peak Wave Period
+    \item[ViT] Vision Transformer
+    \item[WL] Waterline
+\end{description}
 
 \bibliographystyle{apalike}
 \bibliography{references}
 
 \newpage
-\appendix
-List of sections that are too extensive to include in memory and have a self-contained character (e.g. user manuals, installation manuals, etc.)
+% \appendix
+% List of sections that are too extensive to include in memory and have a self-contained character (e.g. user manuals, installation manuals, etc.)
  
-Depending on the type of work, there may be no need to add an annex.
+% Depending on the type of work, there may be no need to add an annex.
 
 \end{document}
 
