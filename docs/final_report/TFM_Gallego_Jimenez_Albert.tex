@@ -44,14 +44,13 @@
 
 %%%%%%%%%%
 % Summary in language
-
 \abstractidioma{
-Maximum 250 words, for the purpose, context of application, methodology, results and conclusions of the work.
+La monitorización precisa de la costa es esencial para gestionar la erosión y evaluar el impacto del cambio climático. Aunque la extracción tradicional de la línea de costa mediante satélites se basa en índices espectrales, estos métodos orientados al píxel fallan en entornos macromareales debido a la ambigüedad semántica producida por la arena húmeda en la zona intermareal. Este Trabajo Final de Máster evalúa la viabilidad operativa de la segmentación semántica mediante Deep Learning (DL) como alternativa a la umbralización espectral tradicional para la extracción de la línea de agua. Empleando imágenes Sentinel-2 de dos playas complejas del norte de España (Salinas y El Puntal), se realizó un análisis comparativo exhaustivo. Se evaluaron arquitecturas de DL de vanguardia (U-Net, DeepLabV3+, SegFormer) frente a índices espectrales ampliamente utilizados (MNDWI, NDWI, AWEInsh, SCoWI). Se generó un conjunto de datos "Ground Truth" para medir tanto la clasificación posicional como el error geométrico. Los resultados demuestran que los índices espectrales sufren una severa degradación y grandes sesgos espaciales fruto de la confusión radiométrica. Por el contrario, los modelos de DL resultaron altamente robustos, dominando el contexto costero. La arquitectura híbrida superior (U-Net con un codificador MiT-B2) logró un Error Absoluto Medio de 7.27 m, reduciendo a la mitad el error tradicional y mitigando los sesgos. En conclusión, la Inteligencia Artificial proporciona una ventaja operativa muy superior para la monitorización automatizada de la costa.
 }
 
 % Summary in English.
 \abstractenglish{
-A maximum of 250 words, detailing the purpose, context of application, methodology, results and conclusions of the work.
+Accurate coastal monitoring is essential for managing erosion and assessing climate change impacts. While traditional satellite-derived shoreline extraction relies on spectral indices, these pixel-by-pixel methods often fail in highly dynamic macrotidal environments due to the semantic ambiguity caused by large wet sand areas in the intertidal zone. This Master's Thesis evaluates the operational viability of Deep Learning (DL) semantic segmentation as an alternative to traditional spectral thresholding for waterline extraction. Using Sentinel-2 imagery from two complex beaches in northern Spain (Salinas and El Puntal), a comprehensive benchmarking analysis was conducted. We compared state-of-the-art DL architectures (U-Net, DeepLabV3+, SegFormer) against widespread spectral indices (MNDWI, NDWI, AWEInsh, SCoWI). A robust Ground Truth dataset was generated to assess both pixel-level classification and sub-pixel geometric waterline accuracy. Results demonstrate that spectral indices suffer severe performance degradation and spatial biases due to inherent radiometric confusion. Conversely, DL models proved highly robust and geographically invariant, successfully interpreting the coastal context. The top-performing hybrid architecture (U-Net paired with an MiT-B2 transformer encoder) achieved a Mean Absolute Error of 7.27 m, halving the error of traditional methods and practically eliminating cross-shore biases. We conclude that AI-based workflows provide a superior, operational advantage for automated shoreline monitoring.
 }
 
 \begin{document}
@@ -63,9 +62,6 @@ A maximum of 250 words, detailing the purpose, context of application, methodolo
 \listoffigures
 
 \listoftables
-
-
-
 
 \chapter{Introduction}
 
@@ -177,15 +173,28 @@ The project is planned to be developed over a 5-month period (including the thes
 
 \section{Brief Summary of Products Obtained}
 
-TO BE WRITTEN
+This project has yielded several tangible and reusable products:
+\begin{itemize}
+    \item A comprehensive annotated dataset of macrotidal coastal images, encompassing 161 multi-class pixel-wise masks (categorizing water, white-water, wet sand, and dry sand) and 285 manually digitized reference vector waterlines derived directly from Sentinel-2 imagery.
+    \item An open-source Python codebase hosted on a public GitHub repository, which includes the complete end-to-end processing pipeline: from satellite data preprocessing and spectral index calculation, to Deep Learning model training and advanced geometric benchmarking.
+    \item A suite of fine-tuned and strictly evaluated state-of-the-art Deep Learning models (U-Net, DeepLabV3+, SegFormer) optimized specifically for challenging coastal dynamics.
+\end{itemize}
 
 \section{Brief Description of Other Memory Chapters}
 
-TO BE WRITTEN
+The document is organized as follows:
+\begin{itemize}
+    \item \textbf{Chapter 1. Introduction:} Provides the context and justification for the work, clearly defines the research objectives, outlines the expected impacts on sustainability, ethics, and diversity, describes the methodological approach, and presents a detailed project timeline.
+    \item \textbf{Chapter 2. State of Art:} Reviews the evolution of coastal monitoring, the principles of satellite-based Earth Observation, the traditional use of spectral indices and their limitations, and the recent paradigm shift toward Deep Learning in remote sensing.
+    \item \textbf{Chapter 3. Materials and Methods:} Details the geographical context of the study areas, the generation of the reference Ground Truth datasets, the implementation of both traditional and neural network pipelines, and the rigorous pixel-based and geometric evaluation frameworks.
+    \item \textbf{Chapter 4. Results:} Presents the findings of the benchmarking process, analyzing the physical characteristics of the beaches, the internal semantic performance of the neural networks, and the overarching cross-shore geometric extraction errors.
+    \item \textbf{Chapter 5. Conclusions and Future Works:} Synthesizes the core findings, explicitly answers the research objectives, details the foreseen impacts (sustainability, ethics, and diversity), and outlines actionable recommendations for future research.
+    \item \textbf{Glossary:} Provides definitions for technical terms and acronyms used throughout the document.
+\end{itemize}
 
 \section{Statement on the Use of Generative Artificial Intelligence}
 
-TO BE WRITTEN
+During the development of this Master's Thesis, Generative Artificial Intelligence tools (such as Gemini and GitHub Copilot) were utilized purely as assistive instruments. Their application was strictly limited to code debugging, algorithmic structuring, grammar correction, and structural prose refinement to improve the readability of the manuscript. The design of the scientific methodology, the manual photo-interpretation of the Ground Truth datasets, the critical evaluation of the results, and the core intellectual contributions remain exclusively the original work of the author.
 
 \chapter{State of Art}
 
