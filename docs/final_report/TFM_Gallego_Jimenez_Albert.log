@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  16 MAY 2026 18:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  17 MAY 2026 13:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1265,7 +1265,7 @@ Package pdftex.def Info: eimt.png  used on input line 112.
 [14]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 132.
+Package pdftex.def Info: noulogo.png  used on input line 133.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1277,7 +1277,7 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 132.
+Package pdftex.def Info: eimt.png  used on input line 133.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [15]
 <tfm_gantt.png, id=74, 1338.50063pt x 630.10406pt>
@@ -1304,7 +1304,7 @@ Package pdftex.def Info: eimt.png  used on input line 173.
 [16]
 File: noulogo.png Graphic file (type png)
 <use noulogo.png>
-Package pdftex.def Info: noulogo.png  used on input line 189.
+Package pdftex.def Info: noulogo.png  used on input line 190.
 (pdftex.def)             Requested size: 165.26283pt x 42.67912pt.
 
 
@@ -1316,7 +1316,7 @@ Package fancyhdr Warning: \headheight is too small (35.0pt):
 
 File: eimt.png Graphic file (type png)
 <use eimt.png>
-Package pdftex.def Info: eimt.png  used on input line 189.
+Package pdftex.def Info: eimt.png  used on input line 190.
 (pdftex.def)             Requested size: 73.03314pt x 9.95863pt.
 [17 <./tfm_gantt.png>]
 File: noulogo.png Graphic file (type png)
@@ -2507,7 +2507,7 @@ Here is how much of TeX's memory you used:
  319 hyphenation exceptions out of 8191
  72i,22n,98p,1757b,661s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/albert/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on TFM_Gallego_Jimenez_Albert.pdf (78 pages, 18823963 bytes).
+Output written on TFM_Gallego_Jimenez_Albert.pdf (78 pages, 18824034 bytes).
 PDF statistics:
  375 PDF objects out of 1000 (max. 8388607)
  209 compressed objects within 3 object streams
