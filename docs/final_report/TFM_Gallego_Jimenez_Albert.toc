@@ -6,7 +6,7 @@
 \contentsline {section}{\numberline {1.4}Focus and Method Followed}{15}{}%
 \contentsline {section}{\numberline {1.5}Work Schedule}{16}{}%
 \contentsline {section}{\numberline {1.6}Brief Summary of Products Obtained}{17}{}%
-\contentsline {section}{\numberline {1.7}Brief Description of Other Memory Chapters}{17}{}%
+\contentsline {section}{\numberline {1.7}Brief Description of Other Memory Chapters}{18}{}%
 \contentsline {section}{\numberline {1.8}Statement on the Use of Generative Artificial Intelligence}{18}{}%
 \contentsline {chapter}{\numberline {2}State of Art}{19}{}%
 \contentsline {section}{\numberline {2.1}Coastal Monitoring and Shoreline Definition}{19}{}%
@@ -19,21 +19,21 @@
 \contentsline {section}{\numberline {3.1}Study Areas}{31}{}%
 \contentsline {section}{\numberline {3.2}Data Acquisition and Preprocessing}{33}{}%
 \contentsline {section}{\numberline {3.3}Ground Truth Generation (Reference Datasets)}{34}{}%
-\contentsline {subsection}{\numberline {3.3.1}Coastal Mask Classes}{35}{}%
+\contentsline {subsection}{\numberline {3.3.1}Coastal Mask Classes}{34}{}%
 \contentsline {subsection}{\numberline {3.3.2}Waterline Vectorization}{35}{}%
 \contentsline {section}{\numberline {3.4}Traditional Baseline: Spectral Indices and Thresholding}{36}{}%
 \contentsline {subsection}{\numberline {3.4.1}Spectral Water Indices}{36}{}%
 \contentsline {subsection}{\numberline {3.4.2}Thresholding Techniques}{37}{}%
 \contentsline {section}{\numberline {3.5}Deep Learning Semantic Segmentation}{38}{}%
 \contentsline {subsection}{\numberline {3.5.1}Model Architectures}{38}{}%
-\contentsline {subsection}{\numberline {3.5.2}Encoders}{39}{}%
+\contentsline {subsection}{\numberline {3.5.2}Encoders}{38}{}%
 \contentsline {subsection}{\numberline {3.5.3}Training Setup}{39}{}%
 \contentsline {subsection}{\numberline {3.5.4}Hardware and Software Specifications}{40}{}%
 \contentsline {section}{\numberline {3.6}Waterline Extraction Pipeline}{41}{}%
 \contentsline {section}{\numberline {3.7}Evaluation Methodology}{42}{}%
 \contentsline {subsection}{\numberline {3.7.1}Sand Reflectance and Colorimetric Assessment}{42}{}%
 \contentsline {subsection}{\numberline {3.7.2}Pixel-based Evaluation}{43}{}%
-\contentsline {subsection}{\numberline {3.7.3}Geometric Evaluation}{44}{}%
+\contentsline {subsection}{\numberline {3.7.3}Geometric Evaluation}{45}{}%
 \contentsline {subsection}{\numberline {3.7.4}Summary of Evaluated Models}{48}{}%
 \contentsline {chapter}{\numberline {4}Results}{49}{}%
 \contentsline {section}{\numberline {4.1}Physical Context: Sand Reflectance and Colorimetric Assessment}{49}{}%

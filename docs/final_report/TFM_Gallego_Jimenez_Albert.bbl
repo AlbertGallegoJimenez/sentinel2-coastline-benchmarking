@@ -104,6 +104,11 @@ Otsu, N. (1979).
 \newblock A {Threshold} {Selection} {Method} from {Gray}-{Level} {Histograms}.
 \newblock {\em IEEE Transactions on Systems, Man, and Cybernetics}, 9(1):62--66.
 
+\bibitem[Palomar-Vázquez et~al., 2023]{palomar-vazquez_shoreline_2023}
+Palomar-Vázquez, J., Pardo-Pascual, J.~E., Almonacid-Caballer, J., and Cabezas-Rabadán, C. (2023).
+\newblock Shoreline {Analysis} and {Extraction} {Tool} ({SAET}): {A} {New} {Tool} for the {Automatic} {Extraction} of {Satellite}-{Derived} {Shorelines} with {Subpixel} {Accuracy}.
+\newblock {\em Remote Sensing}, 15(12):3198.
+
 \bibitem[Ronneberger et~al., 2015]{navab_u-net_2015}
 Ronneberger, O., Fischer, P., and Brox, T. (2015).
 \newblock U-{Net}: {Convolutional} {Networks} for {Biomedical} {Image} {Segmentation}.
@@ -159,6 +164,11 @@ Vos, K., Splinter, K.~D., Harley, M.~D., Simmons, J.~A., and Turner, I.~L. (2019
 Vos, K., Splinter, K.~D., Palomar-Vázquez, J., Pardo-Pascual, J.~E., Almonacid-Caballer, J., Cabezas-Rabadán, C., Kras, E.~C., Luijendijk, A.~P., Calkoen, F., Almeida, L.~P., Pais, D., Klein, A. H.~F., Mao, Y., Harris, D., Castelle, B., Buscombe, D., and Vitousek, S. (2023).
 \newblock Benchmarking satellite-derived shoreline mapping algorithms.
 \newblock {\em Communications Earth \& Environment}, 4(1):345.
+
+\bibitem[Vousdoukas et~al., 2020]{vousdoukas_sandy_2020}
+Vousdoukas, M.~I., Ranasinghe, R., Mentaschi, L., Plomaritis, T.~A., Athanasiou, P., Luijendijk, A., and Feyen, L. (2020).
+\newblock Sandy coastlines under threat of erosion.
+\newblock {\em Nature Climate Change}, 10(3):260--263.
 
 \bibitem[Wang et~al., 2017]{wang_spatio-temporal_2017}
 Wang, X., Liu, Y., Ling, F., Liu, Y., and Fang, F. (2017).

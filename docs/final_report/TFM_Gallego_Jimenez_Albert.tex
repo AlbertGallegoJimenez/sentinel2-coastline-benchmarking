@@ -17,7 +17,7 @@
 \setlength{\parindent}{0pt}   % opcional: sin sangría de primera línea
 
 %Introduce Work Data
-\title{Comparative Evaluation of Satellite Image Segmentation Methods for Coastline Extraction: Spectral Indices vs. Deep Learning.}
+\title{Comparative Evaluation of Satellite Image Segmentation Methods for Coastline Extraction: Spectral Indices vs. Deep Learning}
 \titcrt{} %Short title to appear in header
 \author{Albert Gallego Jiménez}
 \date{\today}
@@ -53,6 +53,9 @@ La monitorización precisa de la costa es esencial para gestionar la erosión y 
 Accurate coastal monitoring is essential for managing erosion and assessing climate change impacts. While traditional satellite-derived shoreline extraction relies on spectral indices, these pixel-by-pixel methods often fail in highly dynamic macrotidal environments due to the semantic ambiguity caused by large wet sand areas in the intertidal zone. This Master's Thesis evaluates the operational viability of Deep Learning (DL) semantic segmentation as an alternative to traditional spectral thresholding for waterline extraction. Using Sentinel-2 imagery from two complex beaches in northern Spain (Salinas and El Puntal), a comprehensive benchmarking analysis was conducted. We compared state-of-the-art DL architectures (U-Net, DeepLabV3+, SegFormer) against widespread spectral indices (MNDWI, NDWI, AWEInsh, SCoWI). A robust Ground Truth dataset was generated to assess both pixel-level classification and sub-pixel geometric waterline accuracy. Results demonstrate that spectral indices suffer severe performance degradation and spatial biases due to inherent radiometric confusion. Conversely, DL models proved highly robust and geographically invariant, successfully interpreting the coastal context. The top-performing hybrid architecture (U-Net paired with an MiT-B2 transformer encoder) achieved a Mean Absolute Error of 7.27 m, halving the error of traditional methods and practically eliminating cross-shore biases. We conclude that AI-based workflows provide a superior, operational advantage for automated shoreline monitoring.
 }
 
+\usepackage[all]{nowidow}
+\usepackage{needspace}
+
 \begin{document}
 
 \estructura
@@ -67,11 +70,11 @@ Accurate coastal monitoring is essential for managing erosion and assessing clim
 
 \section{Context and Justification of Work}
 
-Coastal regions are among the most dynamic, densely populated, and socio-economically vital areas on Earth. However, these environments are under constant threat from both natural processes and anthropogenic pressures, exacerbated by climate change. As sea levels rise and extreme weather events become more frequent, coastal erosion has emerged as a critical global challenge. Consequently, accurate and continuous monitoring of shoreline position (the instantaneous interface between land and water) is essential for understanding morphological changes, evaluating erosion trends, and planning effective coastal defense strategies.
+Coastal regions are among the most dynamic, densely populated, and socio-economically vital areas on Earth. However, these environments are under constant threat from both natural processes and anthropogenic pressures, exacerbated by climate change. As sea levels rise and extreme weather events become more frequent, coastal erosion has emerged as a critical global challenge. Consequently, accurate and continuous monitoring of shoreline position (the instantaneous interface between land and water) is essential for understanding morphological changes, evaluating erosion trends, and planning effective coastal defense strategies\citep{vousdoukas_sandy_2020}.
 
-Historically, tracking shoreline evolution relied on in-situ topographic surveys or aerial photogrammetry. While highly accurate, these methods are often prohibitively expensive, labor-intensive, and limited in spatial and temporal coverage. In recent decades, the advent of Earth Observation (EO) satellites has revolutionized coastal surveying. Missions such as the European Space Agency's (ESA) Sentinel-2 offer free, high-frequency, and multi-decadal imagery spanning the entire globe \citep{vitousek_future_2023}. This wealth of optical satellite data allows researchers and coastal managers to monitor shoreline dynamics at unprecedented scales and at a fraction of the cost.
+Historically, tracking shoreline evolution relied on in-situ topographic surveys or aerial photogrammetry. While highly accurate, these methods are often prohibitively expensive, labor-intensive, and limited in spatial and temporal coverage. In recent decades, the advent of Earth Observation (EO) satellites has revolutionized coastal surveying. Missions such as the European Space Agency's (ESA) Sentinel-2 offer free, high-frequency, and multi-decadal imagery spanning the entire globe \citep{vitousek_future_2023}. This wealth of optical satellite data offers researchers and coastal managers to monitor shoreline dynamics at unprecedented scales and at a fraction of the cost.
 
-To extract the exact position of the waterline from a satellite image, traditional methodologies rely heavily on spectral indices. These mathematical formulas exploit the differences in how water and land reflect specific bands of sunlight (such as the near-infrared) to create binary masks separating water from non-water. Frameworks utilizing these principles, such as CoastSat \citep{vos_coastsat_2019}, SHOREX \citep{sanchez-garcia_efficient_2020}, and CASSIE \citep{almeida_coastal_2021}, have become the operational standard for generating automated, large-scale shoreline extraction data worldwide, providing an efficient alternative to manual digitization.
+To extract the exact position of the waterline from a satellite image, traditional methodologies rely heavily on spectral indices. These mathematical formulas exploit the differences in how water and land reflect specific bands of sunlight (such as the near-infrared) to create binary masks separating water from non-water. Frameworks utilizing these principles, such as CoastSat \citep{vos_coastsat_2019}, SHOREX \citep{sanchez-garcia_efficient_2020}, and CASSIE \citep{almeida_coastal_2021}, have become the operational standard for generating automated, large-scale shoreline extraction data worldwide, providing an efficient and widely-used alternative to manual digitization.
 
 
 However, this traditional pixel-by-pixel approach faces severe limitations when applied to highly dynamic, macrotidal environments. In high-energy coasts with large tidal ranges (such as the Cantabrian Sea) the presence of extensive wet sand and breaking wave foam creates a persistent ``semantic ambiguity''. The basic spectral premise that water strongly absorbs light while land reflects it frequently breaks down in these transition zones, leading to severe misidentifications of the actual waterline (see Figure~\ref{fig:misidentification_example}). As demonstrated by recent studies (e.g., \citealp{cabezas_site-specific_2026}), traditional tools struggle to navigate these challenging coastal scenes, resulting in significant spatial errors.
@@ -79,11 +82,11 @@ However, this traditional pixel-by-pixel approach faces severe limitations when 
 \begin{figure}[H]
     \centering
     \includegraphics[width=15truecm]{shoreline_misidentification_example.png}
-    \caption{Examples of shoreline misidentification in a macrotidal beach (adapted from \citealp{cabezas_site-specific_2026})}
+    \caption{Examples of shoreline misidentification in a macrotidal beach (UTM ETRS89 30N) (adapted from \citealp{cabezas_site-specific_2026})}
     \label{fig:misidentification_example}
 \end{figure}
 
-Consequently, there is a clear and urgent need to move beyond purely spectral formulas and explore methodologies capable of understanding the context of the image. Deep Learning (DL), a subset of Artificial Intelligence (AI), offers a promising solution to bridge this gap. Unlike traditional index thresholds that evaluate the reflectance value of an isolated pixel, advanced DL semantic segmentation architectures can learn complex spatial patterns, textures, and contextual hierarchies. By emulating how the human eye interprets a satellite image (recognizing the texture of a wave or the gradient of wet sand) DL models hold the potential to overcome the spectral confusion inherent in macrotidal environments.
+Consequently, there is a clear and urgent need to move beyond purely spectral formulas and explore methodologies capable of understanding the context of the image. Deep Learning (DL), a subset of Artificial Intelligence (AI), may offer a promising solution to bridge this gap. Unlike traditional index thresholds that evaluate the reflectance value of an isolated pixel, advanced DL semantic segmentation architectures can learn complex spatial patterns, textures, and contextual hierarchies. By emulating how the human eye interprets a satellite image (recognizing the texture of a wave or the gradient of wet sand) DL models hold the potential to overcome the spectral confusion inherent in macrotidal environments.
 
 \section{Work Objectives}
 
@@ -107,6 +110,7 @@ Given the challenges posed by macrotidal coasts and the limitations of tradition
 
 In compliance with the UOC's cross-disciplinary competence ``Ethical and global commitment'', this section identifies the positive and/or negative impacts of the Master's Thesis on the three dimensions: Sustainability, Ethical Behavior and Social Responsibility, and Diversity and Human Rights.
 
+\needspace{4\baselineskip}
 \textbf{1. Sustainability} \\
 The project used freely available Sentinel-2 Level-2A imagery from the Copernicus program and performed all processing locally. Traditional field-based coastal monitoring requires repeated physical surveys with vehicles, boats or aircraft, generating higher operational GHG emissions. The Deep Learning training phase incurred moderate energy consumption inherent to GPU usage; however, this was limited in scope and offset by the elimination of on-site campaigns. No other significant negative environmental impacts (resource depletion, waste generation or large-scale land use) were identified.
 
@@ -128,6 +132,7 @@ To address the goal of automating and improving shoreline extraction from Sentin
 
 However, the chosen strategy for this thesis was an applied comparative benchmarking approach. Rather than inventing a new architecture, this work focused on adapting and fine-tuning existing, state-of-the-art open-source Deep Learning architectures (such as the U-Net with varying feature-extraction encoders) and rigorously evaluating them against widely adopted traditional baselines (e.g., spectral indices combined with Marching Squares sub-pixel contouring). 
 
+\needspace{4\baselineskip}
 This comparative framework was selected to maximize both practical impact and scientific rigor. At present, the primary challenge in automated shoreline monitoring lies not in developing novel algorithms, but in validating existing state-of-the-art models through standardized coastal metrics. By embedding established semantic segmentation networks into a highly specialized evaluation pipeline, this work shifted the focus from model creation to operational viability and sub-pixel accuracy. Consequently, this ensured a transparent methodology capable of answering the fundamental research question (the operational superiority of Deep Learning over traditional spectral methods) without redundant efforts in foundational architectural design.
 
 \section{Work Schedule}
@@ -180,6 +185,7 @@ This project has yielded several tangible and reusable products:
     \item A suite of fine-tuned and strictly evaluated state-of-the-art Deep Learning models (U-Net, DeepLabV3+, SegFormer) optimized specifically for challenging coastal dynamics.
 \end{itemize}
 
+\needspace{4\baselineskip}
 \section{Brief Description of Other Memory Chapters}
 
 The document is organized as follows:
@@ -279,11 +285,11 @@ Building upon this legacy, the European Space Agency (ESA) catalyzed a new era i
     \label{fig:evolution_shoreline_satellite}
 \end{figure}
 
-To leverage this massive and continuously expanding volume of ``Big Data'', the scientific community recognized that manual shoreline delineation was virtually impossible. This necessitated the development of automated computational frameworks designed to extract shoreline positions efficiently. Notable examples include CoastSat \citep{vos_coastsat_2019}, CASSIE \citep{almeida_coastal_2021}, and SHOREX \citep{sanchez-garcia_efficient_2020}. While differing in their specific implementations, these tools generally share a common processing pipeline: automated image acquisition via cloud APIs (like Google Earth Engine), cloud and cloud-shadow masking, initial water/land segmentation at the pixel level using spectral indices, and finally, subpixel contouring techniques to delineate the final, continuous shoreline vector. 
+To leverage this massive and continuously expanding volume of ``Big Data'', the scientific community recognized that manual shoreline delineation constituted the bottleneck of the utilization of satellite imagery. This necessitated the development of automated computational frameworks designed to extract shoreline positions efficiently. Notable examples include CoastSat \citep{vos_coastsat_2019}, CASSIE \citep{almeida_coastal_2021}, SAET \citep{palomar-vazquez_shoreline_2023}, and SHOREX \citep{sanchez-garcia_efficient_2020}. While differing in their specific implementations, these tools generally share a common processing pipeline: automated image acquisition via cloud APIs (like Google Earth Engine), cloud and cloud-shadow masking, initial water/land segmentation at the pixel level using spectral indices, and finally, subpixel contouring techniques to delineate the final, continuous shoreline vector. 
 
 \section{Traditional Waterline Extraction via Spectral Indices}
 
-The critical step in traditional SDW extraction pipelines is the initial segmentation of the image into ``water'' and ``non-water'' classes. This is almost universally achieved using Spectral Water Indices. These indices exploit the characteristic of water to absorb most radiation in the Near-Infrared (NIR) and Shortwave-Infrared (SWIR) wavelengths, while land (soil, sand, and vegetation) strongly reflects them (see Figure~\ref{fig:spectral_indices}).
+The critical step in traditional SDW extraction pipelines is the initial segmentation of the image into ``water'' and ``non-water'' classes. This is almost universally achieved using Spectral Water Indices. These indices exploit the characteristic of water to absorb most radiation in the Near-Infrared (NIR) and Shortwave-Infrared (SWIR) wavelengths, while land (soil, sand, and vegetation) strongly reflects it (see Figure~\ref{fig:spectral_indices}).
 
 \begin{figure}[H]
     \centering
@@ -292,15 +298,16 @@ The critical step in traditional SDW extraction pipelines is the initial segment
     \label{fig:spectral_indices}
 \end{figure}
 
-Historically, the Normalized Difference Water Index (NDWI), proposed by \citet{mcfeeters_use_1996}, and its variant, the Modified Normalized Difference Water Index (MNDWI) introduced by \citet{xu_modification_2006}, have been the standard tools for this task. Their implementation has been extensively documented in scientific literature to track long-term shoreline evolution and morphological changes across diverse coastal settings. For instance \citet{ghosh_monitoring_2015}, \citet{liu_analysis_2017} or \citet{wang_spatio-temporal_2017} demonstrated the efficacy of these indices in achieving high-accuracy shoreline detection using medium resolution satellite imagery, proving their value for multi-decadal coastal monitoring.
+Historically, the Normalized Difference Water Index (NDWI), proposed by \citet{mcfeeters_use_1996}, and its variant, the Modified Normalized Difference Water Index (MNDWI) introduced by \citet{xu_modification_2006}, have been the standard approaches for this task. Their implementation has been extensively documented in scientific literature to track long-term shoreline evolution and morphological changes across diverse coastal settings. For instance \citet{ghosh_monitoring_2015}, \citet{liu_analysis_2017} or \citet{wang_spatio-temporal_2017} demonstrated the efficacy of these indices in achieving high-accuracy shoreline detection using medium resolution satellite imagery, proving their value for multi-decadal coastal monitoring.
 
 More recently, indices designed specifically to suppress environmental noise and improve performance in complex coastal scenes have been introduced. These include the Automated Water Extraction Index (AWEI), developed by \citet{feyisa_automated_2014} to enhance water shadows and urban background removal, and the Subtractive Coastal Water Index (SCoWI) \citep{bergsma_shoreliner_2024}. The latter is particularly relevant to this project as it was developed specifically for Sentinel-2 imagery and has shown promising results in macrotidal environments.
 
+\needspace{4\baselineskip}
 Once the index is calculated to create a greyscale intensity map, a threshold must be applied to binarize the image. While setting a constant threshold (e.g., zero) is common, adaptive statistical methods like Otsu's thresholding (\citealp{otsu_threshold_1979}) are frequently used to find the optimal separation value based on the image's histogram distribution. After binarization, the shoreline is extracted by identifying the boundary between water and land pixels. This is typically done by finding the transition pixels between the two classes, which are then smoothed and converted into a vector line via subpixel contouring algorithms (such as marching-squares, \citealp{lorensen_marching_1987}).
 
 \section{Challenges and Limitations in Macrotidal Environments} \label{sec:soa_challenges_macrotidal}
 
-While traditional spectral indices combined with automated thresholding (e.g., Otsu) perform highly accurately (often achieving sub-pixel precision of $<$10~m) in microtidal, sheltered, or steeply sloped beaches, their reliability significantly degrades in complex, high-energy, and macrotidal environments. Recent global benchmarking efforts \citep{vos_benchmarking_2023} have quantified this degradation, showing that horizontal extraction errors more than double (exceeding 20-40~m) on macrotidal beaches compared to their microtidal counterparts. Furthermore, site-specific assessments across the European Atlantic coast have similarly revealed profound limitations in these segmentation techniques during challenging oceanographic conditions \citep{cabezas_site-specific_2026}.
+While traditional spectral indices combined with automated thresholding (e.g., Otsu thresholding) perform highly accurately (often achieving sub-pixel precision of $<$10~m) in microtidal, sheltered, or steeply sloped beaches, their reliability significantly degrades in complex, high-energy, and macrotidal environments. Recent global benchmarking efforts \citep{vos_benchmarking_2023} have quantified this degradation, showing that horizontal extraction errors more than double (exceeding 20-40~m) on macrotidal beaches compared to their microtidal counterparts. Furthermore, site-specific assessments across the European Atlantic coast have similarly revealed profound limitations in these segmentation techniques during challenging oceanographic conditions \citep{cabezas_site-specific_2026}.
 
 The primary driver of error in these settings is the extensive and topographically complex intertidal zone exposed during ebb and low tides. In macrotidal beaches (tidal ranges $>$ 4 m) characterized by intermediate or dissipative morphodynamic states, the retreating tide leaves behind vast plains of saturated sand. Spectrally, the transition from dry sand to wet sand to shallow water is not a sharp boundary but a gradual continuum. Indices such as MNDWI and AWEInsh consistently fail to differentiate between shallow water and saturated soil, systematically misclassifying the wet intertidal zone as ``water'' (see an example in Figure \ref{fig:mndwi_cross_section}). This results in the extraction algorithms delineating the upper limit of the wet beach (or even the dune vegetation line) rather than the instantaneous water level, creating massive landward biases that can exceed hundreds of meters.
 
@@ -313,7 +320,7 @@ The primary driver of error in these settings is the extensive and topographical
 
 Furthermore, high-energy wave conditions may introduce additional errors. The presence of extensive white foam generated by breaking waves offshore drastically alters the expected low reflectance of the water surface. Indices like NDWI are particularly sensitive to foam, occasionally mistaking the outer breaker zone for land, thus producing severe seaward offsets \citep{hagenaars_accuracy_2018, cabezas_site-specific_2026}.
 
-Ultimately, both specific case studies \citep{cabezas_site-specific_2026} and comprehensive benchmarking exercises \citep{vos_benchmarking_2023} concur that the primary bottleneck for accurate SDW extraction in complex areas is not the geometric subpixel refinement algorithm, but the initial binary segmentation step (the spectral index determination and thresholding method) itself. Relying solely on the radiometric intensity of isolated pixels is insufficient to navigate the semantic ambiguity between wave foam, wet sand, and the actual waterline. This critical limitation strongly motivates the need to take a step back from classical spectral approaches and explore advanced, context-aware Deep Learning solutions.
+Ultimately, both specific case studies \citep{cabezas_site-specific_2026, sanchez-garcia_efficient_2020} and comprehensive benchmarking exercises \citep{vos_benchmarking_2023} concur that the primary bottleneck for accurate SDW extraction in complex areas is not the geometric subpixel refinement algorithm, but the initial binary segmentation step (the spectral index determination and thresholding method) itself. Relying solely on the radiometric intensity of isolated pixels is insufficient to navigate the semantic ambiguity between wave foam, wet sand, and the actual waterline. This critical limitation strongly motivates the need to take a step back from classical spectral approaches and explore advanced, context-aware Deep Learning solutions.
 
 \section{The Shift towards Deep Learning in Earth Observation}
 
@@ -330,7 +337,7 @@ Despite these architectural advancements, a critical analysis of the current sta
     
     \item \textbf{The Macrotidal Gap:} Most DL studies for shoreline extraction have been trained and validated in microtidal or sheltered environments where the land-water boundary is relatively stable. In macrotidal coasts, the ``semantic ambiguity'' between breaking wave foam, saturated sand, and shallow water remains a systematic challenge that most current models treat as noise rather than learned features \citep{tian_deep_2024}. The effectiveness of DL models to navigate these specific, high-energy conditions is a critical void in current research.
 
-    \item \textbf{Lack of Systematic Benchmarking vs. Operational Spectral Tools:} Although tools like CoastSat, CASSIE or SHOREX (which rely on spectral indices and automatic thresholding) are the current operational standard for automated shoreline extraction, there is a striking absence of extensive, consistent benchmarking that formally compares these traditional pipelines against modern semantic segmentation models \citep{tian_deep_2024}. Most DL studies evaluate new architectures against other neural networks rather than quantifying the exact magnitude of improvement over index-based methods in challenging environments.
+    \item \textbf{Lack of Systematic Benchmarking vs. Operational Spectral Tools:} Although tools like CoastSat, CASSIE or SHOREX (which rely on spectral indices and automatic thresholding) are the current operational standard for automated shoreline extraction, there is a striking absence of extensive, consistent benchmarking that formally compares these standard pipelines against modern semantic segmentation models \citep{tian_deep_2024}. Most DL studies evaluate new architectures against other neural networks rather than quantifying the exact magnitude of improvement over index-based methods in challenging environments.
     
     \item \textbf{Architectural Over-reliance and Class Complexity}: Current literature shows an over-reliance on U-Net variants without systematic justification for more complex coastal scenes \citep{tian_deep_2024}. Furthermore, most models still approach the problem as a binary classification (water vs. land), failing to exploit the potential of multi-class segmentation (e.g., explicitly labeling ``wet sand'' or ``white water'') to reduce the confusion that leads to landward or seaward biases.
 
@@ -358,16 +365,16 @@ Salinas is a 2.5 km embayed sandy beach system located on the left bank of the A
 
 El Puntal is a 4 km sandy spit at the entrance of Santander Bay (Cantabria), formed by the interaction of estuarine and marine dynamics. The beach is backed by a dune system that reaches up to 10 m high and 50–100 m wide. The sandspit is located at its western end, whereas the eastern end is characterized by a more exposed morphology and the mouth of a small stream. In the same way as Salinas, El Puntal experiences a wide intertidal zone (up to 250 m) and a mean tidal range of around 4 m. However, unlike Salinas, El Puntal does not receive direct wave impact, as it is protected by the Magdalena Peninsula. Furthermore, also in contrast to Salinas, El Puntal features a much less dark, golden-colored sand.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=15truecm]{Study_sites_figure.png}
-    \caption{Location of the study sites: Salinas (left) and El Puntal (right) beaches. RGB image (top), topobathymetry (middle) using the ETRS89 / UTM 30N coordinate system, and beach profile (bottom) highlighting the intertidal range defined by the HAT/LAT (Highest/Lowest Astronomical Tide). (Source: \citealp{cabezas_site-specific_2026})}
-    \label{fig:study_sites}
-\end{figure}
-
 The selection of Salinas and El Puntal as study areas responds to their representativeness of highly dynamic macrotidal environments, which consistently pose the most significant challenges for automated shoreline extraction methodologies. Both beaches share practically identical macrotidal ranges, featuring extensive intertidal zones that undergo profound daily fluctuations and result in the recurrent exposure of vast stretches of saturated sand. This inherently generates a critical spectral ambiguity between shallow water and wet sand, severely penalizing traditional pixel-by-pixel segmentation indices.
 
 However, while they share this macrotidal nature, they exhibit key differences that allow for a comprehensive evaluation of the models under varying degrees of complexity. El Puntal, being sheltered from direct wave impact, serves as a baseline scenario with standard, golden-colored sand. Additionally, artificial dredging operations are routinely carried out at the very tip of El Puntal to maintain the required water depth for the navigation channel into the Bay of Santander. This dredging results in a much steeper beach slope in that specific area, which drastically reduces the extent of the intertidal zone, one of the main factors contributing to the reduced complexity of this environment. Summed to the other factors, this makes El Puntal a slightly less challenging environment compared to Salinas. In stark contrast, Salinas is fully exposed to energetic wave climates, resulting in a significantly higher presence of breaking wave foam (white-water) across a wide surf zone. Furthermore, the frequent accumulation of coal and carbonaceous shales along its intertidal profile creates noticeably dark patches of saturated sand. This stark color closely mimics the inherently low reflectance signature of water bodies in optical satellite imagery. Together, the excessive foam and the deceptively dark wet sand render Salinas an ideal stress-test. It provides a robust framework to critically evaluate whether Deep Learning architectures can successfully leverage spatial and structural context to differentiate the actual waterline, overcoming the limitations where traditional spectral methods typically fail.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Study_sites_figure.png}
+    \caption{Location of the study sites: Salinas (left) and El Puntal (right) beaches. RGB image (top), topobathymetry (middle) using the ETRS89 / UTM 30N coordinate system, and beach profile (bottom) highlighting the intertidal range defined by the HAT/LAT (Highest/Lowest Astronomical Tide). (Source: \citealp{cabezas_site-specific_2026})}
+    \label{fig:study_sites}
+\end{figure}
 
 \section{Data Acquisition and Preprocessing}
 \label{sec:data_acquisition}
@@ -384,7 +391,7 @@ However, it is crucial to acknowledge an inherent temporal sampling bias in the 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=17truecm]{marine_data_comparison.png}
+    \includegraphics[width=\textwidth]{marine_data_comparison.png}
     \caption{Comparison between the continuous oceanographic time-series (purple) and the conditions captured exactly during Sentinel-2 overpasses (yellow dots) for Salinas beach. The top panels highlight the Astronomical Tide, demonstrating the observational bias caused by the sun-synchronous orbit that systematically trims the high-tide peaks. The bottom panels show the Significant Wave Height ($H_s$), which more closely follows the theoretical distribution, albeit missing the extreme storm events.}
     \label{fig:marine_data_comparison}
 \end{figure}
@@ -396,7 +403,7 @@ To rigorously train the algorithms and benchmark their performance, two distinct
 
 \subsection{Coastal Mask Classes}
 
-To train and validate the Deep Learning models, a highly accurate pixel-level GT dataset was created. Given the complexity of the selected macrotidal environments, a multi-class approach was adopted rather than a simple binary (water/land) classification. The predefined classes were: \textit{water} (undisturbed water bodies), \textit{white-water} (breaking wave foam in the surf zone), \textit{wet sand} (the saturated intertidal zone), and \textit{sand} (dry beach) (see Figure \ref{fig:mask_classes}).
+To train and validate the Deep Learning models, a highly accurate pixel-level GT dataset was created. Given the complexity of the selected macrotidal environments, a multi-class approach was adopted rather than a simple binary (water/land) classification. The predefined classes were: \textit{water} (calm water bodies), \textit{white-water} (breaking wave foam in the surf zone), \textit{wet sand} (the saturated intertidal zone), and \textit{sand} (dry beach) (see Figure \ref{fig:mask_classes}).
 
 The annotation process was performed manually via photo-interpretation using the DigitalSreeni Image Annotator toolkit \citep{bhattiprolu_digitalsreeni_2026} (Figure \ref{fig:mask_classes}). To ensure the models focus solely on the relevant coastal features, any pixel not manually assigned to one of these four categories was automatically designated as an \textit{ignore\_index}. This ensures that background elements (like urban infrastructure or vegetation) do not interfere with the loss function calculation during training. In total, a dataset comprising 161 image patches (combined from Salinas and El Puntal) was manually annotated and exported into the standardized COCO JSON format.
 
@@ -435,6 +442,7 @@ Spectral indices are mathematical operations applied pixel-by-pixel across the d
         NDWI = \frac{\rho_{Green} - \rho_{NIR}}{\rho_{Green} + \rho_{NIR}}
     \end{equation}
 
+    \needspace{4\baselineskip}
     \item \textbf{Modified Normalized Difference Water Index (MNDWI):} Proposed by \citet{xu_modification_2006} to address NDWI's difficulty in distinguishing water from built-up land. It replaces the NIR band with the Shortwave-Infrared (SWIR) band, which can penetrate shallow waters and wet environments slightly differently. 
     \begin{equation}
         MNDWI = \frac{\rho_{Green} - \rho_{SWIR1}}{\rho_{Green} + \rho_{SWIR1}}
@@ -515,7 +523,7 @@ Regarding hardware utilization, the computationally intensive task of training t
 
 To systematically compare the performance of traditional spectral indices against the Semantic Segmentation Deep Learning models, it is necessary to translate their respective pixel-based outputs into continuous, comparable geographic vectors. This process, known as sub-pixel contouring, is critical for achieving the high spatial precision required for shoreline monitoring.
 
-For the traditional baselines (see Section \ref{sec:baseline_spectral}), the extraction pipeline follows a strict three-step sequence (Figure \ref{fig:waterline_pipeline}). First, continuous intensity rasters are computed using the mathematical formulations of the four selected spectral water indices (e.g., MNDWI, SCoWI). Second, discrete binary masks ("water" versus "non-water") are created by applying the cutoff threshold values evaluated for each method (Zero, Otsu, and Modified Otsu). Third, the final waterlines are generated in vector format by utilizing the Marching Squares contouring algorithm \citep{lorensen_marching_1987} to trace a smooth boundary where the binary mask transitions from 0 to 1. This algorithm effectively interpolates the exact sub-pixel location of the water boundary, allowing for a more precise vector representation of the waterline.
+For the traditional baselines (see Section \ref{sec:baseline_spectral}), the extraction pipeline follows a strict three-step sequence (Figure \ref{fig:waterline_pipeline}). First, continuous intensity rasters are computed using the mathematical formulations of the four selected spectral water indices (i.e., NDWI, MNDWI, AWEInsh and SCoWI). Second, discrete binary masks ("water" versus "non-water") are created by applying the cutoff threshold values evaluated for each method (Zero, Otsu, and Modified Otsu). Third, the final waterlines are generated in vector format by utilizing the Marching Squares contouring algorithm \citep{lorensen_marching_1987} to trace a smooth boundary where the binary mask transitions from 0 to 1. This algorithm effectively interpolates the exact sub-pixel location of the water boundary, allowing for a more precise vector representation of the waterline.
 
 \begin{figure}[H]
     \centering
@@ -525,6 +533,8 @@ For the traditional baselines (see Section \ref{sec:baseline_spectral}), the ext
 \end{figure}
 
 Conversely, for the Deep Learning models, the segmentation output requires a slight mathematical adaptation to maximize its utility for vectorization. After processing a $128 \times 128$ image patch, the neural network outputs multi-class prediction logits. These logits are converted into confidence scores (ranging from 0.0 to 1.0) using a Softmax activation function. Subsequently, the pixels segmented as \textit{water} and \textit{white-water} classes are collapsed into a single "water" class, while the \textit{wet sand} and \textit{sand} classes are collapsed into a single "non-water" class. Then, the final waterlines are extracted using the same Marching Squares contouring algorithm as in the traditional pipeline, applied to the resulting binary mask. This ensures that the final output from both approaches is directly comparable in terms of format and spatial precision.
+
+\needspace{4\baselineskip}
 
 Finally, for both traditional and DL approaches, the individual continuous line segments extracted in each image are merged together. A morphological length filter is then applied, discarding any discontinuous segments shorter than a minimum threshold length. This filtering effectively removes small landlocked ponds, temporary tidal puddles, and isolated false positive artifacts, resulting in a single, robust, and continuous vector representation of the waterline.
 
@@ -565,6 +575,8 @@ Evaluating segmentation performance across full coastal scenes introduces a sign
 
 To counteract this statistical bias, a highly constrained, boundary-focused evaluation protocol was designed. Initially, the native multi-class structure of the ground-truth masks (and the corresponding Deep Learning predictions) was mathematically collapsed into binary domains: \textit{water} and \textit{white-water} were unified under the definitive "Water" class, while \textit{wet sand} and \textit{sand} were clustered into "Land". Any unannotated background elements assigned with the \textit{ignore\_index} (value 255) were strictly excluded from the calculations.
 
+\needspace{4\baselineskip}
+
 Subsequently, a symmetric spatial buffer equivalent to 10 pixels (representing a physical distance of 100 meters, given Sentinel-2's native 10 m resolution) was dynamically generated exclusively around the exact ground-truth waterline (see Figure \ref{fig:evaluation_mask}). The evaluation was strictly constrained to this 100-meter buffer zone algorithmically identified using the Euclidean Distance Transform. By completely masking out the deep water body and the inland sectors, the models were forced to perform, and be penalized, exclusively on the challenging semantic ambiguity of the intertidal zone.
 
 \begin{figure}[H]
@@ -594,6 +606,17 @@ First, a fixed, static landward baseline roughly parallel to the general orienta
 
 where $d_{mod,i}$ represents the cross-shore distance from the baseline to the \textit{modeled} (predicted) shoreline derived from either the DL or index-based methods at transect $i$, and $d_{obs,i}$ represents the distance to the \textit{observed} reference shoreline extracted from the Ground Truth.
 
+By aggregating the distances recorded across all intersecting transects for a given satellite image, several robust statistical metrics were computed:
+\begin{itemize}
+    \item \textbf{Median Absolute Deviation/Error (MAD):} The median of the absolute offsets. Because it relies on the median rather than the mean, MAD is highly robust against severe outliers (such as specific transects with an extreme errors due to a contouring artifact or specific complex scenarios because a highly energetic wave event), offering a highly representative value of the "typical" coastline error.
+    \item \textbf{Interquartile Range (IQR):} The range between the 25th and 75th percentiles of the offsets. This metric measures statistical dispersion.
+    \needspace{4\baselineskip}
+    \item \textbf{Mean Absolute Error (MAE):} The average of the absolute values of the offsets. Unlike Bias, MAE does not allow positive and negative errors to cancel each other out, providing a straightforward measure of the average magnitude of the extraction error.
+    \item \textbf{Mean Error (Bias):} The arithmetic average of all transect offsets. It evaluates the systematic tendency of the model to underestimate or overestimate the water extent. A negative Bias indicates a systematic landward offset (the model predicts water further inland than reality, a common failure over wet sand), while a positive Bias indicates a seaward bias.
+    \item \textbf{Root Mean Square Error (RMSE):} Measures the overall magnitude of the spatial discrepancy. Because it squares the errors before averaging, the RMSE strongly penalizes extreme localized deviations (such as the model mistakenly tracing an isolated intertidal pool or wave foam), providing a conservative and reliable metric of the extraction's operational viability.
+    \item \textbf{Coefficient of Determination ($R^2$):} Evaluates the degree of correlation between the predicted and observed shoreline positions across all transects. An $R^2$ value close to 1 indicates a strong linear relationship, while a value close to 0 suggests no correlation.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=15truecm]{figure_example_offset_calc.png}
@@ -602,16 +625,7 @@ where $d_{mod,i}$ represents the cross-shore distance from the baseline to the \
     
 \end{figure}
 
-By aggregating the distances recorded across all intersecting transects for a given satellite image, several robust statistical metrics were computed:
-\begin{itemize}
-    \item \textbf{Median Absolute Deviation/Error (MAD):} The median of the absolute offsets. Because it relies on the median rather than the mean, MAD is highly robust against severe outliers (such as specific transects with an extreme errors due to a contouring artifact or specific complex scenarios because a highly energetic wave event), offering a highly representative value of the "typical" coastline error.
-    \item \textbf{Interquartile Range (IQR):} The range between the 25th and 75th percentiles of the offsets. This metric measures statistical dispersion.
-    \item \textbf{Mean Absolute Error (MAE):} The average of the absolute values of the offsets. Unlike Bias, MAE does not allow positive and negative errors to cancel each other out, providing a straightforward measure of the average magnitude of the extraction error.
-    \item \textbf{Mean Error (Bias):} The arithmetic average of all transect offsets. It evaluates the systematic tendency of the model to underestimate or overestimate the water extent. A negative Bias indicates a systematic landward offset (the model predicts water further inland than reality, a common failure over wet sand), while a positive Bias indicates a seaward bias.
-    \item \textbf{Root Mean Square Error (RMSE):} Measures the overall magnitude of the spatial discrepancy. Because it squares the errors before averaging, the RMSE strongly penalizes extreme localized deviations (such as the model mistakenly tracing an isolated intertidal pool or wave foam), providing a conservative and reliable metric of the extraction's operational viability.
-    \item \textbf{Coefficient of Determination ($R^2$):} Evaluates the degree of correlation between the predicted and observed shoreline positions across all transects. An $R^2$ value close to 1 indicates a strong linear relationship, while a value close to 0 suggests no correlation.
-\end{itemize}
-
+\needspace{4\baselineskip}
 \textbf{Statistical Analysis Framework:}
 
 Once the aforementioned cross-shore metrics were derived for the entire dataset, a comprehensive statistical framework was established to interpret the results and facilitate a structured comparison in Chapter 4. This framework relies on several analytical approaches to evaluate the models across different dimensions:
@@ -624,6 +638,7 @@ Once the aforementioned cross-shore metrics were derived for the entire dataset,
     \item \textbf{Multi-Criteria Ranking:} Finally, all computed metrics (RMSE, MAE, MAD, Bias, and $R^2$) are synthesized and normalized into heatmaps and bump charts to produce a definitive, objective ranking of the top-performing global configurations.
 \end{itemize}
 
+\needspace{4\baselineskip}
 \subsection{Summary of Evaluated Models}
 
 To provide a clear overview of the entire experimental matrix, Table \ref{tab:evaluation_recap} summarizes all the models and configurations tested in this project, explicitly detailing which evaluation protocols were applied to each.
@@ -666,6 +681,7 @@ The Mean Visible Reflectance ($\bar{\rho}_{RGB}$) demonstrates a significant dis
 
 Furthermore, the Red-Blue Differential ($\Delta_{R-B}$) reveals an even more pronounced divergence in the colorimetric signature of the beaches. El Puntal displays the classic physical signature of golden sand (reflecting significantly more red light than blue) resulting in a high median differential of $963.45$. Conversely, Salinas presents a drastically flattened spectral response, with a median differential of $206.23$. In relative terms, this represents a difference of -80\% for Salinas. As observed in the boxplots, the interquartile ranges of these distributions do not overlap, indicating a fundamentally different geological coloration. The exceptionally low $\Delta_{R-B}$ at Salinas quantitatively proves that its sand behaves spectrally more like a neutral grey or black body, rather than standard beach sand.
 
+\needspace{4\baselineskip}
 These empirical findings successfully validate the classification of Salinas as a morphological stress-test environment. The inherently dark and spectrally flat nature of its sand creates a low-reflectance background that closely mimics the radiometric signature typical of water bodies in optical imagery. This structural baseline establishes a critical semantic ambiguity that is hypothesized to severely penalize the segmentation performance of traditional normalized spectral indices, a phenomenon that will be systematically addressed in the subsequent geometric evaluations (see Section \ref{sec:results_geometric_eval}).
 
 \begin{figure}[H]
@@ -693,6 +709,7 @@ Crucially for macrotidal applications, the semantic isolation of the \textit{Wet
 The most notable variance in the multi-class assessment occurs within the \textit{White Water} category, which highlights the direct influence of local hydrodynamic conditions on model training and inference. At the exposed, high-energy beach of Salinas, the models achieve a functional median IoU of 0.651 (Dice: 0.788), successfully delineating the prominent surf zone. Conversely, at El Puntal, the \textit{White Water} performance collapses to a median IoU of 0.159 (Dice: 0.274). Rather than an architectural failure, this is a direct reflection of the physical environment: El Puntal is characterized with a lower frequency wave foam and a narrower extent of white water features. This severe class imbalance natively limits the predictive confidence of the model in that specific region, though it bears no negative impact on the overall shoreline extraction since the feature itself is absent.
 
 % --- Figura de los Boxplots Multi-clase ---
+% CORREGIR ERRATA X-AXIS TITLE
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figure_boxplot_iou_dice_by_classes.png}
@@ -702,6 +719,7 @@ The most notable variance in the multi-class assessment occurs within the \texti
 
 % Continuación de la sección 4.2. Transición del problema multiclase al problema binario (Water vs Non-water) y análisis de eficiencia.
 
+\needspace{4\baselineskip}
 To align the pixel-based evaluation with the ultimate objective of the study (the extraction of a singular geometric waterline) the four multi-class categories were collapsed into a binary classification problem: \textit{Water} (incorporating Water and White Water) versus \textit{Non-water} (incorporating Sand and Wet Sand). 
 
 When evaluated under this binary paradigm, the semantic performance of the Deep Learning models reaches near-saturation. As illustrated in the right panel of Figure \ref{fig:binary_efficiency}, all evaluated architectures achieved an exceptional Mean IoU tightly bounded between 0.924 and 0.941. On a standard absolute scale, the visual variance among the models is virtually imperceptible. This confirms that the fundamental semantic delineation of the land-water boundary is definitively resolved by modern convolutional and transformer-based architectures, effectively eliminating the radiometric confusion that plagues traditional indices.
@@ -775,6 +793,7 @@ The hexbin distributions for traditional spectral indices (Figure \ref{fig:hexbi
 
 Conversely, NDWI (particularly when coupled with LM Otsu) exhibits an extreme \textit{Seaward} bias, recording a massive positive displacement of +46.18 m. This behavior aligns with the well documented vulnerability of the NDWI to breaking wave foam, causing the algorithm to falsely track the outer edge of the surf zone instead of the shoreline. The only robust exception within this traditional family is SCoWI (LM Otsu). It successfully clusters the bulk of its predictions along the 1:1 agreement bisector, achieving an $R^2$ of 0.91 and a minimal landward bias of -2.75 m.
 
+\needspace{6\baselineskip}
 In stark contrast, the hexbin density plots for the Deep Learning models (Figure \ref{fig:hexbins_dl}) display very little spatial dispersion, visually confirming their structural robustness. The visual uniformity across the panels is supported by all evaluated DL configurations achieving a very high $R^2 \ge 0.96$, tightly positioning on the 1:1 bisector line. Unlike the index-based methods, the semantic segmentation architectures completely eliminate the severe landward (wet sand) and seaward (foam) failure modes. 
 
 The statistical metrics reveal a highly controlled, very slight \textit{Seaward} bias across all DL architectures, ranging narrowly from +3.20 m (DeepLabV3+ EfficientNet-B4) to +5.48 m (SegFormer MiT-B4). This indicates a minimal, systematic tendency of the DL models to delineate the waterline marginally closer to the swash zone, in contrast to the traditional baseline with its massive errors. Ultimately, the visual and statistical indistinguishability among the DL hexbins reaffirms that these neural networks have successfully learned the underlying semantic context of the coastal boundary, effectively rendering the extraction process immune to the spectral noise of macrotidal environments.
@@ -810,7 +829,7 @@ The statistical metrics reveal a highly controlled, very slight \textit{Seaward}
 Before evaluating the hydrodynamic forcing, it is essential to examine the spatial variability of the extraction error along the coastline. By analyzing the distribution of cross-shore offsets grouped by \texttt{transect\_id}, specific morphological, geological, or anthropogenic features that locally disrupt model performance can be identified.
 
 % Análisis de los modelos Index-based (Puntal y Salinas).
-Figure \ref{fig:transects_index} details this alongshore variability for the Index-based models. At El Puntal, a distinct spatial pattern emerges: the first 15 transects exhibit error metrics (median, third quartile, and maximum bounds) notably below the overall site average. This localized increase in accuracy is driven by two main factors. First, the initial $\approx8$ transects correspond to the navigation channel of the Santander Bay, an area subjected to periodic dredging operations. Second, this entire initial stretch is highly sheltered from incident wave energy, minimizing foam-induced spectral noise. From transect 15 onwards, the offsets closely align with the overall median, until the final 5 transects, where a sudden spike in error is recorded. This localized degradation coincides with a slight shift in the coastline orientation and the proximity to a small stream mouth, which likely introduces spectral confusion due to localized moisture and sediment discharge.
+Figure \ref{fig:transects_index} details this alongshore variability for the Index-based models. At El Puntal, a distinct spatial pattern emerges: the first 15 transects (from W to E) exhibit error metrics (median, third quartile, and maximum bounds) notably below the overall site average. This localized increase in accuracy is driven by two main factors. First, the initial $\approx8$ transects correspond to the navigation channel of the Santander Bay, an area subjected to periodic dredging operations. Second, this entire initial stretch is highly sheltered from incident wave energy, minimizing foam-induced spectral noise. From transect 15 onwards, the offsets closely align with the overall median, until the final 5 transects, where a sudden spike in error is recorded. This localized degradation coincides with a slight shift in the coastline orientation and the proximity to a small stream mouth, which likely introduces spectral confusion due to localized moisture and water discharge.
 
 At Salinas, the traditional spectral indices also display significant alongshore volatility. The initial transects record lower-than-average offsets; this physically corresponds to the narrowest sector of the beach where high tides frequently inundate the entire dry sand area, paradoxically restricting the physical space for the models to commit severe landward misclassifications. Conversely, a distinct cluster of elevated errors emerges between transects 12 and 21. This specific coastal stretch is backed by high-rise urban infrastructure. During the Sentinel-2 mid-morning overpass, these buildings project prominent shadows across the intertidal zone, severely confusing the pixel-by-pixel radiometric thresholding of traditional indices. Finally, the last two transects, located immediately adjacent to the eastern inlet jetty, show reduced offsets, likely due to the constrained morphodynamic mobility of the sand volume trapped against this rigid coastal structure.
 
@@ -880,7 +899,7 @@ In striking contrast, the Deep Learning family demonstrates an extraordinary lev
 
 Within this highly robust group, several configurations achieved virtually identical performance across both beaches. SegFormer (EfficientNet-B7) and DeepLabV3+ (MiT-B2) recorded $\Delta$ MAEs of just -0.03 m and -0.09 m, respectively. Even the U-Net (MiT-B2), which was previously identified as the top performer in terms of absolute MAE (Section \ref{subsec:intra_family_assessment}), generalized exceptionally well with a minor penalty of -0.96 m. Even the "worst-generalizing" DL model, DeepLabV3+ (EfficientNet-B4), only degraded by 1.57 m. 
 
-These results conclusively prove that semantic segmentation models do not overfit to the local radiometry of golden, sheltered beaches. Instead, they successfully abstract the universal semantic features of the land-water boundary, rendering them highly reliable for large-scale, automated coastal monitoring in heterogeneous environments.
+These results conclusively prove that semantic segmentation models do not overfit to the local radiometry of golden, semi-sheltered beaches. Instead, they successfully abstract the universal semantic features of the land-water boundary, rendering them highly reliable for large-scale, automated coastal monitoring in heterogeneous environments.
 
 % --- Figura del Lollipop Chart (Delta MAE) ---
 \begin{figure}[H]
